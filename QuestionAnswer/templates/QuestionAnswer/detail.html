@@ -1,0 +1,8 @@
+<p>{{ question }} <br>
+   Posted on {{ question.pub_date }}
+<ul>
+{% for answer in question.answer_set.all %}
+	<li>{{ answer.answer_text }} ({{ answer.pub_date }})</li>	
+{% endfor %}
+</ul>
+</p>
