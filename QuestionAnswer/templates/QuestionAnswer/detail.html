@@ -6,3 +6,13 @@
 {% endfor %}
 </ul>
 </p>
+
+{% if error_message %}
+	<p>error_message</p>
+{% endif %}
+
+<form action="{% url 'QuestionAnswer:view_answer' question.id  %}" method="post">
+{% csrf_token %}
+	<input type="answer" name="answer_text" id="answer_text" placeholder="Type your answer"/>
+	<input type="submit" value="Reply" />
+</form>

@@ -7,6 +7,6 @@ urlpatterns = patterns('',
 	url(r'^$', views.index, name='index'),
 	# /QuestionAnswer/1
 	url(r'^(?P<question_id>\d+)/$', views.detail, name='detail'),
-	# /QuestionAnswer/1/write_answer
-	url(r'^(?P<question_id>\d+)/write_answer/$', views.write_answer, name='write_answer'),
+	# /QuestionAnswer/1/view_answer
+	url(r'^(?P<question_id>\d+)/view_answer/$', views.view_answer, name='view_answer'),
 )
