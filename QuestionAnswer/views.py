@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.core.urlresolvers import reverse
+from django.views import generic
 
 import django.utils.timezone as timezone
 
@@ -10,20 +11,17 @@ from QuestionAnswer.models import Question, Answer
 
 # Create your views here.
 
-def index(request):
-	latest_questions = Question.objects.order_by('-pub_date')[:5]
-	context = {
-		'latest_questions': latest_questions
-		}
+class IndexView(generic.ListView):
+	template_name = 'QuestionAnswer/index.html'
+	context_object_name = 'latest_questions'
 
-	return render(request, 'QuestionAnswer/index.html', context)
+	def get_queryset(self):
+		"""Get the 5 most recently added questions"""
+		return Question.objects.order_by('-pub_date')[:5]
 
-def detail(request, question_id):
-	question = get_object_or_404(Question, pk = question_id)
-
-	return render(request, 'QuestionAnswer/detail.html', {
-			'question': question}
-		)	
+class DetailView(generic.DetailView):
+	model = Question
+	template_name = 'QuestionAnswer/detail.html'
 
 def view_answer(request, question_id):
 	q = get_object_or_404(Question, pk = question_id)
