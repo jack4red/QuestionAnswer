@@ -1,5 +1,15 @@
-<h1>QuestionAnswer Home</h1>
+{% load staticfiles %}
 
+<h1>QuestionAnswer</h1>
+
+<h3>Post a question now!</h3>
+<form action="{% url 'QuestionAnswer:new_question' %}" method="post">
+{% csrf_token %}
+	<input type="text" name="question_text" id="question_text" placeholder="Type your question here" />
+	<input type="submit" value="Post" />
+</form>
+
+<h3>Latest Questions</h3>
 {% if latest_questions %}
 	<ul>
 	{% for question in latest_questions %}
@@ -11,3 +21,6 @@
 {% else %}
 	<p>No questions yet. Post one now!</p>
 {% endif %}
+
+
+

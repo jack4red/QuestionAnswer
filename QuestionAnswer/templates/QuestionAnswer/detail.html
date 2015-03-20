@@ -13,6 +13,6 @@
 
 <form action="{% url 'QuestionAnswer:view_answer' question.id  %}" method="post">
 {% csrf_token %}
-	<input type="answer" name="answer_text" id="answer_text" placeholder="Type your answer"/>
+	<input type="text" name="answer_text" id="answer_text" placeholder="Type your answer"/>
 	<input type="submit" value="Reply" />
 </form>

@@ -33,6 +33,13 @@ def view_answer(request, question_id):
 					args=(question_id,)))
 	
 
-	
+def new_question(request):
+	qtext = request.POST['question_text']
+
+	q = Question(question_text=qtext, pub_date=timezone.now())
+	q.save()
+
+	return HttpResponseRedirect(reverse('QuestionAnswer:index'))
+					
 
 
