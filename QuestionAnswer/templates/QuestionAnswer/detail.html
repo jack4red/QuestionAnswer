@@ -1,11 +1,20 @@
-<p>{{ question }} <br>
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block content %}
+
+<h4>{{ question }} </h4>
    Posted on {{ question.pub_date }}
 <ul>
+
+<div class="list-group">
 {% for answer in question.answer_set.all %}
-	<li>{{ answer.answer_text }} ({{ answer.pub_date }})</li>	
+	<p class="list-group-item">
+	{{ answer.answer_text }} <small>({{ answer.pub_date|naturaltime }})	</small>
+	</p>
 {% endfor %}
-</ul>
-</p>
+</div>
 
 {% if error_message %}
 	<p>error_message</p>
@@ -16,3 +25,5 @@
 	<input type="text" name="answer_text" id="answer_text" placeholder="Type your answer"/>
 	<input type="submit" value="Reply" />
 </form>
+
+{% endblock %}

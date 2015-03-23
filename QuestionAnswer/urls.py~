@@ -12,8 +12,8 @@ urlpatterns = patterns('',
 	url(r'^(?P<question_id>\d+)/view_answer/$', views.view_answer, name='view_answer'),
 	# /QuestionAnswer/new_question
 	url(r'^new_question/$', views.new_question, name='new_question'),
-	url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
-	url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+#	url(r'^login/$', 'django.contrib.auth.views.login'),
+#	url(r'^logout/$', 'django.contrib.auth.views.logout', name='login'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

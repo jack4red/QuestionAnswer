@@ -41,5 +41,5 @@ def new_question(request):
 
 	return HttpResponseRedirect(reverse('QuestionAnswer:index'))
 					
-
+	
 

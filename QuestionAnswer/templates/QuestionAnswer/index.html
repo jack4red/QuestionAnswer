@@ -1,26 +1,22 @@
-{% load staticfiles %}
+{% extends "base.html" %}
 
-<h1>QuestionAnswer</h1>
+{% load humanize %}
 
-<h3>Post a question now!</h3>
-<form action="{% url 'QuestionAnswer:new_question' %}" method="post">
-{% csrf_token %}
-	<input type="text" name="question_text" id="question_text" placeholder="Type your question here" />
-	<input type="submit" value="Post" />
-</form>
+{% block content %}
 
-<h3>Latest Questions</h3>
-{% if latest_questions %}
-	<ul>
-	{% for question in latest_questions %}
-	<li><a href="{% url 'QuestionAnswer:detail' question.id  %}">
-		{{ question.question_text }}
-	</a></li>
-	{% endfor %}
-	</ul>
-{% else %}
-	<p>No questions yet. Post one now!</p>
-{% endif %}
+<div> 
+	{% if user.is_anonymous  %}
+		<a href="{% url 'QuestionAnswer:login' %}" class="btn btn-primary">Login to post questions</a>
+	{% else %}
+		<p>Welcome, {{ user }}!</p>
+		<a href="{% url 'QuestionAnswer:logout' %}" class="btn btn-primary">Logout</a>
+	{% endif %}
+</div>
+
+
+{% include "_latest_questions.html" %}
+
+{% endblock %}
 
 
 
