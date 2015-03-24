@@ -3,9 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.core.urlresolvers import reverse
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 import django.utils.timezone as timezone
-
 
 from QuestionAnswer.models import Question, Answer
 
@@ -23,6 +23,7 @@ class DetailView(generic.DetailView):
 	model = Question
 	template_name = 'QuestionAnswer/detail.html'
 
+@login_required(login_url='/QuestionAnswer/login/')
 def view_answer(request, question_id):
 	q = get_object_or_404(Question, pk = question_id)
 	answer_text = request.POST['answer_text']

@@ -1,2 +1,2 @@
 # QuestionAnswer
-A simple question-answer site using Python/Django
+A question-answer site using Python/Django

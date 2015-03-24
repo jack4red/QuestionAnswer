@@ -43,16 +43,25 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            {% include "_login_links.html" %}
+          </ul>
+
+
         </div><!--/.nav-collapse -->
+      
       </div>
+
+      
     </nav>
 
     <div class="container">
 
-      <div class="starter-template">
-    {% block content %}
-    {% endblock %}
-      </div>
+    <div class="starter-template">
+      {% block content %}
+      {% endblock %}
+    </div>
 
     </div><!-- /.container -->
 

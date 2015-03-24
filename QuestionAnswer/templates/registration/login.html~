@@ -8,12 +8,16 @@
 
 <form method="post" action="{% url 'QuestionAnswer:login' %}">
 {% csrf_token %}
-
-<div class="form-group">
-	{{ form.username }}
-	{{ form.password }}	
-</div>
-
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
 
 <input type="submit" value="Login" />
 <input type="hidden" name="next" value="{% url 'QuestionAnswer:index' %}" />

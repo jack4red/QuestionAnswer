@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block content %}
+
+<div> 
+	{% if user.is_anonymous  %}
+		<a href="{% url 'QuestionAnswer:login' %}" class="btn btn-primary">Login to post questions</a>
+	{% else %}
+		<p>Welcome, {{ user }}!</p>
+		<a href="{% url 'QuestionAnswer:logout' %}" class="btn btn-primary">Logout</a>
+	{% endif %}
+</div>
+
+
+{% include "_latest_questions.html" %}
+
+{% endblock %}
+
+
+
