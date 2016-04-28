@@ -1,6 +1,6 @@
 {% if user.is_anonymous  %}
 	<li>
-		<a href="{% url 'QuestionAnswer:login' %}" >Login</a>
+		<a href="#" >Login</a>
 	</li>
 {% else %}
 	<li class="dropdown">
@@ -9,11 +9,9 @@
 		</a>
 		<ul class="dropdown-menu" role="menu">
 			<li>
-				 <li><a href="{% url 'QuestionAnswer:logout' %}">Logout</a></li>
+				 <li><a href="#">Logout</a></li>
 			</li>
 		</ul>
 	</li>
 	
-	
-	<!-- <a href="{% url 'QuestionAnswer:logout' %}" class="btn btn-primary">Logout</a> -->
 {% endif %}
