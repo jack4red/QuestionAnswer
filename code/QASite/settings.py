@@ -2,17 +2,15 @@
 Django settings for QASite project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+https://docs.djangoproject.com/en/1.6/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
+https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
-		os.path.join(BASE_DIR, 'QuestionAnswer/templates')]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -29,28 +27,24 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-PREREQ_APPS = [
+
+INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize'
-]
-
-PROJECT_APPS = [
     'QuestionAnswer',
-]
+)
 
-INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -63,10 +57,22 @@ WSGI_APPLICATION = 'QASite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'questionanswer',  # Or path to database file if using sqlite3.
+        'USER': 'test',  # Not used with sqlite3.
+        'PASSWORD': 'test',  # Not used with sqlite3.
+        'HOST': '127.0.0.1',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
+        'CONN_MAX_AGE': 100
     }
 }
 
@@ -94,3 +100,14 @@ STATICFILES_DIRS = ('',
     )
 
 LOGIN_REDIRECT_URL = '/QuestionAnswer/'
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    '%s/templates' % BASE_DIR,
+    './templates',
+    './templatetags',
+    '../templates',
+    # './account/',
+)
