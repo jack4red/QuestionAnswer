@@ -1,0 +1,388 @@
+{% load account_filter %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>微众云商通</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<style>
+	html,body,ul,li{
+		margin:0;
+		padding:0;
+		font-family:arial, "Microsoft YaHei";
+	}
+	ul li{
+		list-style: none;
+	}
+	a:hover{
+		text-decoration: none;
+		outline: none;
+	}
+	a:focus{
+		text-decoration: none;
+		outline: none;
+	}
+	.xui-header{
+		background: #1183ca;
+		height: 66px;
+		width:100%;
+		color:#fff;
+	}
+	.xui-header .main label{
+		font-size: 22px;
+		margin-left:65px;
+		line-height: 66px
+	}
+	.main{
+		width: 1000px;
+		margin:0 auto;
+		position: relative;
+	}
+	.sprite{
+		background: url('/static/images/guideSprite.png');
+
+	}
+	.lock {
+    background: url("/static/images/top_change-pwd.png") no-repeat scroll 0 0 / 35% auto rgba(0, 0, 0, 0);
+	}
+	.fr{
+		float: right;
+		display: inline-block;
+	}
+	.fl{
+		float: left;
+		display: inline-block;
+	}
+	.clearfix:after{
+		content:".";
+		display:block;
+		height:0;
+		clear:both;
+		visibility:hidden;
+	}
+	.tx_submit{
+		position: relative;
+		margin-left: 40px;
+		width: 65px;
+		margin-right: 5px;
+	}
+	.xui-logo i{
+		display: inline-block;
+		width: 52px;
+		height: 45px;
+		background-position:-664px -144px;
+		position: absolute;
+		left: 5px;
+		top:10px;
+	}
+	.xa-logout{
+		position:relative;
+		display: inline-block;
+		width: 53px;
+		height: 20px;
+		background-position:-663px -118px;
+		margin-left: 10px;
+		vertical-align: middle;
+		cursor: pointer;
+	}
+	.xa-edit{
+		display: inline-block;
+		width: 53px;
+		height: 20px;
+		margin-left: 10px;
+		vertical-align: middle;
+		
+		
+	}
+	.xui-logout span{
+		font-size: 13px;
+		line-height: 66px;
+	}
+	.xui-item{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top:80px;
+	}
+	.xui-item li{
+		text-align: center;
+		width: 25%;
+		float: left;
+	}
+	.xui-item li i{
+		width: 166px;
+		height: 190px;
+		display:inline-block;
+	}
+	.xui-item li h3{
+		font-size:21px;
+		margin:32px auto 20px auto;
+		color:#1f2229;
+		font-weight: normal;
+	}
+	.xui-item li p{
+		font-size:13px;
+		color: #5f5f5f;
+		line-height: 26px;
+	}
+	.xui-item li:nth-child(2) i{
+		background-position:-166px 0;
+	}
+	.xui-item li:nth-child(3) i{
+		background-position:-332px 0;
+	}
+	.xui-item li:last-child i{
+		background-position:-498px 0;
+	}
+	footer{
+		margin:75px auto 65px auto;
+	}
+	.modifypassword{
+		font-style: normal;
+		display: block;
+		margin-left: -16px;
+		margin-top: 0px;
+	}
+	.fake-click{
+		background: transparent;
+		width: 60px;
+		height: 47px;
+		position: absolute;
+		margin-left: -75px;
+		margin-top: 20px;
+		cursor: pointer;
+		font-size: 13px;
+	}
+	span input{
+		width:151px;
+		height:24px;
+		border:1px solid #e5e5e5;
+		margin-top: 10px;
+	}
+	.edit_password{
+		display: none;
+		color:red;
+		margin-left: 60px;
+		margin-top: 8px;
+	}
+	.popover-content {
+		background:#f8f8f8;
+		position:relative;
+    	padding: 9px 24px;
+    	width:267px;
+    	min-height:172px;
+    	color: #333;
+    	border:#e5e5e5;
+	}
+	.btn-primary {
+	  background: #207DBE;
+	  border-color: #207DBE;
+	}
+	.btn-default {
+	    background: #f8f8f8;
+	    border-color: #e5e5e5;
+	    text-shadow: 0 1px 0 #fff;
+	    width: 65px;
+	}
+	.popover-content span{
+		font-style: normal;
+		line-height: 0px;
+	}
+	.controls {
+	  font-style: normal;
+	}
+	.control-group{
+		width:100%;
+	}
+	</style>
+</head>
+<body>
+	<header class="xui-header">
+		<div class="main clearfix">
+			<div class="xui-logo fl">
+				<i class="sprite xui-logo"></i>
+				<label>微众云商通</label>
+			</div>
+			<div class="xui-logout fr">
+				<span>你好！{{ user.username }}</span>
+				<i class=" lock xa-edit" title="修改密码" style="margin-left: 40px;margin-top: -20px;">
+					<span class="modifypassword" >修改密码</span>
+				</i>
+				<i class="fake-click" data-toggle="popover" id="mf"></i>
+				<i class="sprite xa-logout" title="退出" style="margin-top: -20px;">
+					<span style="font-style: normal;">退出</span>
+				</i>
+				<div id='popover_tmpl' style="display:none;">
+			 		<form class="form-horizontal">
+						<div class="control-group">
+							<span class="control-label" for="old_password">旧密码&nbsp;</span>&nbsp;&nbsp;
+							<span class="controls">
+								<input type="password" id="old_password" name="old_password"/>
+							</span>
+						</div>
+
+						<div class="control-group">
+							<span class="control-label" for="new_password">新密码&nbsp;</span>&nbsp;&nbsp;
+							<span class="controls">
+								<input type="password" id="new_password" name="new_password" />
+							</span>
+						</div>
+
+						<div class="control-group">
+							<span class="control-label" for="confirm_password">确认密码</span>
+							<span class="controls">
+								<input type="password" id="confirm_password" name="confirm_password"/>
+								<p class="origin edit_password" error="old_password" style="margin-top: 18px;"></p>
+							</span>
+						</div>
+
+						<div class="control-group" style="line-height:0px; margin-top:7px;margin-bottom:7px;">
+							<label class="control-label" for="confirm_password"></label><br/>
+							<div class="controls">
+								&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary tx_submit btn-sm " value="&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;" />&nbsp;&nbsp;&nbsp;
+								<input type="button" class="btn btn-default tx_cancle btn-sm" value="&nbsp;&nbsp;&nbsp;&nbsp;取消&nbsp;&nbsp;&nbsp;&nbsp;" />
+							</div>
+						</div>
+					</form>
+	 			</div>
+			</div>
+		</div>
+	</header>
+
+	<section class="main">
+		{% with user|get_unified_auth_token as unified_auth_token %}
+		<ul class="xui-item">
+			<li>
+				<a target="_blank" href="http://data.weizoom.com/?token={{unified_auth_token}}" class="title_blank">
+					<i class="sprite"></i>
+					<h3>数据挖掘</h3>
+					<p>利用大数据筛选精准的客户</br>找到免费帮你推广且有影响力的粉丝</p>
+				</a>
+			</li>
+			<li>
+				<a target="_blank" href="http://weibo.weizoom.com/?token={{unified_auth_token}}">
+					<i class="sprite"></i>
+					<h3>粉丝沟通</h3>
+					<p>培养意见领袖</br>实时舆情监控</p>
+				</a>	
+			</li>
+			<li>
+				<a target="_blank" href="http://weapp.weizoom.com/new_weixin/outline/?token={{unified_auth_token}}">
+					<i class="sprite"></i>
+					<h3>微信互动</h3>
+					<p>有效管理微信公共账号</br>实现与粉丝零距离互动</p>
+				</a>
+			</li>
+			<li>
+				<a target="_blank" href="http://weapp.weizoom.com/mall/outline/get/?token={{unified_auth_token}}">
+				<!--
+				<a href="javascript:alert('敬请期待');">
+				-->
+					<i class="sprite"></i>
+					<h3>微商城</h3>
+					<p>拥有专属微商店铺</br>随时随地在线交易</p>
+				</a>
+			</li>
+		</ul>
+		{% endwith %}
+	</section>
+	<footer style="font-size:13px;color:#7d7d7d;text-align:center;display:inline-block;width:100%;">
+		<p style="color:#CF000D"><b>系统负责人：</b>数据挖掘&粉丝互动-由冬冬：15210951485&nbsp;&nbsp;&nbsp;&nbsp;微信互动-李双双：15637607750&nbsp;&nbsp;&nbsp;&nbsp;店铺装修&百宝箱-刘楠：13911481487&nbsp;&nbsp;&nbsp;&nbsp;微商城-李楠：18610793626  
+		&nbsp;&nbsp;&nbsp;&nbsp;<b>系统服务微信号：</b>2575261826
+		</p>
+		Copyright © 2012-2015 微众传媒 All Rights Reserved.
+	</footer>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.xa-logout').click(function(event) {
+				window.location.href = '/logout/'
+			});
+			// $('.title_blank').mouseover().css("text-decoration:none");
+			var tmpl = getPopoverContent();
+			$('#mf').popover({
+			    'html': true,
+			    'trigger': "click",
+			    'content': tmpl,
+			    'container': '.xui-logout',
+			    'animation': false,
+			    'placement': "bottom",
+			    'template': '<div class="popover" role="tooltip" id="popover"><div class="arrow"></div><div class="popover-content"></div></div>'
+	  		});
+	  		$('#mf').on('shown.bs.popover',initSubmit);
+	  		$('.fake-click').mouseover().attr("title","修改密码");
+	  		
+	  	});
+	  		
+			
+		function getPopoverContent(){
+			var result = $('#popover_tmpl').html();
+			$('#popover_tmpl').remove();
+			return result;
+		}
+
+		function initSubmit(){
+			$('#old_password').val('');
+			$('.tx_cancle').on('click',function(){
+				$('#mf').popover('hide');
+			});
+			$('.tx_submit').on('click',function(){
+	  			var oldPassword = $('#old_password').val();
+				var newPassword = $('#new_password').val();
+				var confirmPassword = $('#confirm_password').val();
+			
+				if (oldPassword.length == 0) {
+					$('.edit_password').text("请输入初始密码").css('display', 'block');
+					return false;
+				}
+				if (newPassword.length == 0) {
+					$('.edit_password').text("请输入新密码").css('display', 'block');
+					return false;
+				}
+				if (confirmPassword.length == 0) {
+					$('.edit_password').text("请输入确认密码").css('display', 'block');
+					return false;
+				}
+				if (newPassword != confirmPassword && confirmPassword !=0) {
+					$('.edit_password').text("两次密码输入不一致").css('display', 'block');
+					return false;
+				}
+
+				$.post('/password/update/', {
+					old_password: oldPassword,
+					new_password: newPassword,
+					confirm_password: confirmPassword
+				}, function(response) {
+					if (response.code == 200) {
+						if (response.data.success) {
+							$('.edit_password').text("").css('display', 'block');
+							alert("修改成功");
+							window.location.href = "/logout"; 
+						} else {
+							alert(response.data.reason);
+						}
+						$('#old_password').val('');
+						$('#new_password').val('');
+						$('#confirm_password').val('');
+					}
+					else{
+						$('.edit_password').text("初始密码不正确").css('display', 'block');	
+					}
+				});
+				return false;
+			});
+
+			$('input').blur(function(event) {
+				var div = $('div.control-group');
+				// div.removeClass('error');
+				// div.find('.help-inline').hide();
+			});
+		}
+	</script>
+</body>
+</html>
