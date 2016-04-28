@@ -4,26 +4,21 @@ from django.http import Http404
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import render_to_response, render
 import django.utils.timezone as timezone
 
 from QuestionAnswer.models import Question, Answer
 
 # Create your views here.
 
-class IndexView(generic.ListView):
-	template_name = 'QuestionAnswer/index.html'
-	context_object_name = 'latest_questions'
+@login_required(login_url='/login/')
+def index(request):
+	c = RequestContext(request, {
+		
+	})
+	return render_to_response('templates/index.html', c)
 
-	def get_queryset(self):
-		"""Get the 5 most recently added questions"""
-		return Question.objects.order_by('-pub_date')[:5]
-
-class DetailView(generic.DetailView):
-	model = Question
-	template_name = 'QuestionAnswer/detail.html'
-
-@login_required(login_url='/QuestionAnswer/login/')
+@login_required(login_url='/login/')
 def view_answer(request, question_id):
 	q = get_object_or_404(Question, pk = question_id)
 	answer_text = request.POST['answer_text']
