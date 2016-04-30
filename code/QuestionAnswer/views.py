@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
@@ -8,16 +10,22 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, render
 import django.utils.timezone as timezone
 
-from QuestionAnswer.models import Question, Answer
+from models import *
 
 # Create your views here.
 
 @login_required(login_url='/account/login/')
 def index(request):
-	c = RequestContext(request, {
-		
-	})
-	return render_to_response('index.html', c)
+	if request.POST:
+		pass
+	else:
+		c = RequestContext(request, {
+			
+		})
+		return render_to_response('index.html', c)
+
+def collect_questions(user_id,next_page,count=8):
+	pass
 
 @login_required(login_url='/account/login/')
 def view_answer(request, question_id):

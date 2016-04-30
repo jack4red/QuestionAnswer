@@ -12,6 +12,9 @@ from django.contrib.auth.models import Group, User
 class UserProfile(models.Model):
 	user = models.ForeignKey(User) #记录用户ID
 	user_name = models.CharField(max_length=64) #用户名
+	focused_question_ids = models.TextField() #关注的问题id
+	focused_theme_ids = models.TextField() #关注的话题id
+	focused_user_ids = models.TextField() #关注的用户id
 	is_active = models.BooleanField(default=True)
 	created_at = models.DateTimeField(auto_now_add=True) #添加时间
 	
