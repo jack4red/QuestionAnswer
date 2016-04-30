@@ -20,19 +20,5 @@ class UserOperationLog(models.Model):
 	class Meta(object):
 		db_table = 'account_user_operation_log'
 
-
-
-
-#===============================================================================
-# GlobalSetting : 系统的全局配置
-#===============================================================================
-class GlobalSetting(models.Model):
-	super_password = models.CharField(max_length=50)
-
-	class Meta(object):
-		db_table = 'trident_global_setting'
-		verbose_name = '全局配置'
-		verbose_name_plural = '全局配置'
-
 #hack: 修改User的属性, 增加一个profile
 User.profile = property(lambda u: UserProfile.objects.get(user=u))

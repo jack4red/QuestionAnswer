@@ -7,7 +7,7 @@ from django.contrib import admin
 from models import *
 
 
-class GlobalSettingAdmin(admin.ModelAdmin):
-	list_display = ('id','super_password')
+# class GlobalSettingAdmin(admin.ModelAdmin):
+# 	list_display = ('id','super_password')
 	
-admin.site.register(GlobalSetting,GlobalSettingAdmin)
+# admin.site.register(GlobalSetting,GlobalSettingAdmin)

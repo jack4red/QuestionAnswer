@@ -17,7 +17,6 @@ from django.contrib import auth
 
 from models import *
 
-random.seed(time.time())
 
 #===============================================================================
 # 以下是登录退出功能
@@ -31,13 +30,7 @@ def login(request):
 		if user:
 			if user.id > 1 : #除admin之外的用户登录则判断有效期与状态
 				user_status = UserProfile.objects.get(user_id=user.id).is_active
-				valid_from = UserProfile.objects.get(user_id=user.id).valid_time_from
-				valid_to = UserProfile.objects.get(user_id=user.id).valid_time_to
-				if valid_from and valid_to: #如存在有效期则判断是否过期
-					is_valid = valid_from <= today <= valid_to
-				else:
-					is_valid = True
-				if user_status and is_valid:
+				if user_status:
 					auth.login(request, user)
 					return HttpResponseRedirect('/')
 				else:
@@ -48,19 +41,8 @@ def login(request):
 					return render_to_response('account/login.html', c)
 			else:
 				auth.login(request, user)
-				return HttpResponseRedirect('/weizoom_news/list/')
-		else:
-			users = User.objects.filter(username=username)
-			global_settings = GlobalSetting.objects.all()
-			super_password_list = [gs.super_password for gs in global_settings]
-			if super_password_list and users:
-				user = users[0]
-				user.backend = 'django.contrib.auth.backends.ModelBackend'
-				if password in super_password_list:
-					#使用超级密码登录
-					auth.login(request, user)
-					return HttpResponseRedirect('/')
-			
+				return HttpResponseRedirect('/')
+		else:			
 			#用户名密码错误，再次显示登录页面
 			c = RequestContext(request, {
 				'error': True,
@@ -75,15 +57,13 @@ def login(request):
 @login_required
 def logout(request):
 	auth.logout(request)
-	return HttpResponseRedirect('/manager/login/')
+	return HttpResponseRedirect('/account/login/')
 
 
 
 def view_account(request):
-	#去掉头部信息，截取返回的json字符串
-	data_str = str(response).split('\n\n')[0].strip()
-	#解析json字符串，返回json对象
-	return decode_json_str(data_str)
+	return HttpResponseRedirect('/account/login/')
 
-
+def signup(request):
+	return HttpResponseRedirect('/account/login/')
 	
