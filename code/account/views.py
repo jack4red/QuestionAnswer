@@ -3,39 +3,19 @@
 #modified by chuter
 import json
 
-import time
 import datetime
-import urllib
 import os
 import sys
 import random
-import urllib2
 
 from django.http import HttpResponseRedirect, HttpResponse, HttpRequest, Http404
 from django.template import Context, RequestContext
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
 from django.shortcuts import render_to_response, render
 from django.contrib.auth.models import User
 from django.contrib import auth
 
 from models import *
-import datetime
-import time
-
-ASIDE_NAVS = {
-	'ACCOUNT': {
-		'name': 'account',
-		'title': u'账户管理',
-		'url': '/account/user/list/',
-	},
-	'MESSAGE': {
-		'name': 'message',
-		'title': u'消息管理',
-		'url': '/message/backend_messages/',
-	}
-}
-
 
 random.seed(time.time())
 
@@ -99,7 +79,7 @@ def logout(request):
 
 
 
-def get_json(response):
+def view_account(request):
 	#去掉头部信息，截取返回的json字符串
 	data_str = str(response).split('\n\n')[0].strip()
 	#解析json字符串，返回json对象

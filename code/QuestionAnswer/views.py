@@ -11,14 +11,14 @@ from QuestionAnswer.models import Question, Answer
 
 # Create your views here.
 
-@login_required(login_url='/login/')
+@login_required(login_url='/account/login/')
 def index(request):
 	c = RequestContext(request, {
 		
 	})
 	return render_to_response('templates/index.html', c)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/account/login/')
 def view_answer(request, question_id):
 	q = get_object_or_404(Question, pk = question_id)
 	answer_text = request.POST['answer_text']
