@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.core.urlresolvers import reverse
+from django.template import Context, RequestContext
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, render
@@ -16,7 +17,7 @@ def index(request):
 	c = RequestContext(request, {
 		
 	})
-	return render_to_response('templates/index.html', c)
+	return render_to_response('index.html', c)
 
 @login_required(login_url='/account/login/')
 def view_answer(request, question_id):

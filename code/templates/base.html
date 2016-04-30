@@ -10,8 +10,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    
+    {% block title %}
     <title>QuestionAnswer</title>
-
+    {% endblock %}
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -71,6 +73,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% block js %}
+    {% endblock %}
   </body>
 </html>
 
