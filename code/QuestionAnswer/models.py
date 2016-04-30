@@ -9,7 +9,8 @@ from models import *
 class Question(models.Model): #问题
 	owner_theme_ids = models.TextField() #所属话题
 	owner_user = models.ForeignKey(User)
-	question_text = models.CharField(max_length=100)
+	question_title = models.CharField(max_length=100)
+	question_text = models.TextField(max_length=256)
 	created_at = models.DateTimeField(auto_now_add=True) #添加时间
 
 	class Meta(object):
@@ -39,3 +40,28 @@ class Theme(models.Model): #话题
 
 	class Meta(object):
 		db_table = 'qa_theme'
+
+
+#################################
+# 关系表
+#################################
+
+# 0:u'关注问题'
+# 1:u'关注话题'
+# 2:u'关注答案'
+# 3:u'回答问题'
+# 4:u'评论答案'
+# 5:u'点赞答案'
+# 6:u'反对答案'
+class NewsToUser(models.Model):
+	action_user = models.ForeignKey(User)
+	actioned_user = models.CharField(max_length=100,null=True)
+	question = models.ForeignKey(Question,null=True)
+	answer = models.ForeignKey(Answer,null=True)
+	comment = models.ForeignKey(Comment,null=True)
+	theme = models.ForeignKey(Theme,null=True)
+	action_type = models.IntegerField(default=0)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta(object):
+		db_table = 'newstouser'
