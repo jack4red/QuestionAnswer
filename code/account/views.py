@@ -61,7 +61,7 @@ def logout(request):
 
 
 def view_account(request):
-	return HttpResponseRedirect('/account/login/')
+	return HttpResponse(request.user)
 
 def signup(request):
 	if request.POST:

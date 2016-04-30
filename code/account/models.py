@@ -9,16 +9,24 @@ from django.contrib.auth.models import Group, User
 #===============================================================================
 # 创建消息记录
 #===============================================================================
-class UserOperationLog(models.Model):
-	user_id = models.IntegerField() #记录用户ID
+class UserProfile(models.Model):
+	user = models.ForeignKey(User) #记录用户ID
 	user_name = models.CharField(max_length=64) #用户名
-	operater_id = models.IntegerField() #操作者ID
-	operater_name =  models.CharField(max_length=64) #操作者名
-	log = models.CharField(max_length=64) #操作
+	is_active = models.BooleanField(default=True)
 	created_at = models.DateTimeField(auto_now_add=True) #添加时间
 	
 	class Meta(object):
-		db_table = 'account_user_operation_log'
+		db_table = 'auth_user_profile'
 
-#hack: 修改User的属性, 增加一个profile
-User.profile = property(lambda u: UserProfile.objects.get(user=u))
+#===============================================================================
+# create_profile : 自动创建user profile
+#===============================================================================
+def create_profile(instance, created, **kwargs):
+	if created:
+		if instance.username == 'admin':
+			return
+		if UserProfile.objects.filter(user=instance).count() == 0:
+			profile = UserProfile.objects.create(user = instance,user_name = instance.username)
+			
+
+signals.post_save.connect(create_profile, sender=User, dispatch_uid = "account.create_profile")
