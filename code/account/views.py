@@ -22,7 +22,6 @@ from models import *
 # 以下是登录退出功能
 #===============================================================================
 def login(request):
-	today = datetime.datetime.today().strftime("%Y-%m-%d")
 	if request.POST:
 		username = request.POST['username']
 		password = request.POST['password']
@@ -65,5 +64,20 @@ def view_account(request):
 	return HttpResponseRedirect('/account/login/')
 
 def signup(request):
-	return HttpResponseRedirect('/account/login/')
-	
+	if request.POST:
+		username = request.POST['username']
+		password = request.POST['password']
+		if User.objects.filter(username=username).exists():
+			c = RequestContext(request, {
+				'error':True,
+			})
+			return render_to_response('account/signup.html', c)
+		else:
+			User.objects.create_user(username, 'feature_function@gmail.com', password)
+			user = auth.authenticate(username=username, password=password)
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+	else:
+		c = RequestContext(request, {
+			})
+		return render_to_response('account/signup.html', c)

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>用户登录</title>
+<title>用户注册</title>
 <meta name="viewport" content="width=device-width"/>
 <style type="text/css">
   body{
@@ -65,22 +65,29 @@
 <div class="login">
     <div class="login-form"> 
         <!--  -->
-        <div><h2>用户登录</h2><span><a href="/account/signup/">还没有注册？点击这里注册</a></span></div>
+        <div><h2>用户注册</h2></div>
         <!--login-form-->
            <form id="focus" method="post">
             <div class="login-info">
                 <label class="login-name"><i></i><input name="username"class="input_txt" placeholder="用户名称"/></label>
                 <label class="login-pwd"><i></i><input name="password" type="password" class="input_txt" placeholder="密码"/></label>
+                <label class="login-pwd"><i></i><input name="checkpassword" type="checkpassword" class="input_txt" placeholder="再次输入密码"/></label>
             </div>
             {% if error %}
-            <div class="login-eror">用户名或密码错误</div>
+            <div class="login-eror">该用户已存在</div>
             {% endif %}
-            {% if error_disabled %}
-            <div class="login-eror">该用户已停用或已过期</div>
-            {% endif %}
-            <button tabindex="1" value="登录" name="loginsubmit" type="submit" class="login-btn">登录</button>
+            <div class="login-eror" style="display: none;">两次输入的密码不一致</div>
+            <a class="login-btn" href="javascript:void(0)">注册</a>
           </form>
     </div>
   </div>
+  <script type="text/javascript">
+    var formdom = document.getElementsByTagName('form')[0];
+    var loginbtn = document.getElementsByClassName('login-btn')[0];
+    loginbtn.onclick = function() {
+      alert('signup check');
+      formdom.submit();
+    }
+  </script>
 </body>
 </html>
