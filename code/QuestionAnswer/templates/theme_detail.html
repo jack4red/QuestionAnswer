@@ -2,17 +2,19 @@
 
 {% block content %}
 
+{% if error_message %}
+	<p>error_message</p>
+{% else %}
+
 <h2>{{ theme_name }} </h2>
 <p style="text-indent: 2em;">描述：{{ description }}</p>
 <p>所属问题:</p>
 <div class="list-group">
 	<p class="list-group-item">
-	444444444444444444444444444444444444
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis ab quidem, praesentium vitae voluptate quis! Autem facilis deleniti accusantium eveniet at vitae labore culpa nihil sed, explicabo illo excepturi quod ipsam, commodi, nemo veritatis esse perferendis odio voluptas beatae necessitatibus! Accusamus ex aliquam iste id, officiis architecto asperiores. Vitae omnis modi sed odio velit alias laborum aliquid tempore veniam exercitationem harum excepturi consequatur cum, laudantium consectetur recusandae quisquam dignissimos ipsam asperiores rerum ullam et ipsa? Dolores quos numquam quod ab quaerat perspiciatis voluptate beatae fuga quisquam esse sequi cupiditate nostrum est dolore nobis nihil veritatis reiciendis natus harum iste, possimus?
 	</p>
 </div>
 
-{% if error_message %}
-	<p>error_message</p>
 {% endif %}
 
 {% endblock %}

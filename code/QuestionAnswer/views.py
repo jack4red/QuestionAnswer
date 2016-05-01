@@ -83,14 +83,25 @@ def collect_news(user_id,page,count=8):
 
 @login_required(login_url='/account/login/')
 def theme_detail(request):
-	theme_id = request.GET.get('theme_id','1')
-	theme = Theme.objects.get(id=theme_id)
-	c = RequestContext(request, {
-			'theme_name':theme.theme_name,
-			'description':theme.description,
-		})
+	try:
+		theme_id = request.GET.get('theme_id','1')
+		theme = Theme.objects.get(id=theme_id)
+		c = RequestContext(request, {
+				'theme_name':theme.theme_name,
+				'description':theme.description,
+			})
+	except Exception, e:
+		c = RequestContext(request, {
+				'error_message':True,
+			})
 	return render_to_response('theme_detail.html', c)
 
+@login_required(login_url='/account/login/')
+def question_detail(request):
+	if request.POST:
+		pass
+	else:
+		pass
 
 @login_required(login_url='/account/login/')
 def view_answer(request, question_id):

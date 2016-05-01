@@ -10,7 +10,7 @@ class Question(models.Model): #问题
 	owner_theme_ids = models.TextField() #所属话题
 	owner_user = models.ForeignKey(User)
 	question_title = models.CharField(max_length=100)
-	question_text = models.TextField(max_length=256)
+	question_text = models.TextField()
 	created_at = models.DateTimeField(auto_now_add=True) #添加时间
 
 	class Meta(object):
@@ -19,7 +19,7 @@ class Question(models.Model): #问题
 class Answer(models.Model): #答案
 	question = models.ForeignKey(Question)
 	owner_user = models.ForeignKey(User)
-	answer_text = models.CharField(max_length=100)
+	answer_text = models.TextField()
 	created_at = models.DateTimeField(auto_now_add=True) #添加时间
 
 	class Meta(object):
