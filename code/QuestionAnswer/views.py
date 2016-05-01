@@ -14,16 +14,23 @@ from models import *
 from account.models import *
 
 # Create your views here.
+ACTION_TYPE=(
+	u'关注问题',
+	u'关注话题',
+	u'关注答案',
+	u'回答问题',
+	u'评论答案',
+	u'点赞答案',
+	u'反对答案',
+	)
 
 @login_required(login_url='/account/login/')
 def index(request):
 	if request.POST:
 		pass
 	else:
-		news = collect_news(request.user.id,0)
-		latest_news = []
-		for new in news:
-			print new
+		latest_news = collect_news(request.user.id,0)
+
 		c = RequestContext(request, {
 			'latest_news':latest_news,
 		})
@@ -41,7 +48,38 @@ def collect_news(user_id,page,count=8):
 	news = NewsToUser.objects.filter(Q(action_user_id__in=list_user_ids)|Q(question_id__in=list_question_ids)|Q(answer_id__in=list_answer_ids)|Q(theme_id__in=list_theme_ids)).order_by('-created_at')[page*count:(page+1)*count]
 	news = {new.id:new for new in news}
 
-	return news
+	latest_news = []
+	for new in news:
+		new_obj = {}
+		if news[new].theme_id:
+			new_obj['theme_id']=news[new].theme_id
+			new_obj['theme_name']=Theme.objects.get(news[new].theme_id).theme_name
+
+		if news[new].comment_id:
+			new_obj['comment_id']=news[new].comment_id
+			new_obj['comment_text']=Comment.objects.get(news[new].comment_id).comment_text
+
+		if news[new].question_id:
+			new_obj['question_id']=news[new].question_id
+			new_q = Question.objects.get(news[new].question_id)
+			new_obj['question_title']=new_q.question_title
+			new_obj['question_text']=new_q.question_text
+
+		if news[new].answer_id:
+			new_obj['answer_id']=news[new].answer_id
+			new_obj['answer_text']=Answer.objects.get(news[new].answer_id).answer_text
+
+		if news[new].actioned_user:
+			new_obj['actioned_user']=news[new].actioned_user
+
+		new_obj['action_user']=news[new].action_user
+		new_obj['action_type']=ACTION_TYPE[news[new].action_type]
+		new_obj['created_at']=news[new].created_at
+		
+		latest_news.append(new_obj)
+		
+
+	return latest_news
 
 @login_required(login_url='/account/login/')
 def view_answer(request, question_id):

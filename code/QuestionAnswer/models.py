@@ -35,7 +35,7 @@ class Comment(models.Model): #评论
 		db_table = 'qa_comment'
 
 class Theme(models.Model): #话题
-	name = models.CharField(max_length=100) #名字
+	theme_name = models.CharField(max_length=100) #名字
 	description = models.TextField() #描述
 
 	class Meta(object):
