@@ -53,21 +53,21 @@ def collect_news(user_id,page,count=8):
 		new_obj = {}
 		if news[new].theme_id:
 			new_obj['theme_id']=news[new].theme_id
-			new_obj['theme_name']=Theme.objects.get(news[new].theme_id).theme_name
+			new_obj['theme_name']=Theme.objects.get(id=news[new].theme_id).theme_name
 
 		if news[new].comment_id:
 			new_obj['comment_id']=news[new].comment_id
-			new_obj['comment_text']=Comment.objects.get(news[new].comment_id).comment_text
+			new_obj['comment_text']=Comment.objects.get(id=news[new].comment_id).comment_text
 
 		if news[new].question_id:
 			new_obj['question_id']=news[new].question_id
-			new_q = Question.objects.get(news[new].question_id)
+			new_q = Question.objects.get(id=news[new].question_id)
 			new_obj['question_title']=new_q.question_title
 			new_obj['question_text']=new_q.question_text
 
 		if news[new].answer_id:
 			new_obj['answer_id']=news[new].answer_id
-			new_obj['answer_text']=Answer.objects.get(news[new].answer_id).answer_text
+			new_obj['answer_text']=Answer.objects.get(id=news[new].answer_id).answer_text
 
 		if news[new].actioned_user:
 			new_obj['actioned_user']=news[new].actioned_user
@@ -80,6 +80,17 @@ def collect_news(user_id,page,count=8):
 		
 
 	return latest_news
+
+@login_required(login_url='/account/login/')
+def theme_detail(request):
+	theme_id = request.GET.get('theme_id','1')
+	theme = Theme.objects.get(id=theme_id)
+	c = RequestContext(request, {
+			'theme_name':theme.theme_name,
+			'description':theme.description,
+		})
+	return render_to_response('theme_detail.html', c)
+
 
 @login_required(login_url='/account/login/')
 def view_answer(request, question_id):
