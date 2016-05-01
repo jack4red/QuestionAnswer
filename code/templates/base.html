@@ -45,8 +45,20 @@
           <ul class="nav navbar-nav">
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+              </ul>
+            </li>
           </ul>
-
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
           <ul class="nav navbar-nav navbar-right">
             {% include "_login_links.html" %}
           </ul>
