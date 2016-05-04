@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 	url(r'^theme_detail/', views.theme_detail),
 	url(r'^question_detail/', views.question_detail),
 	url(r'^answer_detail/', views.answer_detail),
-	url(r'^new_question/$', views.new_question, name='new_question'),
+	url(r'^add_question/', views.add_question),
 )
 
 urlpatterns += staticfiles_urlpatterns()

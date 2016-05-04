@@ -164,13 +164,15 @@ def answer_detail(request):
 		return render_to_response('answer_detail.html', c)
 	
 
-def new_question(request):
-	qtext = request.POST['question_text']
-
-	q = Question(question_text=qtext, pub_date=timezone.now())
-	q.save()
-
-	return HttpResponseRedirect(reverse('QuestionAnswer:index'))
+def add_question(request):
+	if request.POST:
+		pass
+	else:
+		c = RequestContext(request, {
+				'username':request.user,
+				'user_id':request.user.id,
+			})
+		return render_to_response('add_question.html', c)
 					
 	
 
