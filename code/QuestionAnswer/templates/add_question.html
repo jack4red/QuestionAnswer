@@ -33,11 +33,11 @@
 				'description':description,
 				'belone_theme':belone_theme
 			}, 
-			success:function() {
-				alert('success!')
+			success:function(resp) {
+				location.href='/QuestionAnswer/question_detail/?question_id='+resp.data.question_id;
 			},
 			error:function() {
-				alert('error!')
+				location.reload();
 			}
 		})
 	})

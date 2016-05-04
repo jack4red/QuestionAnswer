@@ -176,6 +176,7 @@ def add_question(request):
 		user.focused_question_ids = ','.join(focused_question_ids_list)
 		user.save()
 		response = create_response(200)
+		response.data.question_id=New_Q.id
 		return response.get_response()
 	else:
 		c = RequestContext(request, {
