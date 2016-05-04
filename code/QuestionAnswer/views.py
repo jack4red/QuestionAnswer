@@ -136,14 +136,32 @@ def question_detail(request):
 		return render_to_response('question_detail.html', c)
 
 @login_required(login_url='/account/login/')
-def view_answer(request, question_id):
-	q = get_object_or_404(Question, pk = question_id)
-	answer_text = request.POST['answer_text']
+def answer_detail(request):
+	if request.POST:
+		pass
+	else:
+		answer_id = request.GET.get('answer_id','1')
+		answer = Answer.objects.get(id=answer_id)
+		question = Question.objects.get(id=answer.question_id)
+		comments = Comment.objects.filter(answer_id=answer_id).order_by('-created_at')
+		owner_user =User.objects.get(id=answer.owner_user_id)
 
-	q.answer_set.create(answer_text=answer_text, pub_date=timezone.now())
+		up_owner_user_ids_num = len(answer.up_owner_user_ids.split(','))
+		down_owner_user_ids_num = len(answer.down_owner_user_ids.split(','))
 
-	return HttpResponseRedirect(reverse('QuestionAnswer:detail', 
-					args=(question_id,)))
+		comments = [{'comment_user_name':comment.owner_user_name,'comment_text':comment.comment_text} for comment in comments]
+
+		c = RequestContext(request, {
+				'question_title':question.question_title,
+				'question_text':question.question_text,
+				'created_at':answer.created_at,
+				'answer_text':answer.answer_text,
+				'answer_user_name':owner_user.username,
+				'up_owner_user_ids_num':up_owner_user_ids_num,
+				'down_owner_user_ids_num':down_owner_user_ids_num,
+				'comments':comments,
+			})
+		return render_to_response('answer_detail.html', c)
 	
 
 def new_question(request):

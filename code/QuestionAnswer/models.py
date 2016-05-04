@@ -29,7 +29,7 @@ class Answer(models.Model): #答案
 
 class Comment(models.Model): #评论
 	answer = models.ForeignKey(Answer)
-	owner_user = models.ForeignKey(User)
+	owner_user_name = models.CharField(max_length=100)
 	comment_text = models.CharField(max_length=100)
 	created_at = models.DateTimeField(auto_now_add=True) #添加时间
 

@@ -6,7 +6,7 @@
 {% if latest_news %}
         <div class="list-group">
         {% for new in latest_news %}
-        <a href="{% if new.is_question %}/?question_id={{ new.question_id }}{% endif %}{% if new.is_answer %}/?answer_id={{ new.answer_id }}{% endif %}" class="list-group-item">
+        <a href="{% if new.question_id %}/QuestionAnswer/question_detail?question_id={{ new.question_id }}{% endif %}{% if new.answer_id %}?answer_id={{ new.answer_id }}{% endif %}" class="list-group-item">
             <h6 class="list-group-item-heading">{{ new.action_user }}{{ new.action_type }}</h6>
             <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
             <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":500" }} </p>
