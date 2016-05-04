@@ -19,6 +19,8 @@ class Question(models.Model): #问题
 class Answer(models.Model): #答案
 	question = models.ForeignKey(Question)
 	owner_user = models.ForeignKey(User)
+	up_owner_user_ids = models.TextField() #赞同人id
+	down_owner_user_ids = models.TextField() #反对人id
 	answer_text = models.TextField()
 	created_at = models.DateTimeField(auto_now_add=True) #添加时间
 

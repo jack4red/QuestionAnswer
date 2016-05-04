@@ -101,7 +101,39 @@ def question_detail(request):
 	if request.POST:
 		pass
 	else:
-		pass
+		question_id = request.GET.get('question_id','1')
+		question = Question.objects.get(id=question_id)
+		answers = Answer.objects.filter(question_id=question_id)
+		answers = {answer.id:answer for answer in answers}
+		answer_list = []
+		for answer in answers:
+			answer_obj = {}
+			answer_obj['id'] = answer
+			answer_obj['owner_user_id'] = answers[answer].owner_user_id
+			answer_obj['owner_user_name'] = User.objects.get(id=answers[answer].owner_user_id).username
+			answer_obj['up_owner_user_ids_num'] = len(answers[answer].up_owner_user_ids.split(','))
+			answer_obj['down_owner_user_ids_num'] = len(answers[answer].down_owner_user_ids.split(','))
+			answer_obj['answer_text'] = answers[answer].answer_text
+			answer_obj['created_at'] = answers[answer].created_at
+			answer_list.append(answer_obj)
+
+		theme_ids = question.owner_theme_ids.split(',')
+		theme_names = []
+		for theme_id in theme_ids:
+			theme_names.append(Theme.objects.get(id=theme_id).theme_name)
+
+		owner_user_name = User.objects.get(id=question.owner_user_id).username
+
+		c = RequestContext(request, {
+				'question_title':question.question_title,
+				'question_text':question.question_text,
+				'created_at':question.created_at,
+				'question_owner_user_id':question.owner_user_id,
+				'question_owner_user_name':owner_user_name,
+				'theme_names':theme_names,
+				'answers':answer_list,
+			})
+		return render_to_response('question_detail.html', c)
 
 @login_required(login_url='/account/login/')
 def view_answer(request, question_id):

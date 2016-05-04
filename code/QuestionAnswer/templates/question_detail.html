@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% if error_message %}
+	<p>error_message</p>
+{% else %}
+
+<h4>{{ question_title }} </h4>
+   Posted on {{ created_at }}
+<p style="text-indent: 2em;">描述：{{ question_text }}</p>
+
+<div class="list-group">
+{% for answer in answers %}
+	<p class="list-group-item">
+	{{ answer.answer_text }} 
+	</p>
+{% endfor %}
+</div>
+
+{% endif %}
+
+<form action="" method="post">
+	<input type="text" name="answer_text" id="answer_text" placeholder="Type your answer"/>
+	<input type="submit" value="Reply" />
+</form>
+
+{% endblock %}

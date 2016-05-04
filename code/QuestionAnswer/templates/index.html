@@ -9,7 +9,7 @@
         <a href="{% if new.is_question %}/?question_id={{ new.question_id }}{% endif %}{% if new.is_answer %}/?answer_id={{ new.answer_id }}{% endif %}" class="list-group-item">
             <h6 class="list-group-item-heading">{{ new.action_user }}{{ new.action_type }}</h6>
             <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":50" }} </p>
+            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":500" }} </p>
             <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
         </a>
         {% endfor %}
