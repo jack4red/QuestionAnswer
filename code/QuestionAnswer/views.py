@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
-from django.http import Http404
-from django.core.urlresolvers import reverse
 from django.template import Context, RequestContext
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, render
-import django.utils.timezone as timezone
 from django.db.models import Q,Sum
+from core.jsonresponse import create_response
 
 from models import *
 from account.models import *
@@ -166,7 +163,20 @@ def answer_detail(request):
 
 def add_question(request):
 	if request.POST:
-		pass
+		question_title = request.POST.get('question_title','')
+		description = request.POST.get('description','')
+		belone_theme = request.POST.get('belone_theme','')
+		user_id = request.user.id
+
+		New_Q = Question.objects.create(owner_theme_ids=belone_theme,owner_user_id=user_id,question_title=question_title,question_text=description)
+
+		user = UserProfile.objects.get(user_id=user_id)
+		focused_question_ids_list = user.focused_question_ids.split(',')
+		focused_question_ids_list.append(str(New_Q.id))
+		user.focused_question_ids = ','.join(focused_question_ids_list)
+		user.save()
+		response = create_response(200)
+		return response.get_response()
 	else:
 		c = RequestContext(request, {
 				'username':request.user,

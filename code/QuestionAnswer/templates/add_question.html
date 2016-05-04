@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="post">
 	<div class="form-group input-group col-lg-6">
 	  <span class="input-group-addon" id="basic-addon1">Question_title</span>
 	  <input type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon1" name="question_title">
@@ -11,13 +10,36 @@
 	</div>
 	<div class="form-group input-group">
 	  <span class="input-group-addon" id="basic-addon1">Description</span>
-	  <textarea type="text" class="form-control" placeholder="Description" aria-describedby="basic-addon1" rows="4"></textarea>
+	  <textarea type="text" class="form-control" placeholder="Description" aria-describedby="basic-addon1" rows="4" name="description"></textarea>
 	</div>
 	<div class="form-group">
-		<input type="submit" class="btn btn-success" value="submit">
+		<button type="submit" class="btn btn-success">submit</button>
 		<button type="button" class="btn btn-info">reset</button>
 		<button type="button" class="btn btn-default">cancel</button>
 	</div>
+{% endblock %}
 
-</form>
+{% block js %}
+<script type="text/javascript">
+	$('.btn-success').click(function() {
+		var question_title = $("input[name='question_title']").val();
+		var description = $("textarea[name='description']").val();
+		var belone_theme = '1';
+		$.ajax({
+			url:'/QuestionAnswer/add_question/', 
+			type:'post', 
+			data:{
+				'question_title':question_title,
+				'description':description,
+				'belone_theme':belone_theme
+			}, 
+			success:function() {
+				alert('success!')
+			},
+			error:function() {
+				alert('error!')
+			}
+		})
+	})
+</script>
 {% endblock %}
