@@ -55,6 +55,7 @@ class Theme(models.Model): #话题
 # 4:u'评论答案'
 # 5:u'点赞答案'
 # 6:u'反对答案'
+# 7:u'话题下有新问题'
 class NewsToUser(models.Model):
 	action_user = models.ForeignKey(User)
 	actioned_user = models.CharField(max_length=100,null=True)

@@ -19,6 +19,7 @@ ACTION_TYPE=(
 	u'评论答案',
 	u'点赞答案',
 	u'反对答案',
+	u'话题下有新问题',
 	)
 
 @login_required(login_url='/account/login/')
@@ -160,7 +161,7 @@ def answer_detail(request):
 			})
 		return render_to_response('answer_detail.html', c)
 	
-
+@login_required(login_url='/account/login/')
 def add_question(request):
 	if request.POST:
 		question_title = request.POST.get('question_title','')
@@ -175,6 +176,10 @@ def add_question(request):
 		focused_question_ids_list.append(str(New_Q.id))
 		user.focused_question_ids = ','.join(focused_question_ids_list)
 		user.save()
+		belone_theme_list = belone_theme.split(',')
+		for theme in belone_theme_list:
+			NewsToUser.objects.create(action_user_id=user_id,question_id=New_Q.id,theme_id=theme,action_type=7)
+
 		response = create_response(200)
 		response.data.question_id=New_Q.id
 		return response.get_response()
@@ -185,5 +190,18 @@ def add_question(request):
 			})
 		return render_to_response('add_question.html', c)
 					
-	
+@login_required(login_url='/account/login/')
+def add_answer(request):
+	if request.POST:
+		question_id = request.POST.get('question_id')
+		user_id = request.user.id
+		answer_text = request.POST.get('answer_text')
 
+		new_A = Answer.objects.create(question_id=question_id,answer_text=answer_text)
+		NewsToUser.objects.create(action_user_id=user_id,answer_id=new_A.id,question_id=question_id,action_type=3)
+
+		response = create_response(200)
+		response.data.answer_id=new_A.id
+		return response.get_response
+	else:
+		pass
