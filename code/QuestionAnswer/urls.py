@@ -10,6 +10,7 @@ urlpatterns = patterns('',
 	url(r'^question_detail/', views.question_detail),
 	url(r'^answer_detail/', views.answer_detail),
 	url(r'^add_question/', views.add_question),
+	url(r'^add_answer/', views.add_answer),
 )
 
 urlpatterns += staticfiles_urlpatterns()

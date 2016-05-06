@@ -205,3 +205,65 @@ def add_answer(request):
 		return response.get_response
 	else:
 		pass
+
+@login_required(login_url='/account/login/')
+def focuse_action(request):
+	user_id = request.user.id
+	if request.POST:
+		action_type = request.POST.get('action_type','')
+		if action_type:
+			if action_type == 'theme':
+				theme_id = request.POST.get('theme_id')
+
+				user = UserProfile.objects.get(user_id=user_id)
+				focused_theme_ids_list = user.focused_theme_ids.split(',')
+				if not theme_id in focused_theme_ids_list:
+					focused_theme_ids_list.append(theme_id)
+					NewsToUser.objects.create(action_user_id=user_id,theme_id=theme_id,action_type=1)
+				else:
+					focused_theme_ids_list.remove(theme_id)
+				user.focused_theme_ids = ','.join(focused_theme_ids_list)
+				user.save()
+
+
+			elif action_type == 'question':
+				question_id = request.POST.get('question_id')
+
+				user = UserProfile.objects.get(user_id=user_id)
+				focused_question_ids_list = user.focused_question_ids.split(',')
+				if not theme_id in focused_question_ids_list:
+					focused_question_ids_list.append(question_id)
+					NewsToUser.objects.create(action_user_id=user_id,question_id=question_id,action_type=0)
+				else:
+					focused_question_ids_list.remove(question_id)
+				user.focused_question_ids = ','.join(focused_question_ids_list)
+				user.save()
+
+			elif action_type == 'user':
+				actioned_user_id = request.POST.get('actioned_user_id')
+
+				user = UserProfile.objects.get(user_id=user_id)
+				focused_user_ids_list = user.focused_user_ids.split(',')
+				if not actioned_user_id in focused_user_ids_list:
+					focused_user_ids_list.append(actioned_user_id)
+					NewsToUser.objects.create(action_user_id=user_id,actioned_user_id=actioned_user_id,action_type=8)
+				else:
+					focused_user_ids_list.remove(actioned_user_id)
+				user.focused_user_ids = ','.join(focused_user_ids_list)
+				user.save()
+
+			elif action_type == 'answer':
+				answer_id = request.POST.get('answer_id')
+
+				user = UserProfile.objects.get(user_id=user_id)
+				focused_answer_ids_list = user.focused_answer_ids.split(',')
+				if not answer_id in focused_answer_ids_list:
+					focused_answer_ids_list.append(answer_id)
+				user.focused_answer_ids = ','.join(focused_answer_ids_list)
+				user.save()
+
+				NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=2)
+			else:
+				pass
+		response = create_response(200)
+		return response.get_response()
