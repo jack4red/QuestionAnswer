@@ -20,6 +20,7 @@ ACTION_TYPE=(
 	u'点赞答案',
 	u'反对答案',
 	u'话题下有新问题',
+	u'关注了用户',
 	)
 
 @login_required(login_url='/account/login/')
@@ -202,6 +203,19 @@ def add_answer(request):
 
 		response = create_response(200)
 		response.data.answer_id=new_A.id
+		return response.get_response
+	else:
+		pass
+
+@login_required(login_url='/account/login/')
+def add_comment(request):
+	if request.POST:
+		answer_id = request.POST.get('answer_id')
+		owner_user_name = request.user.username
+		comment_text = request.POST.get('comment_text')
+		Comment.objects.create(answer_id=answer_id,owner_user_name=owner_user_name,comment_text=comment_text)
+
+		response = create_response(200)
 		return response.get_response
 	else:
 		pass
