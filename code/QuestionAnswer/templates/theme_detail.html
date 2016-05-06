@@ -6,13 +6,17 @@
 	<p>error_message</p>
 {% else %}
 
-<h2>{{ theme_name }} </h2>
+<h2>主题：{{ theme_name }} <small><button type="button" class="btn btn-primary" style="margin-left: 10px;">关注</button></small></h2>
+<!-- <button type="button" class="btn btn-success pull-left">关注</button> -->
+<div style="clear: both;"></div>
 <p style="text-indent: 2em;">描述：{{ description }}</p>
 <p>所属问题:</p>
 <div class="list-group">
+	{% for question in questions %}
 	<p class="list-group-item">
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis ab quidem, praesentium vitae voluptate quis! Autem facilis deleniti accusantium eveniet at vitae labore culpa nihil sed, explicabo illo excepturi quod ipsam, commodi, nemo veritatis esse perferendis odio voluptas beatae necessitatibus! Accusamus ex aliquam iste id, officiis architecto asperiores. Vitae omnis modi sed odio velit alias laborum aliquid tempore veniam exercitationem harum excepturi consequatur cum, laudantium consectetur recusandae quisquam dignissimos ipsam asperiores rerum ullam et ipsa? Dolores quos numquam quod ab quaerat perspiciatis voluptate beatae fuga quisquam esse sequi cupiditate nostrum est dolore nobis nihil veritatis reiciendis natus harum iste, possimus?
+	<a href="/QuestionAnswer/question_detail/?question_id={{ question.id }}">{{ question.title }}</a>
 	</p>
+	{% endfor %}
 </div>
 
 {% endif %}

@@ -85,7 +85,13 @@ def theme_detail(request):
 	try:
 		theme_id = request.GET.get('theme_id','1')
 		theme = Theme.objects.get(id=theme_id)
+		all_Q = Question.objects.all()
+		questions = []
+		for q in all_Q:
+			if theme_id in q.owner_theme_ids:
+				questions.append({'id':q.id,'title':q.question_title})
 		c = RequestContext(request, {
+				'questions':questions,
 				'theme_name':theme.theme_name,
 				'description':theme.description,
 			})
