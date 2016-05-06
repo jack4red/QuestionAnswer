@@ -211,7 +211,7 @@ def add_answer(request):
 def add_comment(request):
 	if request.POST:
 		answer_id = request.POST.get('answer_id')
-		owner_user_name = request.user.username
+		owner_user_name = request.user
 		comment_text = request.POST.get('comment_text')
 		Comment.objects.create(answer_id=answer_id,owner_user_name=owner_user_name,comment_text=comment_text)
 
@@ -279,5 +279,36 @@ def focuse_action(request):
 				NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=2)
 			else:
 				pass
+		response = create_response(200)
+		return response.get_response()
+
+@login_required(login_url='/account/login/')
+def up_or_down_answer(request):
+	if request.POST:
+		answer_id = request.POST.get('answer_id')
+		user_id = request.user.id
+		action_type = request.POST.get('action_type')
+
+		answer = Answer.objects.get(id=answer_id)
+		up_owner_user_ids_list = answer.up_owner_user_ids.split(',')
+		down_owner_user_ids_list = answer.down_owner_user_ids.split(',')
+
+		if action_type == 'up':
+			if not user_id in up_owner_user_ids_list:
+				up_owner_user_ids_list.append(user_id)
+			if user_id in down_owner_user_ids_list:
+				down_owner_user_ids_list.remove(user_id)
+			NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=5)
+
+		if action_type == 'down':
+			if not user_id in down_owner_user_ids_list:
+				down_owner_user_ids_list.append(user_id)
+			if user_id in up_owner_user_ids_list:
+				up_owner_user_ids_list.remove(user_id)
+			NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=6)
+
+		answer.up_owner_user_ids = ','.join(up_owner_user_ids_list)
+		answer.down_owner_user_ids = ','.join(down_owner_user_ids_list)
+
 		response = create_response(200)
 		return response.get_response()
