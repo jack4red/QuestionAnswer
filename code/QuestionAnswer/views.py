@@ -234,7 +234,7 @@ def add_answer(request):
 		NewsToUser.objects.create(action_user_id=user_id,answer_id=new_A.id,question_id=question_id,action_type=3)
 		response = create_response(200)
 		response.data.answer_id=new_A.id
-		return response.get_response
+		return response.get_response()
 	else:
 		pass
 
