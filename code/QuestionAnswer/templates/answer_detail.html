@@ -7,12 +7,11 @@
 {% else %}
 
 <h4>{{ question_title }} </h4>
-<p style="text-indent: 2em;">描述：{{ question_text }}</p>
+<p style="text-indent: 2em;" class="question_description">描述：{{ question_text }}</p>
 
 <div class="list-group">
-{{ answer_text }}
 	<p class="list-group-item">
-
+		{{ answer_text }}
 	</p>
 
 </div>
@@ -24,4 +23,19 @@
 	<input type="submit" value="Reply" />
 </form>
 
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		var $question_text = $('p.question_description');
+		var text = $question_text.html();
+		if($question_text.html().length>100){
+			var $expand = $('<a href="javascript:void(0)">点击展开</a>')
+			$expand.click(function() {
+				$question_text.html(text)
+			})
+			$question_text.html(text.substring(0,240)+'.....').append($expand);
+		}
+	})
+</script>
 {% endblock %}
