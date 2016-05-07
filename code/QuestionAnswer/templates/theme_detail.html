@@ -1,12 +1,20 @@
 {% extends "base.html" %}
-
+{% block css %}
+<style type="text/css">
+	.btn-green{
+		border-color: #50C87E;
+		color: #50C87E;
+		background: #fff;
+	}
+</style>
+{% endblock %}
 {% block content %}
 
 {% if error_message %}
 	<p>error_message</p>
 {% else %}
 
-<h2>主题：{{ theme_name }} <small><button type="button" class="btn btn-primary" style="margin-left: 10px;">关注</button></small></h2>
+<h2>主题：{{ theme_name }} <small>{% if focused %}<button type="button" class="btn btn-success" style="margin-left: 20px;margin-bottom: 7px;">取消关注</button>{% else %}<button type="button" class="btn btn-green" style="margin-left: 20px;margin-bottom: 7px;">关注话题</button>{% endif %}</small></h2>
 <!-- <button type="button" class="btn btn-success pull-left">关注</button> -->
 <div style="clear: both;"></div>
 <p style="text-indent: 2em;">描述：{{ description }}</p>
@@ -21,4 +29,40 @@
 
 {% endif %}
 
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+	$('button.btn').click(function() {
+		var _this = this;
+		$.ajax({
+			url:'/QuestionAnswer/focuse_action/',
+			type:'post',
+			data:{
+				'theme_id':{{ theme_id }},
+				'action_type':'theme',
+			},
+			success:function() {
+				if ($(_this).hasClass('btn-success')) {
+					$(_this).removeClass('btn-success');
+					$(_this).html('关注话题')
+				}else{
+					$(_this).addClass('btn-success');
+					$(_this).html('取消关注')
+				}
+				if ($(_this).hasClass('btn-green')) {
+					$(_this).removeClass('btn-green');
+					$(_this).html('取消关注')
+				}else{
+					$(_this).addClass('btn-green');
+					$(_this).html('关注话题')
+				}
+				
+			},
+			error:function() {
+				alert('focuse fail')
+			}
+		})
+	})
+</script>
 {% endblock %}

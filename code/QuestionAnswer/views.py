@@ -85,15 +85,25 @@ def theme_detail(request):
 	try:
 		theme_id = request.GET.get('theme_id','1')
 		theme = Theme.objects.get(id=theme_id)
+
+		focused = False
+		cur_user = UserProfile.objects.get(user_id=request.user.id)
+		focused_theme_ids_list = cur_user.focused_theme_ids.split(',')
+		if theme_id in focused_theme_ids_list:
+			focused = True
+
 		all_Q = Question.objects.all()
 		questions = []
 		for q in all_Q:
-			if theme_id in q.owner_theme_ids:
+			owner_theme_ids_list = q.owner_theme_ids.split(',')
+			if theme_id in owner_theme_ids_list:
 				questions.append({'id':q.id,'title':q.question_title})
 		c = RequestContext(request, {
 				'questions':questions,
 				'theme_name':theme.theme_name,
 				'description':theme.description,
+				'focused':focused,
+				'theme_id':theme_id,
 			})
 	except Exception, e:
 		c = RequestContext(request, {
