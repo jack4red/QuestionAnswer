@@ -226,13 +226,12 @@ def add_question(request):
 @login_required(login_url='/account/login/')
 def add_answer(request):
 	if request.POST:
-		question_id = request.POST.get('question_id')
+		question_id = request.POST.get('question_id','1')
 		user_id = request.user.id
-		answer_text = request.POST.get('answer_text')
+		answer_text = request.POST.get('answer_text','')
 
-		new_A = Answer.objects.create(question_id=question_id,answer_text=answer_text)
+		new_A = Answer.objects.create(question_id=question_id,answer_text=answer_text,owner_user_id=user_id)
 		NewsToUser.objects.create(action_user_id=user_id,answer_id=new_A.id,question_id=question_id,action_type=3)
-
 		response = create_response(200)
 		response.data.answer_id=new_A.id
 		return response.get_response

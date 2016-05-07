@@ -61,7 +61,11 @@ def logout(request):
 
 
 def view_account(request):
-	return HttpResponse(request.user)
+	user_id = request.GET.get('user_id','')
+	if not user_id:
+		user_id = request.user.id
+	name = UserProfile.objects.get(user_id=user_id).user_name
+	return HttpResponse(name)
 
 def signup(request):
 	if request.POST:
