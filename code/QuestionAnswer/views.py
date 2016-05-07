@@ -121,13 +121,26 @@ def question_detail(request):
 		answers = Answer.objects.filter(question_id=question_id)
 		answers = {answer.id:answer for answer in answers}
 		answer_list = []
+
+		focused = False
+		focused_question_ids = UserProfile.objects.get(user_id=request.user.id).focused_question_ids
+		focused_question_ids_list =focused_question_ids.split(',')
+		if question_id in focused_question_ids_list:
+			focused =True
+
 		for answer in answers:
 			answer_obj = {}
 			answer_obj['id'] = answer
 			answer_obj['owner_user_id'] = answers[answer].owner_user_id
 			answer_obj['owner_user_name'] = User.objects.get(id=answers[answer].owner_user_id).username
-			answer_obj['up_owner_user_ids_num'] = len(answers[answer].up_owner_user_ids.split(','))
-			answer_obj['down_owner_user_ids_num'] = len(answers[answer].down_owner_user_ids.split(','))
+
+			answer_obj['up_owner_user_ids_num'] = 0
+			answer_obj['down_owner_user_ids_num'] = 0
+			if answers[answer].up_owner_user_ids:
+				answer_obj['up_owner_user_ids_num'] = len(answers[answer].up_owner_user_ids.split(','))
+			if answers[answer].down_owner_user_ids:
+				answer_obj['down_owner_user_ids_num'] = len(answers[answer].down_owner_user_ids.split(','))
+
 			answer_obj['answer_text'] = answers[answer].answer_text
 			answer_obj['created_at'] = answers[answer].created_at
 			answer_list.append(answer_obj)
@@ -147,6 +160,9 @@ def question_detail(request):
 				'question_owner_user_name':owner_user_name,
 				'theme_names':theme_names,
 				'answers':answer_list,
+				'answers_num':len(answer_list),
+				'focused':focused,
+				'question_id':question_id,
 			})
 		return render_to_response('question_detail.html', c)
 
@@ -261,7 +277,7 @@ def focuse_action(request):
 
 				user = UserProfile.objects.get(user_id=user_id)
 				focused_question_ids_list = user.focused_question_ids.split(',')
-				if not theme_id in focused_question_ids_list:
+				if not question_id in focused_question_ids_list:
 					focused_question_ids_list.append(question_id)
 					NewsToUser.objects.create(action_user_id=user_id,question_id=question_id,action_type=0)
 				else:

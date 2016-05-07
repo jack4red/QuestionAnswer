@@ -4,3 +4,8 @@ body {
 .starter-template {
   padding: 40px 15px;
 }
+.btn-green{
+		border-color: #50C87E;
+		color: #50C87E;
+		background: #fff;
+}
