@@ -175,22 +175,38 @@ def answer_detail(request):
 		answer = Answer.objects.get(id=answer_id)
 		question = Question.objects.get(id=answer.question_id)
 		comments = Comment.objects.filter(answer_id=answer_id).order_by('-created_at')
-		owner_user =User.objects.get(id=answer.owner_user_id)
+		owner_user = User.objects.get(id=answer.owner_user_id)
+		user_id = str(request.user.id)
 
-		up_owner_user_ids_num = len(answer.up_owner_user_ids.split(','))
-		down_owner_user_ids_num = len(answer.down_owner_user_ids.split(','))
+		up_owner_user_ids_num = 0
+		down_owner_user_ids_num = 0
+		is_in_up_list = False
+		is_in_down_list = False
 
+		if answer.up_owner_user_ids:
+			up_owner_user_ids_list = answer.up_owner_user_ids.split(',')
+			up_owner_user_ids_num = len(up_owner_user_ids_list)
+			is_in_up_list = True if user_id in up_owner_user_ids_list else False
+		if answer.down_owner_user_ids:
+			down_owner_user_ids_list = answer.down_owner_user_ids.split(',')
+			down_owner_user_ids_num = len(down_owner_user_ids_list)
+			is_in_down_list = True if user_id in down_owner_user_ids_list else False
+		
 		comments = [{'comment_user_name':comment.owner_user_name,'comment_text':comment.comment_text} for comment in comments]
 
 		c = RequestContext(request, {
 				'question_title':question.question_title,
 				'question_text':question.question_text,
 				'created_at':answer.created_at,
+				'answer_id':answer_id,
 				'answer_text':answer.answer_text,
 				'answer_user_name':owner_user.username,
+				'answer_user_id':owner_user.id,
 				'up_owner_user_ids_num':up_owner_user_ids_num,
 				'down_owner_user_ids_num':down_owner_user_ids_num,
 				'comments':comments,
+				'is_in_up_list':is_in_up_list,
+				'is_in_down_list':is_in_down_list,
 			})
 		return render_to_response('answer_detail.html', c)
 	
@@ -317,29 +333,47 @@ def focuse_action(request):
 def up_or_down_answer(request):
 	if request.POST:
 		answer_id = request.POST.get('answer_id')
-		user_id = request.user.id
+		user_id = str(request.user.id)
 		action_type = request.POST.get('action_type')
 
 		answer = Answer.objects.get(id=answer_id)
-		up_owner_user_ids_list = answer.up_owner_user_ids.split(',')
-		down_owner_user_ids_list = answer.down_owner_user_ids.split(',')
+		up_owner_user_ids_list = []
+		down_owner_user_ids_list = []
+		if answer.up_owner_user_ids:
+			up_owner_user_ids_list = answer.up_owner_user_ids.split(',')
+		if answer.down_owner_user_ids:
+			down_owner_user_ids_list = answer.down_owner_user_ids.split(',')
+
+		is_in_up_list = False
+		is_in_down_list = False
 
 		if action_type == 'up':
 			if not user_id in up_owner_user_ids_list:
 				up_owner_user_ids_list.append(user_id)
+				is_in_up_list = True
+				NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=5)
+			else:
+				up_owner_user_ids_list.remove(user_id)
 			if user_id in down_owner_user_ids_list:
 				down_owner_user_ids_list.remove(user_id)
-			NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=5)
 
 		if action_type == 'down':
 			if not user_id in down_owner_user_ids_list:
 				down_owner_user_ids_list.append(user_id)
+				is_in_down_list = True
+				NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=6)
+			else:
+				down_owner_user_ids_list.remove(user_id)
 			if user_id in up_owner_user_ids_list:
 				up_owner_user_ids_list.remove(user_id)
-			NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=6)
 
 		answer.up_owner_user_ids = ','.join(up_owner_user_ids_list)
 		answer.down_owner_user_ids = ','.join(down_owner_user_ids_list)
+		answer.save()
 
 		response = create_response(200)
+		response.data.is_in_up_list = is_in_up_list
+		response.data.is_in_down_list = is_in_down_list
+		response.data.up_num = len(up_owner_user_ids_list)
+		response.data.down_num = len(down_owner_user_ids_list)
 		return response.get_response()

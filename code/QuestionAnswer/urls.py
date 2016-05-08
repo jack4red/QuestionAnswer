@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	url(r'^add_answer/', views.add_answer),
 	url(r'^add_comment/', views.add_comment),
 	url(r'^focuse_action/', views.focuse_action),
+	url(r'^up_or_down_answer/', views.up_or_down_answer),
 )
 
 urlpatterns += staticfiles_urlpatterns()

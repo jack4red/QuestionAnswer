@@ -1,6 +1,36 @@
 {% extends "base.html" %}
-
-
+{% block css %}
+<style type="text/css">
+	.up_or_down{
+		float: left;
+		display: inline-block;
+	}
+	.up_or_down button{
+		width: 40px;
+	    text-align: center;
+	    padding: 0;
+	    height: 50px;
+	    display: block;
+	    margin: 10px 10px 10px 0px;
+	}
+	.up_or_down button:hover,.up_or_down button:focus{
+		background: #698ebf;
+		color: #fff;
+	}
+	.up_or_down i{
+		width: 40px;
+   		display: block;
+	}
+	.up_or_down span{
+		display: inline-block;
+    	width: 40px;
+	}
+	.success_toggle{
+		background: #698ebf;
+		color: #fff;
+	}
+</style>
+{% endblock %}
 {% block content %}
 {% if error_message %}
 	<p>error_message</p>
@@ -10,8 +40,21 @@
 <p style="text-indent: 2em;" class="question_description">描述：{{ question_text }}</p>
 
 <div class="list-group">
-	<p class="list-group-item">
-		{{ answer_text }}
+	<p class="list-group-item" style="overflow: auto;">
+		<span style="display: block;text-indent: 1em;">
+			回答者：<a href="/account/view_account/?user_id={{ answer_user_id }}"> {{ answer_user_name }}</a>
+		</span>
+		<span class="up_or_down">
+			<button type="button" class="btn btn-default up {% if is_in_up_list %}success_toggle{% endif %}">
+				<i class="glyphicon glyphicon-triangle-top"></i>
+				<span>{{ up_owner_user_ids_num }}</span>
+			</button>
+			<button type="button" class="btn btn-default down {% if is_in_down_list %}success_toggle{% endif %}">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+				<span>{{ down_owner_user_ids_num }}</span>
+			</button>
+		</span>
+		<span>{{ answer_text }}</span>
 	</p>
 
 </div>
@@ -36,6 +79,41 @@
 			})
 			$question_text.html(text.substring(0,240)+'.....').append($expand);
 		}
+
+		$('.up_or_down button').click(function() {
+			var action_type;
+			if ($(this).hasClass('up')) {
+				action_type = 'up'
+			}else{
+				action_type = 'down'
+			}
+			var answer_id = {{ answer_id }};
+			var $up_button = $('.up_or_down .up');
+			var $down_button = $('.up_or_down .down');
+
+			$.ajax({
+				'url':'/QuestionAnswer/up_or_down_answer/',
+				'type':'post',
+				'data':{
+					'action_type':action_type,
+					'answer_id':answer_id,
+				},
+				success:function(resp) {
+					$up_button.removeClass('success_toggle');
+					$down_button.removeClass('success_toggle');
+					$up_button.find('span').html(resp.data.up_num);
+					$down_button.find('span').html(resp.data.down_num);
+					if (resp.data.is_in_up_list) {
+						$up_button.addClass('success_toggle')
+					} else if(resp.data.is_in_down_list) {
+						$down_button.addClass('success_toggle')
+					}
+				},
+				error:function() {
+					alert('失败,再试试吧!')
+				}
+			})
+		})
 	})
 </script>
 {% endblock %}
