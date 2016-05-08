@@ -60,11 +60,20 @@
 </div>
 
 {% endif %}
-
-<form action="" method="post">
-	<input type="text" name="answer_text" id="answer_text" placeholder="Type your answer"/>
-	<input type="submit" value="Reply" />
-</form>
+<a href="javascript:void(0)" class="xa-expandcomment" data-num="{{ comments_num }}">一共{{ comments_num }}条评论</a>
+<div class="list-group hide comments">
+{% if comments %}
+{% for comment in comments %}
+<div class="list-group-item"><div>{{ comment.comment_user_name }}:</div>{{ comment.comment_text }}</div>
+{% endfor %}
+{% else %}
+<div class="list-group-item">暂时没有评论！</div>
+{% endif %}
+</div>
+<div class="form-group input-group">
+	<textarea type="text" class="form-control" placeholder="Comment" aria-describedby="basic-addon1" rows="3" name="comment"></textarea>
+	<span class="input-group-addon xa-comment-button" id="basic-addon1" style="cursor: pointer;">评论</span>
+</div>
 
 {% endblock %}
 {% block js %}
@@ -113,6 +122,43 @@
 					alert('失败,再试试吧!')
 				}
 			})
+		})
+
+		$('.xa-expandcomment').click(function() {
+			if ($('.comments').hasClass('hide')) {
+				$('.comments').removeClass('hide');
+				$(this).html('收起评论');
+			} else {
+				$('.comments').addClass('hide');
+				var num = $(this).attr('data-num');
+				$(this).html('一共'+num+'条评论');
+			}
+		})
+
+		$('.xa-comment-button').click(function() {
+			var comment_text = $.trim($('textarea[name="comment"]').val());
+			if (comment_text) {
+				$.ajax({
+					'url':'/QuestionAnswer/add_comment/',
+					'type':'post',
+					'data':{
+						'comment_text':comment_text,
+						'answer_id':'{{ answer_id }}',
+					},
+					success:function() {
+						$('div.comments').append('<div class="list-group-item"><div>'+'{{ user }}'+':</div>'+comment_text+'</div>')
+						if ($('.comments').hasClass('hide')) {
+							$('.xa-expandcomment').click()
+						}
+						$('textarea[name="comment"]').val('')
+					},
+					error:function() {
+						alert('评论失败！')
+					}
+				})
+			} else {
+				alert('请填写评论内容！')
+			}
 		})
 	})
 </script>

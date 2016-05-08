@@ -68,14 +68,15 @@ def collect_news(user_id,page,count=8):
 			new_obj['answer_id']=news[new].answer_id
 			new_obj['answer_text']=Answer.objects.get(id=news[new].answer_id).answer_text
 
-		if news[new].actioned_user:
-			new_obj['actioned_user']=news[new].actioned_user
+		if news[new].actioned_user_id:
+			new_obj['actioned_user_id']=news[new].actioned_user_id
+			new_obj['actioned_user_name']=User.objects.get(id=news[new].actioned_user_id).username
 
 		new_obj['action_user']=news[new].action_user
-		new_obj['action_type']=ACTION_TYPE[news[new].action_type]
+		new_obj['action_type']=news[new].action_type
 		new_obj['created_at']=news[new].created_at
 		
-		latest_news.append(new_obj)
+		latest_news.insert(0,new_obj)
 		
 
 	return latest_news
@@ -205,6 +206,7 @@ def answer_detail(request):
 				'up_owner_user_ids_num':up_owner_user_ids_num,
 				'down_owner_user_ids_num':down_owner_user_ids_num,
 				'comments':comments,
+				'comments_num':len(comments),
 				'is_in_up_list':is_in_up_list,
 				'is_in_down_list':is_in_down_list,
 			})
@@ -258,12 +260,12 @@ def add_answer(request):
 def add_comment(request):
 	if request.POST:
 		answer_id = request.POST.get('answer_id')
-		owner_user_name = request.user
+		owner_user_name = str(request.user)
 		comment_text = request.POST.get('comment_text')
 		Comment.objects.create(answer_id=answer_id,owner_user_name=owner_user_name,comment_text=comment_text)
 
 		response = create_response(200)
-		return response.get_response
+		return response.get_response()
 	else:
 		pass
 

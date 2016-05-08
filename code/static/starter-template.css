@@ -9,3 +9,6 @@ body {
 		color: #50C87E;
 		background: #fff;
 }
+.hide {
+	display: none;
+}

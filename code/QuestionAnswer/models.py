@@ -59,7 +59,7 @@ class Theme(models.Model): #话题
 # 8:u'关注了用户'
 class NewsToUser(models.Model):
 	action_user = models.ForeignKey(User)
-	actioned_user = models.CharField(max_length=100,null=True)
+	actioned_user_id = models.CharField(max_length=100,null=True)
 	question = models.ForeignKey(Question,null=True)
 	answer = models.ForeignKey(Answer,null=True)
 	comment = models.ForeignKey(Comment,null=True)
