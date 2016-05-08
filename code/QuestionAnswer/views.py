@@ -38,11 +38,18 @@ def index(request):
 def collect_news(user_id,page,count=8):
 	cur_user = UserProfile.objects.get(user_id=user_id)
 	
-	list_question_ids = cur_user.focused_question_ids.split(',') if cur_user.focused_question_ids else []
-	list_theme_ids = cur_user.focused_theme_ids.split(',') if cur_user.focused_theme_ids else []
-	list_user_ids = cur_user.focused_user_ids.split(',') if cur_user.focused_user_ids else []
-	list_answer_ids = cur_user.focused_answer_ids.split(',') if cur_user.focused_answer_ids else []
-	list_user_ids.append(user_id)
+	list_question_ids = []
+	list_theme_ids = []
+	list_user_ids = []
+	list_answer_ids = []
+	if cur_user.focused_question_ids:
+		list_question_ids = cur_user.focused_question_ids.split(',')
+	if cur_user.focused_theme_ids:
+		list_theme_ids = cur_user.focused_theme_ids.split(',')
+	if cur_user.focused_user_ids:
+		list_user_ids = cur_user.focused_user_ids.split(',')
+	if cur_user.focused_answer_ids:
+		list_answer_ids = cur_user.focused_answer_ids.split(',')
 
 	news = NewsToUser.objects.filter(Q(action_user_id__in=list_user_ids)|Q(question_id__in=list_question_ids)|Q(answer_id__in=list_answer_ids)|Q(theme_id__in=list_theme_ids)).order_by('-created_at')[page*count:(page+1)*count]
 	news = {new.id:new for new in news}
@@ -213,6 +220,20 @@ def answer_detail(request):
 		return render_to_response('answer_detail.html', c)
 	
 @login_required(login_url='/account/login/')
+def add_theme(request):
+	if request.POST:
+		theme_title = request.POST.get('theme_title','')
+		description = request.POST.get('description','')
+		new_T = Theme.objects.create(theme_name=theme_title,description=description)
+		response = create_response(200)
+		response.data.theme_id = new_T.id
+		return response.get_response()
+	else:
+		c = RequestContext(request, {
+			})
+		return render_to_response('add_theme.html', c)
+	
+@login_required(login_url='/account/login/')
 def add_question(request):
 	if request.POST:
 		question_title = request.POST.get('question_title','')
@@ -223,7 +244,10 @@ def add_question(request):
 		New_Q = Question.objects.create(owner_theme_ids=belone_theme,owner_user_id=user_id,question_title=question_title,question_text=description)
 
 		user = UserProfile.objects.get(user_id=user_id)
-		focused_question_ids_list = user.focused_question_ids.split(',')
+
+		focused_question_ids_list = []
+		if user.focused_question_ids:
+			focused_question_ids_list = user.focused_question_ids.split(',')
 		focused_question_ids_list.append(str(New_Q.id))
 		user.focused_question_ids = ','.join(focused_question_ids_list)
 		user.save()
@@ -250,6 +274,19 @@ def add_answer(request):
 
 		new_A = Answer.objects.create(question_id=question_id,answer_text=answer_text,owner_user_id=user_id)
 		NewsToUser.objects.create(action_user_id=user_id,answer_id=new_A.id,question_id=question_id,action_type=3)
+		user = UserProfile.objects.get(user_id=user_id)
+		focused_answer_ids_list = []
+		focused_question_ids_list = []
+		if user.focused_answer_ids:
+			focused_answer_ids_list = user.focused_answer_ids.split(',')
+		if user.focused_question_ids:
+			focused_question_ids_list = user.focused_question_ids.split(',')
+		focused_answer_ids_list.append(new_A.id)
+		focused_question_ids_list.append(question_id)
+		user.focused_answer_ids = ','.join(focused_answer_ids_list)
+		user.focused_question_ids = ','.join(focused_question_ids_list)
+		user.save()
+
 		response = create_response(200)
 		response.data.answer_id=new_A.id
 		return response.get_response()

@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 	url(r'^add_question/', views.add_question),
 	url(r'^add_answer/', views.add_answer),
 	url(r'^add_comment/', views.add_comment),
+	url(r'^add_theme/', views.add_theme),
 	url(r'^focuse_action/', views.focuse_action),
 	url(r'^up_or_down_answer/', views.up_or_down_answer),
 )

@@ -15,6 +15,7 @@ from django.shortcuts import render_to_response, render
 from django.contrib.auth.models import User
 from django.contrib import auth
 
+from QuestionAnswer.models import *
 from models import *
 
 
@@ -59,13 +60,56 @@ def logout(request):
 	return HttpResponseRedirect('/account/login/')
 
 
-
+@login_required(login_url='/account/login/')
 def view_account(request):
 	user_id = request.GET.get('user_id','')
 	if not user_id:
 		user_id = request.user.id
-	name = UserProfile.objects.get(user_id=user_id).user_name
-	return HttpResponse(name)
+	user = UserProfile.objects.get(user_id=user_id)
+	username = user.user_name
+	created_at = user.created_at
+
+	focused_question_ids_list = []
+	focused_theme_ids_list = []
+	focused_user_ids_list = []
+	focused_answer_ids_list = []
+	if user.focused_question_ids:
+		focused_question_ids_list = user.focused_question_ids.split(',')
+	if user.focused_theme_ids:
+		focused_theme_ids_list = user.focused_theme_ids.split(',')
+	if user.focused_user_ids:
+		focused_user_ids_list = user.focused_user_ids.split(',')
+	if user.focused_answer_ids:
+		focused_answer_ids_list = user.focused_answer_ids.split(',')
+
+	question_list = []
+	theme_list = []
+	user_list = []
+	answer_list = []
+	for focused_question_id in focused_question_ids_list:
+		question_name = Question.objects.get(id=focused_question_id).question_title 
+		question_list.append({'question_name':question_name,'question_id':focused_question_id})
+	for focused_theme_id in focused_theme_ids_list:
+		theme_name = Theme.objects.get(id=focused_theme_id).theme_name 
+		theme_list.append({'theme_name':theme_name,'theme_id':focused_theme_id})
+	for focused_user_id in focused_user_ids_list:
+		user_name = User.objects.get(id=focused_user_id).username 
+		user_list.append({'user_name':user_name,'user_id':focused_user_id})
+	for focused_answer_id in focused_answer_ids_list:
+		answer = Answer.objects.get(id=focused_answer_id)
+		answer_text = answer.answer_text 
+		question_name = Question.objects.get(id=answer.question_id).question_title
+		answer_list.append({'question_name':question_name,'answer_text':answer_text,'answer_id':focused_answer_id})
+
+	c = RequestContext(request, {
+		'username':username,
+		'created_at':created_at,
+		'question_list':question_list,
+		'theme_list':theme_list,
+		'user_list':user_list,
+		'answer_list':answer_list,
+	})
+	return render_to_response('account/accounts.html', c)
 
 def signup(request):
 	if request.POST:
