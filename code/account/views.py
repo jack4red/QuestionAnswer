@@ -82,6 +82,12 @@ def view_account(request):
 	if user.focused_answer_ids:
 		focused_answer_ids_list = user.focused_answer_ids.split(',')
 
+	focused_user_ids_list = UserProfile.objects.get(user_id=request.user.id).focused_user_ids.split(',')
+	if str(user_id) in focused_user_ids_list:
+		focused = True
+	else:
+		focused = False
+
 	question_list = []
 	theme_list = []
 	user_list = []
@@ -103,11 +109,13 @@ def view_account(request):
 
 	c = RequestContext(request, {
 		'username':username,
+		'user_id':user_id,
 		'created_at':created_at,
 		'question_list':question_list,
 		'theme_list':theme_list,
 		'user_list':user_list,
 		'answer_list':answer_list,
+		'focused':focused,
 	})
 	return render_to_response('account/accounts.html', c)
 

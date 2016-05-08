@@ -186,6 +186,12 @@ def answer_detail(request):
 		owner_user = User.objects.get(id=answer.owner_user_id)
 		user_id = str(request.user.id)
 
+		focused_answer_ids_list = UserProfile.objects.get(user_id=user_id).focused_answer_ids.split(',')
+		if answer_id in focused_answer_ids_list:
+			focused = True
+		else:
+			focused = False
+
 		up_owner_user_ids_num = 0
 		down_owner_user_ids_num = 0
 		is_in_up_list = False
@@ -207,6 +213,7 @@ def answer_detail(request):
 				'question_text':question.question_text,
 				'created_at':answer.created_at,
 				'answer_id':answer_id,
+				'focused':focused,
 				'answer_text':answer.answer_text,
 				'answer_user_name':owner_user.username,
 				'answer_user_id':owner_user.id,
@@ -316,7 +323,9 @@ def focuse_action(request):
 				theme_id = request.POST.get('theme_id')
 
 				user = UserProfile.objects.get(user_id=user_id)
-				focused_theme_ids_list = user.focused_theme_ids.split(',')
+				focused_theme_ids_list = []
+				if user.focused_theme_ids:
+					focused_theme_ids_list = user.focused_theme_ids.split(',')
 				if not theme_id in focused_theme_ids_list:
 					focused_theme_ids_list.append(theme_id)
 					NewsToUser.objects.create(action_user_id=user_id,theme_id=theme_id,action_type=1)
@@ -330,7 +339,9 @@ def focuse_action(request):
 				question_id = request.POST.get('question_id')
 
 				user = UserProfile.objects.get(user_id=user_id)
-				focused_question_ids_list = user.focused_question_ids.split(',')
+				focused_question_ids_list = []
+				if user.focused_question_ids:
+					focused_question_ids_list = user.focused_question_ids.split(',')
 				if not question_id in focused_question_ids_list:
 					focused_question_ids_list.append(question_id)
 					NewsToUser.objects.create(action_user_id=user_id,question_id=question_id,action_type=0)
@@ -343,7 +354,9 @@ def focuse_action(request):
 				actioned_user_id = request.POST.get('actioned_user_id')
 
 				user = UserProfile.objects.get(user_id=user_id)
-				focused_user_ids_list = user.focused_user_ids.split(',')
+				focused_user_ids_list = []
+				if user.focused_user_ids:
+					focused_user_ids_list = user.focused_user_ids.split(',')
 				if not actioned_user_id in focused_user_ids_list:
 					focused_user_ids_list.append(actioned_user_id)
 					NewsToUser.objects.create(action_user_id=user_id,actioned_user_id=actioned_user_id,action_type=8)
@@ -356,7 +369,9 @@ def focuse_action(request):
 				answer_id = request.POST.get('answer_id')
 
 				user = UserProfile.objects.get(user_id=user_id)
-				focused_answer_ids_list = user.focused_answer_ids.split(',')
+				focused_answer_ids_list = []
+				if user.focused_answer_ids:
+					focused_answer_ids_list = user.focused_answer_ids.split(',')
 				if not answer_id in focused_answer_ids_list:
 					focused_answer_ids_list.append(answer_id)
 				user.focused_answer_ids = ','.join(focused_answer_ids_list)

@@ -61,6 +61,13 @@
 
 {% endif %}
 <a href="javascript:void(0)" class="xa-expandcomment" data-num="{{ comments_num }}">一共{{ comments_num }}条评论</a>
+
+{% if focused %}
+<button type="button" class="btn btn-success xa-focus-button" style="margin-left: 20px;margin-bottom: 7px;">取消关注</button>
+{% else %}
+<button type="button" class="btn btn-green xa-focus-button" style="margin-left: 20px;margin-bottom: 7px;">关注此答案</button>
+{% endif %}
+
 <div class="list-group hide comments">
 {% if comments %}
 {% for comment in comments %}
@@ -161,6 +168,37 @@
 				alert('请填写评论内容！')
 			}
 		})
+		$('button.xa-focus-button').click(function() {
+        var _this = this;
+        $.ajax({
+            url:'/QuestionAnswer/focuse_action/',
+            type:'post',
+            data:{
+                'answer_id':{{ answer_id }},
+                'action_type':'answer',
+            },
+            success:function() {
+                if ($(_this).hasClass('btn-success')) {
+                    $(_this).removeClass('btn-success');
+                    $(_this).html('关注此答案')
+                }else{
+                    $(_this).addClass('btn-success');
+                    $(_this).html('取消关注')
+                }
+                if ($(_this).hasClass('btn-green')) {
+                    $(_this).removeClass('btn-green');
+                    $(_this).html('取消关注')
+                }else{
+                    $(_this).addClass('btn-green');
+                    $(_this).html('关注此答案')
+                }
+                
+            },
+            error:function() {
+                alert('focuse fail')
+            }
+        })
+    })
 	})
 </script>
 {% endblock %}
