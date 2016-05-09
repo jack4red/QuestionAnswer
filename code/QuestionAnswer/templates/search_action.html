@@ -36,7 +36,7 @@
             url:'/QuestionAnswer/focuse_action/',
             type:'post',
             data:{
-                '{{search_type}}_id':id,
+                '{% if search_type == "user" %}actioned_user{% else %}{{search_type}}{% endif %}_id':id,
                 'action_type':type,
             },
             success:function() {
