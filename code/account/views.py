@@ -82,8 +82,8 @@ def view_account(request):
 	if user.focused_answer_ids:
 		focused_answer_ids_list = user.focused_answer_ids.split(',')
 
-	focused_user_ids_list = UserProfile.objects.get(user_id=request.user.id).focused_user_ids.split(',')
-	if str(user_id) in focused_user_ids_list:
+	tmp_focused_user_ids_list = UserProfile.objects.get(user_id=request.user.id).focused_user_ids.split(',')
+	if str(user_id) in tmp_focused_user_ids_list:
 		focused = True
 	else:
 		focused = False

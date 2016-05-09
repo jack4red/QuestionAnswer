@@ -209,6 +209,7 @@ def answer_detail(request):
 		comments = [{'comment_user_name':comment.owner_user_name,'comment_text':comment.comment_text} for comment in comments]
 
 		c = RequestContext(request, {
+				'question_id':answer.question_id,
 				'question_title':question.question_title,
 				'question_text':question.question_text,
 				'created_at':answer.created_at,
@@ -288,7 +289,7 @@ def add_answer(request):
 			focused_answer_ids_list = user.focused_answer_ids.split(',')
 		if user.focused_question_ids:
 			focused_question_ids_list = user.focused_question_ids.split(',')
-		focused_answer_ids_list.append(new_A.id)
+		focused_answer_ids_list.append(str(new_A.id))
 		focused_question_ids_list.append(question_id)
 		user.focused_answer_ids = ','.join(focused_answer_ids_list)
 		user.focused_question_ids = ','.join(focused_question_ids_list)
