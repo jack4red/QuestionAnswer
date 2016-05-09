@@ -45,20 +45,18 @@
           <ul class="nav navbar-nav">
             <li><a href="/QuestionAnswer/add_question/">添加答案</a></li>
             {% if user.username == 'admin' %}<li><a href="/QuestionAnswer/add_theme">添加话题</a></li>{% endif %}
-            <li>
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action<span class="caret"></span></a>
+            <li class="xa-search-toggle">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">搜索话题<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">搜索话题</a></li>
+                <li><a href="#">搜索问题</a></li>
+                <li><a href="#">搜索用户</a></li>
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-          </form>
+          <div class="form-group navbar-form navbar-left">
+            <input type="text" class="form-control xa-nav-search" placeholder="Search">
+          </div>
           <ul class="nav navbar-nav navbar-right">
             {% include "_login_links.html" %}
           </ul>
@@ -86,6 +84,29 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript">
+      $('.xa-search-toggle li a').click(function() {
+        var cur_html = $(this).html();
+        $('.xa-search-toggle .dropdown-toggle').html(cur_html+'<span class="caret"></span>')
+      })
+      $('.xa-nav-search').keydown(function(event) {
+        if(event.keyCode==13){
+          var input_value = $.trim($(this).val());
+          if (input_value) {
+            var cur_html = $('.xa-search-toggle .dropdown-toggle').text()
+            if (cur_html == '搜索话题') {
+              location.href = '/QuestionAnswer/search_action/?search_type=theme&search_word='+input_value
+            } else if(cur_html == '搜索问题') {
+              location.href = '/QuestionAnswer/search_action/?search_type=question&search_word='+input_value
+            } else {
+              location.href = '/QuestionAnswer/search_action/?search_type=user&search_word='+input_value
+            }
+          } else {
+            return
+          }
+        }
+      })
+    </script>
     {% block js %}
     {% endblock %}
   </body>

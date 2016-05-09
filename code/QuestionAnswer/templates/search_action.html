@@ -6,9 +6,9 @@
 {% block content %}
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">搜索到以下{% if search_type == 'theme' %}主题{% else %}{% if search_type == 'question' %}问题{% else %}用户{% endif %} {% endif %}</div>
+  <div class="panel-heading">搜索到以下{% if search_type == 'theme' %}话题{% else %}{% if search_type == 'question' %}问题{% else %}用户{% endif %} {% endif %}</div>
   <div class="panel-body">
-    <p>点击标题进入详细页面，或者点击右侧关注按钮即可轻松关注！</p>
+    <p>{% if result_list %}点击标题进入详细页面，或者点击右侧关注按钮即可轻松关注！{% else %}当前搜索没有结果{% endif %}</p>
   </div>
 
   <!-- List group -->
