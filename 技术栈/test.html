@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>Red laser bar loading progess demo</title>
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<script src='nprogress.js'></script>
+		<link rel='stylesheet' href='nprogress.css'/>
+		<a href="http://www.cnblogs.com/Wayou/p/youtube_red_laser_bar.html">123</a>
+		<script type="text/javascript">
+			$(document).on('page:fetch',   function() { NProgress.start(); });
+			$(document).on('page:change',  function() { NProgress.done(); });
+			$(document).on('page:restore', function() { NProgress.remove(); });
+			$(document).on('pjax:start', function() { NProgress.start(); });
+			$(document).on('pjax:end',   function() { NProgress.done();  });
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
