@@ -4,91 +4,180 @@
 
 <h3>最新动态</h3>
 {% if latest_news %}
-        <div class="list-group">
-        {% for new in latest_news %}
+<div class="list-group">
+    {% for new in latest_news %}
 
-        {% if new.action_type == 0 %}
-        <a href="/QuestionAnswer/question_detail/?question_id={{ new.question_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.action_user }}关注了问题</h6>
-            <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":500" }} </p>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 0 %}
+    <a href="/QuestionAnswer/question_detail/?question_id={{ new.question_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.action_user }}关注了问题</h6>
+        <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":500" }} </p>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% if new.action_type == 1 %}
-        <a href="/QuestionAnswer/theme_detail/?theme_id={{ new.theme_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.action_user }}关注了话题</h6>
-            <h4 class="list-group-item-heading">{{ new.theme_name }}</h4>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 1 %}
+    <a href="/QuestionAnswer/theme_detail/?theme_id={{ new.theme_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.action_user }}关注了话题</h6>
+        <h4 class="list-group-item-heading">{{ new.theme_name }}</h4>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% if new.action_type == 2 %}
-        <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.action_user }}关注了答案</h6>
-            <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 2 %}
+    <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.action_user }}关注了答案</h6>
+        <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% if new.action_type == 3 %}
-        <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.action_user }}回答了问题</h6>
-            <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 3 %}
+    <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.action_user }}回答了问题</h6>
+        <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% if new.action_type == 4 %}
-        <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.action_user }}评论了该问题下的答案</h6>
-            <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 4 %}
+    <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.action_user }}评论了该问题下的答案</h6>
+        <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% if new.action_type == 5 %}
-        <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.action_user }}赞了答案</h6>
-            <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 5 %}
+    <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.action_user }}赞了答案</h6>
+        <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% if new.action_type == 6 %}
-        <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.action_user }}反对这个答案</h6>
-            <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 6 %}
+    <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.action_user }}反对这个答案</h6>
+        <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% if new.action_type == 7 %}
-        <a href="/QuestionAnswer/question_detail/?question_id={{ new.question_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.theme_name }}话题下有新问题</h6>
-            <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-            <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":500" }} </p>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 7 %}
+    <a href="/QuestionAnswer/question_detail/?question_id={{ new.question_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.theme_name }}话题下有新问题</h6>
+        <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":500" }} </p>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% if new.action_type == 8 %}
-        <a href="/account/view_account/?user_id={{ new.actioned_user_id }}" class="list-group-item">
-            <h6 class="list-group-item-heading">{{ new.action_user }}关注了用户{{ new.actioned_user_name }}</h6>
-            <p class="list-group-item-text blockquote-reverse">{{ new.created_at|date:"Y-m-j H:i" }}</p>
-        </a>
-        {% endif %}
+    {% if new.action_type == 8 %}
+    <a href="/account/view_account/?user_id={{ new.actioned_user_id }}" class="list-group-item">
+        <h6 class="list-group-item-heading">{{ new.action_user }}关注了用户{{ new.actioned_user_name }}</h6>
+        <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
+    </a>
+    {% endif %}
 
-        {% endfor %}
-        </div>
+    {% endfor %}
+</div>
+    {% if not is_end %}
+    <button class="btn btn-info col-md-12 xa-load-more" data-pageinfo="1">点击加载更多</button>
+    {% endif %}
 {% else %}
         <p>No questions yet. Post one now!</p>
 {% endif %}
 
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+    $('.xa-load-more').click(function() {
+        var _this = this;
+        var pageinfo = $(_this).attr('data-pageinfo');
+        $.ajax({
+            'url':'/',
+            'type':'post',
+            'data':{
+                'page':pageinfo,
+            },
+            success:function(resp) {
+                var latest_news = resp.data.latest_news
+                for (var i = latest_news.length - 1; i >= 0; i--) {
+                    var a_href_str,h6_inner_str,h4_inner_str,p_text_str,p_time_str;
+                    switch(latest_news[i].action_type){
+                        case 0:
+                            a_href_str="/QuestionAnswer/question_detail/?question_id="+latest_news[i].question_id;
+                            h6_inner_str=latest_news[i].action_user+"关注了问题";
+                            h4_inner_str=latest_news[i].question_title;
+                            p_text_str=latest_news[i].question_text.substring(0,500);
+                            break;
+                        case 1:
+                            a_href_str="/QuestionAnswer/theme_detail/?theme_id="+latest_news[i].theme_id;
+                            h6_inner_str=latest_news[i].action_user+"关注了话题";
+                            h4_inner_str=latest_news[i].theme_name
+                            break;
+                        case 2:
+                            a_href_str="/QuestionAnswer/answer_detail/?answer_id="+latest_news[i].answer_id;
+                            h6_inner_str=latest_news[i].action_user+"关注了答案";
+                            h4_inner_str=latest_news[i].question_title;
+                            p_text_str=latest_news[i].answer_text.substring(0,500);
+                            break;
+                        case 3:
+                            a_href_str="/QuestionAnswer/answer_detail/?answer_id="+latest_news[i].answer_id;
+                            h6_inner_str=latest_news[i].action_user+"回答了问题";
+                            h4_inner_str=latest_news[i].question_title;
+                            p_text_str=latest_news[i].answer_text.substring(0,500);
+                            break;
+                        case 4:
+                            a_href_str="/QuestionAnswer/answer_detail/?answer_id="+latest_news[i].answer_id;
+                            h6_inner_str=latest_news[i].action_user+"评论了该问题下的答案";
+                            h4_inner_str=latest_news[i].question_title;
+                            p_text_str=latest_news[i].answer_text.substring(0,500);
+                            break;
+                        case 5:
+                            a_href_str="/QuestionAnswer/answer_detail/?answer_id="+latest_news[i].answer_id;
+                            h6_inner_str=latest_news[i].action_user+"赞了答案";
+                            h4_inner_str=latest_news[i].question_title;
+                            p_text_str=latest_news[i].answer_text.substring(0,500);
+                            break;
+                        case 6:
+                            a_href_str="/QuestionAnswer/answer_detail/?answer_id="+latest_news[i].answer_id;
+                            h6_inner_str=latest_news[i].action_user+"反对这个答案";
+                            h4_inner_str=latest_news[i].question_title;
+                            p_text_str=latest_news[i].answer_text.substring(0,500);
+                            break;
+                        case 7:
+                            a_href_str="/QuestionAnswer/question_detail/?question_id="+latest_news[i].question_id;
+                            h6_inner_str=latest_news[i].theme_name+"话题下有新问题";
+                            h4_inner_str=latest_news[i].question_title;
+                            p_text_str=latest_news[i].question_text.substring(0,500);
+                            break;
+                        case 8:
+                            a_href_str="/account/view_account/?user_id="+latest_news[i].actioned_user_id;
+                            h6_inner_str=latest_news[i].action_user+"关注了用户"+latest_news[i].actioned_user_name;
+                            break;
+                        default:
+                        break
+                    }
+                    p_time_str=latest_news[i].created_at
+                    $('div.list-group').append('<a href="'+a_href_str+'" class="list-group-item">'+'<h6 class="list-group-item-heading">'+h6_inner_str+'</h6><h4 class="list-group-item-heading">'+h4_inner_str+'</h4><p class="list-group-item-text" style="text-indent: 2em;">'+p_text_str+'</p><p class="list-group-item-text blockquote-reverse">'+p_time_str+'</p></a>')
+                }
+
+                if (resp.data.is_end) {
+                    $(_this).addClass('hide')
+                }
+                $(_this).attr({'data-pageinfo':Number(pageinfo)+1})
+            },
+            error:function() {
+                alert('load failed!')
+            }
+        })
+    })
+</script>
 {% endblock %}

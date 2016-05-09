@@ -26,12 +26,18 @@ ACTION_TYPE=(
 @login_required(login_url='/account/login/')
 def index(request):
 	if request.POST:
-		pass
+		page = int(request.POST.get('page'))
+		latest_news,is_end = collect_news(request.user.id,page)
+		response = create_response(200)
+		response.data.latest_news = latest_news
+		response.data.is_end = is_end
+		return response.get_response()
 	else:
-		latest_news = collect_news(request.user.id,0)
+		latest_news,is_end = collect_news(request.user.id,0)
 
 		c = RequestContext(request, {
 			'latest_news':latest_news,
+			'is_end':is_end,
 		})
 		return render_to_response('index.html', c)
 
@@ -51,8 +57,14 @@ def collect_news(user_id,page,count=8):
 	if cur_user.focused_answer_ids:
 		list_answer_ids = cur_user.focused_answer_ids.split(',')
 
-	news = NewsToUser.objects.filter(Q(action_user_id__in=list_user_ids)|Q(question_id__in=list_question_ids)|Q(answer_id__in=list_answer_ids)|Q(theme_id__in=list_theme_ids)).order_by('-created_at')[page*count:(page+1)*count]
+	news = NewsToUser.objects.filter(Q(action_user_id__in=list_user_ids)|Q(question_id__in=list_question_ids)|Q(answer_id__in=list_answer_ids)|Q(theme_id__in=list_theme_ids)).order_by('-created_at')
+	news_count = news.count()
+	news = news[page*count:(page+1)*count]
 	news = {new.id:new for new in news}
+
+	is_end = False
+	if news_count<=(page+1)*count:
+		is_end =True
 
 	latest_news = []
 	for new in news:
@@ -79,14 +91,14 @@ def collect_news(user_id,page,count=8):
 			new_obj['actioned_user_id']=news[new].actioned_user_id
 			new_obj['actioned_user_name']=User.objects.get(id=news[new].actioned_user_id).username
 
-		new_obj['action_user']=news[new].action_user
+		new_obj['action_user']=str(news[new].action_user)
 		new_obj['action_type']=news[new].action_type
-		new_obj['created_at']=news[new].created_at
+		new_obj['created_at']=news[new].created_at.strftime('%Y-%m-%d %H:%M')
 		
 		latest_news.insert(0,new_obj)
 		
 
-	return latest_news
+	return latest_news,is_end
 
 @login_required(login_url='/account/login/')
 def theme_detail(request):

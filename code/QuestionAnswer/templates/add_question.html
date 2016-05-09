@@ -35,7 +35,7 @@
 	$('.btn-success').click(function() {
 		var question_title = $("input[name='question_title']").val();
 		var description = $("textarea[name='description']").val();
-		var belone_theme = '1';
+		var belone_theme = $("input[name='belone_theme']").val();
 		$.ajax({
 			url:'/QuestionAnswer/add_question/', 
 			type:'post', 
