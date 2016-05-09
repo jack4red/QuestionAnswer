@@ -10,46 +10,12 @@
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-    background: url('/static/img/1.jpg') no-repeat center center fixed;
     background-size: cover;
   }
   .login{
     width: 300px;
     height: 200px;
-    border-radius: 5px;
-    box-shadow: 0 1px 0 rgba(0,0,0,.1);
-    --webkit-box-shadow: 0 1px 0 rgba(0,0,0,.1);
-    border: solid 1px #eee;
-    background:-webkit-linear-gradient(top,#fff 0,#ddd 100%);
     margin: 200px auto;
-  }
-  .login-form h2{
-    margin-left: 5px;
-  }
-  input{
-    width: 90%;
-    font-size: 18px;
-    height:35px;
-    line-height: 35px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    background-color: rgb(250, 255, 189);
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    margin-left: 10px;
-    margin-bottom: 10px;
-  }
-  .login-btn{
-    width: 80px;
-    height: 30px;
-    color: #fff;
-    background-color: #47a447;
-    border-color: #398439;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    float: right;
-    margin-right: 10px;
-    cursor: pointer;
   }
   .login-eror{
     display: inline;
@@ -57,30 +23,37 @@
     margin-left: 10px;
   }
 </style>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <!--header-->
 
 <!--login-->
-<div class="login">
-    <div class="login-form"> 
-        <!--  -->
-        <div><h2>用户登录</h2><span><a href="/account/signup/">还没有注册？点击这里注册</a></span></div>
-        <!--login-form-->
-           <form id="focus" method="post">
-            <div class="login-info">
-                <label class="login-name"><i></i><input name="username"class="input_txt" placeholder="用户名称"/></label>
-                <label class="login-pwd"><i></i><input name="password" type="password" class="input_txt" placeholder="密码"/></label>
-            </div>
-            {% if error %}
-            <div class="login-eror">用户名或密码错误</div>
-            {% endif %}
-            {% if error_disabled %}
-            <div class="login-eror">该用户已停用或已过期</div>
-            {% endif %}
-            <button tabindex="1" value="登录" name="loginsubmit" type="submit" class="login-btn">登录</button>
-          </form>
-    </div>
+<div class="login panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">用户登录 <small class="pull-right"> <a class="text-right" href="/account/signup/" role="button">还没有注册？点击这里注册</a> </small></h3>
+    
   </div>
+  <!--login-form-->
+  <form id="focus" method="post" class="panel-body">
+    <div class="input-group" style="width: 250px">
+      <input name="username" class="form-control" placeholder="用户名称" aria-describedby="basic-addon1" />
+    </div>
+    <br>
+    <div class="input-group" style="width: 250px">
+      <input name="password" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1" />
+    </div>
+    {% if error %}
+    <div class="login-eror">用户名或密码错误</div>
+    {% endif %}
+    {% if error_disabled %}
+    <div class="login-eror">该用户已停用或已过期</div>
+    {% endif %}
+    <div class="input-group-btn">
+      <button tabindex="1" value="登录" name="loginsubmit" type="submit" class="btn btn-default" style="float: right;margin-top: 10px;">登录</button>
+    </div>
+  </form>
+</div>
 </body>
 </html>
