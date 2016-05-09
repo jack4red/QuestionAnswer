@@ -431,3 +431,68 @@ def up_or_down_answer(request):
 		response.data.up_num = len(up_owner_user_ids_list)
 		response.data.down_num = len(down_owner_user_ids_list)
 		return response.get_response()
+
+@login_required(login_url='/account/login/')
+def search_action(request):
+	if request.POST:
+		pass
+	else:
+		user_id = str(request.user.id)
+		search_word = request.GET.get('search_word')
+		search_type = request.GET.get('search_type')
+		result_list = search_method(user_id,search_word,search_type,0)
+
+		c = RequestContext(request, {
+			'search_type':search_type,
+			'result_list':result_list
+		})
+		return render_to_response('search_action.html', c)
+
+def search_method(user_id,search_word,search_type,search_num):
+	result_list = []
+	if search_type == 'theme':
+		if search_num:
+			themes = Theme.objects.filter(theme_name__contains=search_word)[0:search_num]
+		else:
+			themes = Theme.objects.filter(theme_name__contains=search_word)
+		focused_theme_ids_list = []
+		cur_user_focused_ids = UserProfile.objects.get(user_id=user_id).focused_theme_ids
+		if cur_user_focused_ids:
+			focused_theme_ids_list = cur_user_focused_ids.split(',')
+
+		for theme in themes:
+			if str(theme.id) in focused_theme_ids_list:
+				result_list.append({'id':theme.id,'name':theme.theme_name,'focused':True})
+			else:
+				result_list.append({'id':theme.id,'name':theme.theme_name,'focused':False})
+	if search_type == 'question':
+		if search_num:
+			questions = Question.objects.filter(question_title__contains=search_word)[0:search_num]
+		else:
+			questions = Question.objects.filter(question_title__contains=search_word)
+		focused_question_ids_list = []
+		cur_user_focused_ids = UserProfile.objects.get(user_id=user_id).focused_question_ids
+		if cur_user_focused_ids:
+			focused_question_ids_list = cur_user_focused_ids.split(',')
+		for question in questions:
+			if str(question.id) in focused_question_ids_list:
+				result_list.append({'id':question.id,'name':question.question_title,'focused':True})
+			else:
+				result_list.append({'id':question.id,'name':question.question_title,'focused':False})
+
+	if search_type == 'user':
+		if search_num:
+			users = User.objects.filter(username__contains=search_word)[0:search_num]
+		else:
+			users = User.objects.filter(username__contains=search_word)
+		focused_user_ids_list = []
+		cur_user_focused_ids = UserProfile.objects.get(user_id=user_id).focused_user_ids
+		if cur_user_focused_ids:
+			focused_user_ids_list = cur_user_focused_ids.split(',')
+		for user in users:
+			if str(user.id) in focused_user_ids_list:
+				result_list.append({'id':user.id,'name':user.username,'focused':True})
+			else:
+				result_list.append({'id':user.id,'name':user.username,'focused':False})
+
+	return result_list

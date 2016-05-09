@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">搜索到以下{% if search_type == 'theme' %}主题{% else %}{% if search_type == 'question' %}问题{% else %}用户{% endif %} {% endif %}</div>
+  <div class="panel-body">
+    <p>点击标题进入详细页面，或者点击右侧关注按钮即可轻松关注！</p>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+  	{% for result in result_list %}
+    <li class="list-group-item">
+    	<a href="{% if search_type == 'theme' %}/QuestionAnswer/theme_detail/?theme_id={{result.id}}{% else %}{% if search_type == 'question' %}/QuestionAnswer/question_detail/?question_id={{result.id}}{% else %}/account/view_account/?user_id={{result.id}}{% endif %} {% endif %}" style="line-height: 34px;">{{result.name|slice:":100"}} </a>
+    	{% if result.focused %}
+    	<button class="btn btn-success pull-right" onclick="focus_action('{{result.id}}','{{search_type}}',event)">取消关注</button>
+    	{% else %}
+    	<button class="btn btn-green pull-right" onclick="focus_action('{{result.id}}','{{search_type}}',event)">关注</button>
+    	{% endif %}
+    	<div class="clearfix"></div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+	function focus_action(id,type,event) {
+		var _this = event.currentTarget;
+		$.ajax({
+            url:'/QuestionAnswer/focuse_action/',
+            type:'post',
+            data:{
+                '{{search_type}}_id':id,
+                'action_type':type,
+            },
+            success:function() {
+                if ($(_this).hasClass('btn-success')) {
+                    $(_this).removeClass('btn-success');
+                    $(_this).html('关注')
+                }else{
+                    $(_this).addClass('btn-success');
+                    $(_this).html('取消关注')
+                }
+                if ($(_this).hasClass('btn-green')) {
+                    $(_this).removeClass('btn-green');
+                    $(_this).html('取消关注')
+                }else{
+                    $(_this).addClass('btn-green');
+                    $(_this).html('关注')
+                }
+                
+            },
+            error:function() {
+                alert('focuse fail')
+            }
+        })
+	}
+
+
+</script>
+{% endblock %}
