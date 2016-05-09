@@ -11,6 +11,7 @@
     line-height: 1.42857143;
     color: #333;
     background-size: cover;
+    background: url('/static/img/background1.jpg') no-repeat center -40px;
   }
   .login{
     width: 300px;
@@ -59,7 +60,7 @@
 </div>
 <script type="text/javascript">
   var formdom = document.getElementsByTagName('form')[0];
-  var loginbtn = document.getElementsByClassName('login-btn')[0];
+  var loginbtn = document.getElementsByClassName('btn-default')[0];
   loginbtn.onclick = function() {
     alert('signup check');
     formdom.submit();
