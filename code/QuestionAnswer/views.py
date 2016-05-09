@@ -321,6 +321,8 @@ def add_comment(request):
 		comment_text = request.POST.get('comment_text')
 		Comment.objects.create(answer_id=answer_id,owner_user_name=owner_user_name,comment_text=comment_text)
 
+		question_id = Answer.objects.get(id=answer_id).question_id
+		NewsToUser.objects.create(action_user_id=request.user.id,answer_id=answer_id,question_id=question_id,action_type=4)
 		response = create_response(200)
 		return response.get_response()
 	else:
