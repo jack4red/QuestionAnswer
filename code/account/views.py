@@ -54,10 +54,10 @@ def login(request):
 		return render_to_response('account/login.html', c)
 
 
-@login_required
+# @login_required(login_url='/account/login/')
 def logout(request):
 	auth.logout(request)
-	return HttpResponseRedirect('/account/login/')
+	return HttpResponseRedirect('/')
 
 
 @login_required(login_url='/account/login/')

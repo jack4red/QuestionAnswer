@@ -16,7 +16,6 @@
     {% endblock %}
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'nprogress.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{% static 'starter-template.css' %}" rel="stylesheet">
@@ -27,14 +26,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     {% block css %}{% endblock %}
-    <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/nprogress.js' %}"></script>
-    <script src="{% static 'js/turbolinks.min.js' %}"></script>
+    
   </head>
-
   <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -83,16 +77,12 @@
 
     </div><!-- /.container -->
 
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
+    <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript">
-      $(document).on('page:fetch',   function() { NProgress.start(); });
-      $(document).on('page:change',  function() { NProgress.done(); });
-      $(document).on('page:restore', function() { NProgress.remove(); });
-
       $('.xa-search-toggle li a').click(function() {
         var cur_html = $(this).html();
         $('.xa-search-toggle .dropdown-toggle').html(cur_html+'<span class="caret"></span>')
@@ -119,8 +109,3 @@
     {% endblock %}
   </body>
 </html>
-
-
-
-
-
