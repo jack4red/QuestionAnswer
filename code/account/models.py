@@ -16,6 +16,7 @@ class UserProfile(models.Model):
 	focused_theme_ids = models.TextField() #关注的话题id
 	focused_user_ids = models.TextField() #关注的用户id
 	focused_answer_ids = models.TextField() #关注的答案id
+	collected_answer_ids = models.TextField() #收藏的答案id
 	is_active = models.BooleanField(default=True)
 	created_at = models.DateTimeField(auto_now_add=True) #添加时间
 	

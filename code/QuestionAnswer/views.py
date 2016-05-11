@@ -511,3 +511,20 @@ def search_method(user_id,search_word,search_type,search_num):
 				result_list.append({'id':user.id,'name':user.username,'focused':False})
 
 	return result_list
+
+@login_required(login_url='/account/login/')
+def collect_answer(request):
+	if request.POST:
+		user_id = request.user.id
+		answer_id = request.POST.get('answer_id')
+		user = UserProfile.objects.get(user_id=user_id)
+		collected_answer_ids_list = []
+		if user.collected_answer_ids:
+			collected_answer_ids_list = user.collected_answer_ids.split(',')
+		collected_answer_ids_list.append(answer_id)
+		user.collected_answer_ids = ','.join(collected_answer_ids_list)
+		user.save()
+		response = create_response(200)
+		return response.get_response()
+	else:
+		pass
