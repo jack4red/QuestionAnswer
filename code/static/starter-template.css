@@ -17,3 +17,7 @@ body {
 .hide {
 	display: none;
 }
+
+.max-limit-pic img {
+	max-width: 600px;
+}

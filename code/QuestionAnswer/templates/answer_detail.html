@@ -37,7 +37,7 @@
 {% else %}
 
 <h4><a href="/QuestionAnswer/question_detail/?question_id={{question_id}}"> {{ question_title }} </a></h4>
-<p style="text-indent: 2em;" class="question_description">描述：{{ question_text }}</p>
+<div style="text-indent: 2em;" class="question_description max-limit-pic">{{ question_text|safe }}</div>
 
 <div class="list-group">
 	<div class="list-group-item" style="overflow: auto;">
@@ -54,7 +54,7 @@
 				<span>{{ down_owner_user_ids_num }}</span>
 			</button>
 		</span>
-		<span>{{ answer_text|safe }}</span>
+		<span class="max-limit-pic">{{ answer_text|safe }}</span>
 	</div>
 
 </div>
@@ -92,7 +92,7 @@
 {% block js %}
 <script type="text/javascript">
 	$(document).ready(function() {
-		var $question_text = $('p.question_description');
+		var $question_text = $('div.question_description');
 		var text = $question_text.html();
 		if($question_text.html().length>100){
 			var $expand = $('<a href="javascript:void(0)">点击展开</a>')
