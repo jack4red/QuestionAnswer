@@ -73,6 +73,7 @@ def view_account(request):
 	focused_theme_ids_list = []
 	focused_user_ids_list = []
 	focused_answer_ids_list = []
+	collected_answer_ids_list = []
 	if user.focused_question_ids:
 		focused_question_ids_list = user.focused_question_ids.split(',')
 	if user.focused_theme_ids:
@@ -81,6 +82,8 @@ def view_account(request):
 		focused_user_ids_list = user.focused_user_ids.split(',')
 	if user.focused_answer_ids:
 		focused_answer_ids_list = user.focused_answer_ids.split(',')
+	if user.collected_answer_ids:
+		collected_answer_ids_list = user.collected_answer_ids.split(',')
 
 	tmp_focused_user_ids_list = UserProfile.objects.get(user_id=request.user.id).focused_user_ids.split(',')
 	if str(user_id) in tmp_focused_user_ids_list:
@@ -92,6 +95,7 @@ def view_account(request):
 	theme_list = []
 	user_list = []
 	answer_list = []
+	collected_answer_list =[]
 	for focused_question_id in focused_question_ids_list:
 		question_name = Question.objects.get(id=focused_question_id).question_title 
 		question_list.append({'question_name':question_name,'question_id':focused_question_id})
@@ -106,6 +110,11 @@ def view_account(request):
 		answer_text = answer.answer_text 
 		question_name = Question.objects.get(id=answer.question_id).question_title
 		answer_list.append({'question_name':question_name,'answer_text':answer_text,'answer_id':focused_answer_id})
+	for collected_answer_id in collected_answer_ids_list:
+		answer = Answer.objects.get(id=collected_answer_id)
+		answer_text = answer.answer_text 
+		question_name = Question.objects.get(id=answer.question_id).question_title
+		collected_answer_list.append({'question_name':question_name,'answer_text':answer_text,'answer_id':collected_answer_id})
 
 	c = RequestContext(request, {
 		'username':username,
@@ -115,6 +124,7 @@ def view_account(request):
 		'theme_list':theme_list,
 		'user_list':user_list,
 		'answer_list':answer_list,
+		'collected_answer_list':collected_answer_list,
 		'focused':focused,
 	})
 	return render_to_response('account/accounts.html', c)

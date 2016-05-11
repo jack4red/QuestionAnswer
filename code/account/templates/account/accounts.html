@@ -21,6 +21,7 @@
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">关注的问题</a></li>
     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">关注的答案</a></li>
     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">关注的用户</a></li>
+    <li role="presentation"><a href="#collect" aria-controls="collect" role="tab" data-toggle="tab">收藏的答案</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -57,6 +58,15 @@
         {% for user in user_list %}
             <div class="list-group-item">
                 <a href="/account/view_account/?user_id={{ user.user_id }}">{{ user.user_name }}</a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="collect">
+        <div class="list-group">
+        {% for answer in collected_answer_list %}
+            <div class="list-group-item">
+                <a href="/QuestionAnswer/answer_detail/?answer_id={{ answer.answer_id }}">{{ answer.question_name }}<div>{{ answer.answer_text|slice:":500" }}</div></a>
             </div>
         {% endfor %}
         </div>

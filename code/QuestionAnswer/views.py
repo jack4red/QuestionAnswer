@@ -527,7 +527,10 @@ def collect_answer(request):
 		collected_answer_ids_list = []
 		if user.collected_answer_ids:
 			collected_answer_ids_list = user.collected_answer_ids.split(',')
-		collected_answer_ids_list.append(answer_id)
+		if answer_id in collected_answer_ids_list:
+			collected_answer_ids_list.remove(answer_id)
+		else:
+			collected_answer_ids_list.append(answer_id)
 		user.collected_answer_ids = ','.join(collected_answer_ids_list)
 		user.save()
 		response = create_response(200)
