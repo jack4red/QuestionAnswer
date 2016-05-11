@@ -5,9 +5,14 @@ body {
   padding: 40px 15px;
 }
 .btn-green{
-		border-color: #50C87E;
-		color: #50C87E;
-		background: #fff;
+	border-color: #50C87E;
+	color: #50C87E;
+	background: #fff;
+}
+.btn-blue{
+	border-color: #0e7bef;
+	color: #0e7bef;
+	background: #fff;
 }
 .hide {
 	display: none;

@@ -68,6 +68,12 @@
 <button type="button" class="btn btn-green xa-focus-button" style="margin-left: 20px;margin-bottom: 7px;">关注此答案</button>
 {% endif %}
 
+{% if collected %}
+<button type="button" class="btn btn-success xa-collect-button" style="margin-left: 20px;margin-bottom: 7px;">取消收藏</button>
+{% else %}
+<button type="button" class="btn btn-blue xa-collect-button" style="margin-left: 20px;margin-bottom: 7px;">收藏此答案</button>
+{% endif %}
+
 <div class="list-group hide comments">
 {% if comments %}
 {% for comment in comments %}
@@ -199,6 +205,36 @@
             }
         })
     })
+		$('button.xa-collect-button').click(function() {
+        var _this = this;
+        $.ajax({
+            url:'/QuestionAnswer/collect_answer/',
+            type:'post',
+            data:{
+                'answer_id':{{ answer_id }},
+            },
+            success:function() {
+                if ($(_this).hasClass('btn-success')) {
+                    $(_this).removeClass('btn-success');
+                    $(_this).html('收藏此答案')
+                }else{
+                    $(_this).addClass('btn-success');
+                    $(_this).html('取消收藏')
+                }
+                if ($(_this).hasClass('btn-blue')) {
+                    $(_this).removeClass('btn-blue');
+                    $(_this).html('取消收藏')
+                }else{
+                    $(_this).addClass('btn-blue');
+                    $(_this).html('收藏此答案')
+                }
+                
+            },
+            error:function() {
+                alert('focuse fail')
+            }
+        })
 	})
+})
 </script>
 {% endblock %}

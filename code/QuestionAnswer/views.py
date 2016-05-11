@@ -199,10 +199,15 @@ def answer_detail(request):
 		user_id = str(request.user.id)
 
 		focused_answer_ids_list = UserProfile.objects.get(user_id=user_id).focused_answer_ids.split(',')
+		collected_answer_ids_list = UserProfile.objects.get(user_id=user_id).collected_answer_ids.split(',')
 		if answer_id in focused_answer_ids_list:
 			focused = True
 		else:
 			focused = False
+		if answer_id in collected_answer_ids_list:
+			collected = True
+		else:
+			collected =False
 
 		up_owner_user_ids_num = 0
 		down_owner_user_ids_num = 0
@@ -227,6 +232,7 @@ def answer_detail(request):
 				'created_at':answer.created_at,
 				'answer_id':answer_id,
 				'focused':focused,
+				'collected':collected,
 				'answer_text':answer.answer_text,
 				'answer_user_name':owner_user.username,
 				'answer_user_id':owner_user.id,
