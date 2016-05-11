@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load pic_filter %}
 
 {% block content %}
 
@@ -11,7 +12,7 @@
     <a href="/QuestionAnswer/question_detail/?question_id={{ new.question_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}关注了问题</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":500" }} </p>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|pictostr|safe|slice:":500" }} </p>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -28,7 +29,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}关注了答案</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -37,7 +38,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}回答了问题</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -46,7 +47,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}评论了该问题下的答案</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -55,7 +56,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}赞了答案</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -64,7 +65,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}反对这个答案</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|slice:":500" }} </p>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -73,7 +74,7 @@
     <a href="/QuestionAnswer/question_detail/?question_id={{ new.question_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.theme_name }}话题下有新问题</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|slice:":500" }} </p>
+        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|pictostr|safe|slice:":500" }} </p>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}

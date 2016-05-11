@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load pic_filter %}
 
 {% block content %}
 {% if error_message %}
@@ -24,15 +24,15 @@
 
 <div class="list-group">
 	{% for answer in answers %}
-	<p class="list-group-item">
+	<div class="list-group-item">
 		<span style="display: block;">
 			<a href="/account/view_account/?user_id={{ answer.owner_user_id }}">{{ answer.owner_user_name }}</a>
 			&nbsp;&nbsp;{{ answer.up_owner_user_ids_num }}个赞同&nbsp;&nbsp;{{ answer.down_owner_user_ids_num }}个反对
 		</span>
 		<a href="/QuestionAnswer/answer_detail/?answer_id={{ answer.id }}">
-			<span style="text-indent: 2em;display: inline-block;color: black;">{{ answer.answer_text|slice:":300" }}</span>
+			<span style="text-indent: 2em;display: inline-block;color: black;">{{ answer.answer_text|pictostr|safe|slice:":300" }}</span>
 		</a>
-	</p>
+	</div>
 	{% endfor %}
 </div>
 {% endif %}
