@@ -101,3 +101,5 @@ TEMPLATE_DIRS = (
     '../templates',
     # './account/',
 )
+
+UPLOAD_DIR = '%s/static/upload' % BASE_DIR

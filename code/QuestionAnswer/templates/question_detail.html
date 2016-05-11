@@ -36,12 +36,26 @@
 	{% endfor %}
 </div>
 {% endif %}
-<textarea type="text" class="form-control" placeholder="添加答案" aria-describedby="basic-addon1" rows="4" name="add_answer"></textarea>
+
+<script id="editor" type="text/plain" style="width:100%;height:100px;"></script>
+
 <br>
 <button type="button" class="btn btn-info xa-replay">添加答案</button>
 {% endblock %}
 {% block js %}
+<script charset="utf-8" src="/static/ueditor/ueditor.config.js"></script>
+<script charset="utf-8" src="/static/ueditor/ueditor.all.js"> </script>
+<script charset="utf-8" src="/static/ueditor/lang/zh-cn/zh-cn.js"> </script>
 <script type="text/javascript">
+	upload_config = {
+        /* 上传图片配置项 必须！*/
+        "imageActionName": "uploadimage", /* 执行上传图片的action名称 */
+        "imageFieldName": "upfile", /* 提交的图片表单名称 */
+        "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 上传图片格式显示 */
+        "imageUrlPrefix": "" /* 图片访问路径前缀 */
+    };
+	var ue = UE.getEditor('editor',upload_config);
+
 	$('button.xa-focus').click(function() {
 		var _this = this;
 		$.ajax({
@@ -74,7 +88,7 @@
 		})
 	})
 	$('button.xa-replay').click(function() {
-		var answer_text = $.trim($('textarea[name="add_answer"]').val());
+		var answer_text = ue.getContent();
 		if (answer_text=='') {
 			alert('请先填答案');
 			return;
@@ -94,5 +108,6 @@
 			}
 		})
 	})
+
 </script>
 {% endblock %}
