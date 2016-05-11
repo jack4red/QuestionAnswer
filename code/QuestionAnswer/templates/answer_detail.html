@@ -40,7 +40,7 @@
 <p style="text-indent: 2em;" class="question_description">描述：{{ question_text }}</p>
 
 <div class="list-group">
-	<p class="list-group-item" style="overflow: auto;">
+	<div class="list-group-item" style="overflow: auto;">
 		<span style="display: block;text-indent: 1em;">
 			回答者：<a href="/account/view_account/?user_id={{ answer_user_id }}"> {{ answer_user_name }}</a>
 		</span>
@@ -54,8 +54,8 @@
 				<span>{{ down_owner_user_ids_num }}</span>
 			</button>
 		</span>
-		<span>{{ answer_text }}</span>
-	</p>
+		<span>{{ answer_text|safe }}</span>
+	</div>
 
 </div>
 

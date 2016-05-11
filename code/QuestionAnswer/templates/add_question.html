@@ -18,8 +18,10 @@
 	</div>
 </div>
 <div class="form-group input-group">
-	<span class="input-group-addon" id="basic-addon1">问题描述</span>
-	<textarea type="text" class="form-control" placeholder="Description" aria-describedby="basic-addon1" rows="4" name="description"></textarea>
+	<p>问题描述:</p>
+	<!-- <span class="input-group-addon" id="basic-addon1">问题描述</span> -->
+	<!-- <textarea type="text" class="form-control" placeholder="Description" aria-describedby="basic-addon1" rows="4" name="description"></textarea> -->
+	<script id="editor" type="text/plain" style="width:100%;height:100px;"></script>
 </div>
 <div class="form-group">
 	<button type="submit" class="btn btn-success">提交</button>
@@ -29,10 +31,22 @@
 {% endblock %}
 
 {% block js %}
+<script charset="utf-8" src="/static/ueditor/ueditor.config.js"></script>
+<script charset="utf-8" src="/static/ueditor/ueditor.all.js"> </script>
+<script charset="utf-8" src="/static/ueditor/lang/zh-cn/zh-cn.js"> </script>
 <script type="text/javascript">
+	upload_config = {
+        /* 上传图片配置项 必须！*/
+        "imageActionName": "uploadimage", /* 执行上传图片的action名称 */
+        "imageFieldName": "upfile", /* 提交的图片表单名称 */
+        "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 上传图片格式显示 */
+        "imageUrlPrefix": "" /* 图片访问路径前缀 */
+    };
+	var ue = UE.getEditor('editor',upload_config);
+
 	$('.btn-success').click(function() {
 		var question_title = $("input[name='question_title']").val();
-		var description = $("textarea[name='description']").val();
+		var description = ue.getContent();
 		var belone_theme = $("input[name='belone_theme']").val();
 		$.ajax({
 			url:'/QuestionAnswer/add_question/', 
