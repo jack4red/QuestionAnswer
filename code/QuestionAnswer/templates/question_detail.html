@@ -3,11 +3,12 @@
 
 {% block content %}
 {% if error_message %}
-	<p>error_message</p>
+<p>error_message</p>
 {% else %}
-
-<h2>{{ question_title }} 
-	<small>{% if focused %}
+<h2>
+	{{ question_title }}
+	<small>
+		{% if focused %}
 		<button type="button" class="btn btn-success xa-focus" style="margin-left: 20px;margin-bottom: 7px;">取消关注</button>
 		{% else %}
 		<button type="button" class="btn btn-green xa-focus" style="margin-left: 20px;margin-bottom: 7px;">关注问题</button>
@@ -16,31 +17,28 @@
 </h2>
 <p class="text-right">
 	<a href="/account/view_account/?user_id={{ question_owner_user_id }}">{{ question_owner_user_name }}</a>
-创建于{{ created_at|date:"Y-m-j H:i" }}
+	创建于{{ created_at|date:"Y-m-j H:i" }}
 </p>
 <p style="text-indent: 2em;">描述：{{ question_text }}</p>
 <p style="text-indent: 2em;">{{ answers_num }}个回答</p>
 
 <div class="list-group">
-{% for answer in answers %}
+	{% for answer in answers %}
 	<p class="list-group-item">
-	<span style="display: block;">
-		<a href="/account/view_account/?user_id={{ answer.owner_user_id }}"> {{ answer.owner_user_name }}</a>
-		 &nbsp;&nbsp;{{ answer.up_owner_user_ids_num }}个赞同&nbsp;&nbsp;{{ answer.down_owner_user_ids_num }}个反对
-	</span>
-	<a href="/QuestionAnswer/answer_detail/?answer_id={{ answer.id }}">
-		<span style="text-indent: 2em;display: inline-block;color: black;">{{ answer.answer_text|slice:":300" }} </span>
-	</a>
+		<span style="display: block;">
+			<a href="/account/view_account/?user_id={{ answer.owner_user_id }}">{{ answer.owner_user_name }}</a>
+			&nbsp;&nbsp;{{ answer.up_owner_user_ids_num }}个赞同&nbsp;&nbsp;{{ answer.down_owner_user_ids_num }}个反对
+		</span>
+		<a href="/QuestionAnswer/answer_detail/?answer_id={{ answer.id }}">
+			<span style="text-indent: 2em;display: inline-block;color: black;">{{ answer.answer_text|slice:":300" }}</span>
+		</a>
 	</p>
-{% endfor %}
+	{% endfor %}
 </div>
-
 {% endif %}
-
-	<textarea type="text" class="form-control" placeholder="添加答案" aria-describedby="basic-addon1" rows="4" name="add_answer"></textarea>
-	<br>
-	<button type="button" class="btn btn-info xa-replay">添加答案</button>
-
+<textarea type="text" class="form-control" placeholder="添加答案" aria-describedby="basic-addon1" rows="4" name="add_answer"></textarea>
+<br>
+<button type="button" class="btn btn-info xa-replay">添加答案</button>
 {% endblock %}
 {% block js %}
 <script type="text/javascript">

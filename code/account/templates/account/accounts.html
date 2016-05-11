@@ -2,79 +2,95 @@
 {% block css %}
 {% endblock %}
 {% block content %}
-<h2>{{ username }} <small>创建于{{ created_at|date:"Y-m-j" }}</small>
-{% if username != user.username %}
+<h2>
+    {{ username }}
+    <small>创建于{{ created_at|date:"Y-m-j" }}</small>
+    {% if username != user.username %}
 {% if focused %}
-<button type="button" class="btn btn-success" style="margin-left: 20px;margin-bottom: 7px;">取消关注</button>
-{% else %}
-<button type="button" class="btn btn-green" style="margin-left: 20px;margin-bottom: 7px;">关注他</button>
+    <button type="button" class="btn btn-success" style="margin-left: 20px;margin-bottom: 7px;">取消关注</button>
+    {% else %}
+    <button type="button" class="btn btn-green" style="margin-left: 20px;margin-bottom: 7px;">关注他</button>
+    {% endif %}
 {% endif %}
-{% endif %}
-
 </h2>
 
 <div>
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">关注的话题</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">关注的问题</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">关注的答案</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">关注的用户</a></li>
-    <li role="presentation"><a href="#collect" aria-controls="collect" role="tab" data-toggle="tab">收藏的答案</a></li>
-  </ul>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">关注的话题</a>
+        </li>
+        <li role="presentation">
+            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">关注的问题</a>
+        </li>
+        <li role="presentation">
+            <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">关注的答案</a>
+        </li>
+        <li role="presentation">
+            <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">关注的用户</a>
+        </li>
+        <li role="presentation">
+            <a href="#collect" aria-controls="collect" role="tab" data-toggle="tab">收藏的答案</a>
+        </li>
+    </ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
-        <div class="list-group">
-        {% for theme in theme_list %}
-            <div class="list-group-item">
-                <a href="/QuestionAnswer/theme_detail/?theme_id={{ theme.theme_id }}">{{ theme.theme_name }}</a>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <div class="list-group">
+                {% for theme in theme_list %}
+                <div class="list-group-item">
+                    <a href="/QuestionAnswer/theme_detail/?theme_id={{ theme.theme_id }}">{{ theme.theme_name }}</a>
+                </div>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">
+            <div class="list-group">
+                {% for question in question_list %}
+                <div class="list-group-item">
+                    <a href="/QuestionAnswer/question_detail/?question_id={{ question.question_id }}">{{ question.question_name }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="messages">
+            <div class="list-group">
+                {% for answer in answer_list %}
+                <div class="list-group-item">
+                    <a href="/QuestionAnswer/answer_detail/?answer_id={{ answer.answer_id }}">
+                        {{ answer.question_name }}
+                        <div>{{ answer.answer_text|slice:":500" }}</div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="settings">
+            <div class="list-group">
+                {% for user in user_list %}
+                <div class="list-group-item">
+                    <a href="/account/view_account/?user_id={{ user.user_id }}">{{ user.user_name }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="collect">
+            <div class="list-group">
+                {% for answer in collected_answer_list %}
+                <div class="list-group-item">
+                    <a href="/QuestionAnswer/answer_detail/?answer_id={{ answer.answer_id }}">
+                        {{ answer.question_name }}
+                        <div>{{ answer.answer_text|slice:":500" }}</div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="profile">
-        <div class="list-group">
-        {% for question in question_list %}
-            <div class="list-group-item">
-                <a href="/QuestionAnswer/question_detail/?question_id={{ question.question_id }}">{{ question.question_name }}</a>
-            </div>
-        {% endfor %}
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="messages">
-        <div class="list-group">
-        {% for answer in answer_list %}
-            <div class="list-group-item">
-                <a href="/QuestionAnswer/answer_detail/?answer_id={{ answer.answer_id }}">{{ answer.question_name }}<div>{{ answer.answer_text|slice:":500" }}</div></a>
-            </div>
-        {% endfor %}
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="settings">
-        <div class="list-group">
-        {% for user in user_list %}
-            <div class="list-group-item">
-                <a href="/account/view_account/?user_id={{ user.user_id }}">{{ user.user_name }}</a>
-            </div>
-        {% endfor %}
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="collect">
-        <div class="list-group">
-        {% for answer in collected_answer_list %}
-            <div class="list-group-item">
-                <a href="/QuestionAnswer/answer_detail/?answer_id={{ answer.answer_id }}">{{ answer.question_name }}<div>{{ answer.answer_text|slice:":500" }}</div></a>
-            </div>
-        {% endfor %}
-        </div>
-    </div>
-  </div>
 
 </div>
-
 {% endblock %}
 {% block js %}
 <script type="text/javascript">

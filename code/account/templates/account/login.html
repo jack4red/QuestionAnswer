@@ -18,7 +18,12 @@
     height: 200px;
     margin: 200px auto;
   }
+  .for_error_position{
+    position: relative;
+  }
   .login-eror{
+    position: absolute;
+    bottom: 30px;
     display: inline;
     color: red;
     margin-left: 10px;
@@ -41,7 +46,7 @@
 
     </div>
     <!--login-form-->
-    <form id="focus" method="post" class="panel-body">
+    <form id="focus" method="post" class="panel-body for_error_position">
       <div class="input-group" style="width: 250px">
         <input name="username" class="form-control" placeholder="用户名称" aria-describedby="basic-addon1" />
       </div>
