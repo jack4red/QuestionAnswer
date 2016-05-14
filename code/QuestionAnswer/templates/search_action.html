@@ -16,11 +16,13 @@
   	{% for result in result_list %}
     <li class="list-group-item">
     	<a href="{% if search_type == 'theme' %}/QuestionAnswer/theme_detail/?theme_id={{result.id}}{% else %}{% if search_type == 'question' %}/QuestionAnswer/question_detail/?question_id={{result.id}}{% else %}/account/view_account/?user_id={{result.id}}{% endif %} {% endif %}" style="line-height: 34px;">{{result.name|slice:":100"}} </a>
-    	{% if result.focused %}
+        {% if result.id != user.id %}
+        {% if result.focused %}
     	<button class="btn btn-success pull-right" onclick="focus_action('{{result.id}}','{{search_type}}',event)">取消关注</button>
     	{% else %}
     	<button class="btn btn-green pull-right" onclick="focus_action('{{result.id}}','{{search_type}}',event)">关注</button>
-    	{% endif %}
+        {% endif %}
+        {% endif %}
     	<div class="clearfix"></div>
     </li>
     {% endfor %}
