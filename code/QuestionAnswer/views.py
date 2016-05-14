@@ -166,6 +166,7 @@ def question_detail(request):
 			answer_obj['created_at'] = answers[answer].created_at
 			answer_list.append(answer_obj)
 		#sort lambda feature
+		answer_list.sort(lambda a,b:b['up_owner_user_ids_num']-a['up_owner_user_ids_num'])
 
 		theme_ids = question.owner_theme_ids.split(',')
 		theme_names = []
