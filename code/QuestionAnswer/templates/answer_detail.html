@@ -45,11 +45,11 @@
 			回答者：<a href="/account/view_account/?user_id={{ answer_user_id }}"> {{ answer_user_name }}</a>
 		</span>
 		<span class="up_or_down">
-			<button type="button" class="btn btn-default up {% if is_in_up_list %}success_toggle{% endif %}">
+			<button type="button" class="btn btn-default up {% if is_in_up_list %}success_toggle{% endif %}" title="赞同">
 				<i class="glyphicon glyphicon-triangle-top"></i>
 				<span>{{ up_owner_user_ids_num }}</span>
 			</button>
-			<button type="button" class="btn btn-default down {% if is_in_down_list %}success_toggle{% endif %}">
+			<button type="button" class="btn btn-default down {% if is_in_down_list %}success_toggle{% endif %}" title="反对">
 				<i class="glyphicon glyphicon-triangle-bottom"></i>
 				<span>{{ down_owner_user_ids_num }}</span>
 			</button>
