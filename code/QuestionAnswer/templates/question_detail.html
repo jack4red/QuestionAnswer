@@ -15,9 +15,19 @@
 		{% endif %}
 	</small>
 </h2>
-<p class="text-right">
-	<a href="/account/view_account/?user_id={{ question_owner_user_id }}">{{ question_owner_user_name }}</a>
-	创建于{{ created_at|date:"Y-m-j H:i" }}
+<p>
+	<span class="text-left text-muted">
+		来自于话题
+		{% for theme in theme_list %}
+		<a href="/QuestionAnswer/theme_detail/?theme_id={{theme.id}}">{{theme.name}}</a>
+		{% endfor %}
+	</span>
+	
+	<span class="pull-right text-muted">
+		<a href="/account/view_account/?user_id={{ question_owner_user_id }}">{{ question_owner_user_name }}</a>
+		创建于{{ created_at|date:"Y-m-j H:i" }}
+	</span>
+	
 </p>
 <div style="text-indent: 2em;" class="max-limit-pic">{{ question_text|safe }}</div>
 <p style="text-indent: 2em;">{{ answers_num }}个回答</p>

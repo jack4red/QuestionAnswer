@@ -143,6 +143,14 @@ def question_detail(request):
 		answers = {answer.id:answer for answer in answers}
 		answer_list = []
 
+		owner_theme_list = []
+		theme_list = []
+		if question.owner_theme_ids:
+			owner_theme_list =  question.owner_theme_ids.split(',')
+		for theme in owner_theme_list:
+			cur_theme = Theme.objects.get(id=theme)
+			theme_list.append({'id':cur_theme.id,'name':cur_theme.theme_name})
+
 		focused = False
 		focused_question_ids = UserProfile.objects.get(user_id=request.user.id).focused_question_ids
 		focused_question_ids_list =focused_question_ids.split(',')
@@ -183,6 +191,7 @@ def question_detail(request):
 				'question_owner_user_name':owner_user_name,
 				'theme_names':theme_names,
 				'answers':answer_list,
+				'theme_list':theme_list,
 				'answers_num':len(answer_list),
 				'focused':focused,
 				'question_id':question_id,
