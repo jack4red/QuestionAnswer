@@ -1,39 +1,68 @@
 {% extends "base.html" %}
 {% block css %}
 <style type="text/css">
-	.search_suggest{ position:absolute; z-index:999; left:132px; top:41px; width:468px; border:1px solid #999999; display:none; }
-.search_suggest li{height:24px; overflow:hidden; padding-left:3px; line-height:24px; background:#FFFFFF; cursor:default;}
-.search_suggest li.hover{background:#DDDDDD;}
+.input-r-position{
+	position: relative;
+}
+.input-r-position .search_suggest{
+	position: absolute;
+	top: 35px;
+	z-index: 1000;
+}
+.search_suggest_tip_position{
+	display: inline-block;
+	width: 100%;
+	padding: 3px;
+}
+.search_suggest_tip{
+	display: inline-block;
+	padding: 1px 3px;
+	background: #31708f;
+	color: white;
+	cursor: pointer;
+	border-radius: 15px;
+	margin-right: 5px;
+}
+.search_suggest_tip:hover:after{
+	content: " x";
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+}
 </style>
 {% endblock %}
 {% block content %}
 <div class="form-group input-group col-lg-6">
 	<span class="input-group-addon" id="basic-addon1">问题标题</span>
 	<input type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon1" name="question_title"></div>
-<div class="form-group input-group col-lg-6">
+<div class="form-group input-group col-lg-6 input-r-position">
 	<span class="input-group-addon" id="basic-addon1">主题</span>
 	<input type="text" class="form-control" placeholder="Theme" aria-describedby="basic-addon1" name="belone_theme" id="gover_search_key">
-	<div class="search_suggest" id="gov_search_suggest">
-		<ul></ul>
+	<div class="search_suggest col-lg-6 list-group" style="display:none">
+		<a href="#" class="list-group-item">Vestibulum at eros</a>
 	</div>
 </div>
+<span class="search_suggest_tip_position">
+</span>
 <div class="form-group input-group">
 	<p>问题描述:</p>
-	<!-- <span class="input-group-addon" id="basic-addon1">问题描述</span> -->
-	<!-- <textarea type="text" class="form-control" placeholder="Description" aria-describedby="basic-addon1" rows="4" name="description"></textarea> -->
-	<script id="editor" type="text/plain" style="width:100%;height:100px;"></script>
+	<!-- <span class="input-group-addon" id="basic-addon1">问题描述</span>
+-->
+<!-- <textarea type="text" class="form-control" placeholder="Description" aria-describedby="basic-addon1" rows="4" name="description"></textarea>
+-->
+<script id="editor" type="text/plain" style="width:100%;height:100px;"></script>
 </div>
 <div class="form-group">
-	<button type="submit" class="btn btn-success">提交</button>
-	<button type="button" class="btn btn-info xa-reset">重置</button>
-	<a href="/" class="btn btn-default">取消</a>
+<button type="submit" class="btn btn-success">提交</button>
+<button type="button" class="btn btn-info xa-reset">重置</button>
+<a href="/" class="btn btn-default">取消</a>
 </div>
 {% endblock %}
 
 {% block js %}
 <script charset="utf-8" src="/static/ueditor/ueditor.config.js"></script>
-<script charset="utf-8" src="/static/ueditor/ueditor.all.js"> </script>
-<script charset="utf-8" src="/static/ueditor/lang/zh-cn/zh-cn.js"> </script>
+<script charset="utf-8" src="/static/ueditor/ueditor.all.js"></script>
+<script charset="utf-8" src="/static/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
 	upload_config = {
         /* 上传图片配置项 必须！*/
@@ -45,16 +74,29 @@
 	var ue = UE.getEditor('editor',upload_config);
 
 	$('.btn-success').click(function() {
-		var question_title = $("input[name='question_title']").val();
+		var question_title = $.trim($("input[name='question_title']").val());
+		if (question_title=='') {
+			$('.input-group').eq(0).addClass('has-error');
+			alert('请输入问题标题')
+			return
+		}
 		var description = ue.getContent();
-		var belone_theme = $("input[name='belone_theme']").val();
+
+		var belone_theme = [];
+		$('.search_suggest_tip_position span').each(function(i) {
+			belone_theme.push($(this).attr('data-id'))
+		})
+		if (belone_theme=='') {
+			alert('至少选择一个话题');
+			return;
+		}
 		$.ajax({
 			url:'/QuestionAnswer/add_question/', 
 			type:'post', 
 			data:{
 				'question_title':question_title,
 				'description':description,
-				'belone_theme':belone_theme
+				'belone_theme':belone_theme.join(',')
 			}, 
 			success:function(resp) {
 				location.href='/QuestionAnswer/question_detail/?question_id='+resp.data.question_id;
@@ -64,12 +106,6 @@
 			}
 		})
 	})
-	$('input[name="belone_theme"]').keyup(function() {
-		console.log($(this).val())
-	})
-	$('input[name="belone_theme"]').blur(function() {
-		
-	})
 
 	$('.xa-reset').click(function() {
 		$("input[name='question_title']").val('');
@@ -77,7 +113,54 @@
 		$("input[name='belone_theme']").val('');
 	})
 
+	$('input[name="belone_theme"]').keyup(function() {
+		var value = $.trim(this.value);
+		if (value=='') {
+			return
+		}
+		$.ajax({
+			url:'/QuestionAnswer/search_action/',
+			type:'post',
+			data:{
+				'search_word':value,
+				'search_type':'theme',
+			},
+			success:function(resp) {
+				var result = resp.data.result_list;
+				$('.search_suggest').show();
+				$('.search_suggest').html('');
+				for (var i = result.length - 1; i >= 0; i--) {
+					var $list_item = $('<a href="#" class="list-group-item" data-id="'+result[i].id+'">'+result[i].name+'</a>')
+					$list_item.click(search_suggest_tip_click);
+					$('.search_suggest').append($list_item);
+				}
+			},
+			error:function(resp) {
+				console.log(resp)
+			}
+		})
+	})
 
+	$('input[name="belone_theme"]').blur(function(event) {
+		if ($(event.relatedTarget).hasClass('list-group-item')) {
+
+		}else{
+			$('.search_suggest').hide();
+		}
+	})
+
+	function search_suggest_tip_click(event) {
+		var cur_dom = event.currentTarget;
+		var id = $(cur_dom).attr('data-id');
+		var name = $(cur_dom).html();
+		var $little_tip = $('<span class="search_suggest_tip" data-id="'+id+'">'+name+'</span>');
+		$little_tip.click(function() {
+			$little_tip.remove();
+		})
+		$('.search_suggest_tip_position').append($little_tip);
+		$('.search_suggest').hide();
+		$('input[name="belone_theme"]').val('');
+	}
 
 
 

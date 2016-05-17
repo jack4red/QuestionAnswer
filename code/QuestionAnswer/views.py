@@ -146,7 +146,7 @@ def question_detail(request):
 		owner_theme_list = []
 		theme_list = []
 		if question.owner_theme_ids:
-			owner_theme_list =  question.owner_theme_ids.split(',')
+			owner_theme_list =  set(question.owner_theme_ids.split(','))
 		for theme in owner_theme_list:
 			cur_theme = Theme.objects.get(id=theme)
 			theme_list.append({'id':cur_theme.id,'name':cur_theme.theme_name})
@@ -468,7 +468,13 @@ def up_or_down_answer(request):
 @login_required(login_url='/account/login/')
 def search_action(request):
 	if request.POST:
-		pass
+		user_id = str(request.user.id)
+		search_word = request.POST.get('search_word')
+		search_type = request.POST.get('search_type')
+		result_list = search_method(user_id,search_word,search_type,0)
+		response = create_response(200)
+		response.data.result_list = result_list
+		return response.get_response()
 	else:
 		user_id = str(request.user.id)
 		search_word = request.GET.get('search_word')
