@@ -438,7 +438,7 @@ def up_or_down_answer(request):
 			if not user_id in up_owner_user_ids_list:
 				up_owner_user_ids_list.append(user_id)
 				is_in_up_list = True
-				NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=5)
+				NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,question_id=answer.question_id,action_type=5)
 			else:
 				up_owner_user_ids_list.remove(user_id)
 			if user_id in down_owner_user_ids_list:
@@ -448,7 +448,7 @@ def up_or_down_answer(request):
 			if not user_id in down_owner_user_ids_list:
 				down_owner_user_ids_list.append(user_id)
 				is_in_down_list = True
-				NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,action_type=6)
+				NewsToUser.objects.create(action_user_id=user_id,answer_id=answer_id,question_id=answer.question_id,action_type=6)
 			else:
 				down_owner_user_ids_list.remove(user_id)
 			if user_id in up_owner_user_ids_list:

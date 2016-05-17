@@ -5,14 +5,14 @@
 
 <h3>最新动态</h3>
 {% if latest_news %}
-<div class="list-group">
+<div class="list-group max-limit-pic">
     {% for new in latest_news %}
 
     {% if new.action_type == 0 %}
     <a href="/QuestionAnswer/question_detail/?question_id={{ new.question_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}关注了问题</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|pictostr|safe|slice:":500" }} </p>
+        <div class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|pictostr|safe|slice:":500" }} </div>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -29,7 +29,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}关注了答案</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
+        <div class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </div>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -38,7 +38,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}回答了问题</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
+        <div class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </div>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -47,7 +47,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}评论了该问题下的答案</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
+        <div class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </div>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -56,7 +56,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}赞了答案</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
+        <div class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </div>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -65,7 +65,7 @@
     <a href="/QuestionAnswer/answer_detail/?answer_id={{ new.answer_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.action_user }}反对这个答案</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </p>
+        <div class="list-group-item-text" style="text-indent: 2em;">{{ new.answer_text|pictostr|safe|slice:":500" }} </div>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -74,7 +74,7 @@
     <a href="/QuestionAnswer/question_detail/?question_id={{ new.question_id }}" class="list-group-item">
         <h6 class="list-group-item-heading">{{ new.theme_name }}话题下有新问题</h6>
         <h4 class="list-group-item-heading">{{ new.question_title }}</h4>
-        <p class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|pictostr|safe|slice:":500" }} </p>
+        <div class="list-group-item-text" style="text-indent: 2em;">{{ new.question_text|pictostr|safe|slice:":500" }} </div>
         <p class="list-group-item-text blockquote-reverse">{{ new.created_at }}</p>
     </a>
     {% endif %}
@@ -166,8 +166,9 @@
                         default:
                         break
                     }
-                    p_time_str=latest_news[i].created_at
-                    $('div.list-group').append('<a href="'+a_href_str+'" class="list-group-item">'+'<h6 class="list-group-item-heading">'+h6_inner_str+'</h6><h4 class="list-group-item-heading">'+h4_inner_str+'</h4><p class="list-group-item-text" style="text-indent: 2em;">'+p_text_str+'</p><p class="list-group-item-text blockquote-reverse">'+p_time_str+'</p></a>')
+                    p_time_str=latest_news[i].created_at;
+                    p_text_str=p_text_str.replace(/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\1[^>]*?\/?\s*>/g,'[图片]');
+                    $('div.list-group').append('<a href="'+a_href_str+'" class="list-group-item">'+'<h6 class="list-group-item-heading">'+h6_inner_str+'</h6><h4 class="list-group-item-heading">'+h4_inner_str+'</h4><div class="list-group-item-text" style="text-indent: 2em;">'+p_text_str+'</div><p class="list-group-item-text blockquote-reverse">'+p_time_str+'</p></a>')
                 }
 
                 if (resp.data.is_end) {
