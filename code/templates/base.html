@@ -45,9 +45,7 @@
           </li>
           {% endif %}
           <li class="xa-search-toggle">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              搜索话题
-              <span class="caret"></span>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">搜索话题<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -96,7 +94,7 @@
         if(event.keyCode==13){
           var input_value = $.trim($(this).val());
           if (input_value) {
-            var cur_html = $('.xa-search-toggle .dropdown-toggle').text()
+            var cur_html = $.trim($('.xa-search-toggle .dropdown-toggle').text());
             if (cur_html == '搜索话题') {
               location.href = '/QuestionAnswer/search_action/?search_type=theme&search_word='+input_value
             } else if(cur_html == '搜索问题') {
