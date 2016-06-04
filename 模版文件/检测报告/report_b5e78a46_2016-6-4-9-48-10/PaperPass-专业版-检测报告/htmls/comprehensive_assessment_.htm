@@ -1,0 +1,816 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 13px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+demo_padding {
+line-height: 30px;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:scroll;
+}
+.getiao_xsd {
+float: left;
+width: 995px;
+display: inline;
+}
+.getiao_wz {
+width: 75px;
+float: left;
+margin-top: 0px;
+margin-left: 0px;
+display: inline;
+}
+.getiao_percent {
+width: 38px;
+float: left;
+margin-top: 0px;
+margin-left: 5px;
+display: inline;
+}
+.getiao img {
+border: 1px solid #666666;
+margin-top: 0px;
+float: left;
+}
+.liebiao {
+border-bottom-width: 1px;
+border-bottom-style: dashed;
+border-bottom-color: #CCCCCC;
+height: 0px;
+margin-top:10px;
+margin-bottom:10px;
+float: left;
+width: 90%;
+}
+.liebiao ul {
+list-style-type: none;
+display: block;
+margin: 0px;
+clear: none;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px dashed #999999;
+padding-right: 10px;
+padding-left: 10px;
+}
+.shubuno{
+float: left;
+height: 15px;
+width: 19px;
+background-color: #FFFFFF;
+border: 0px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+display:inline;
+}
+.shubu{
+float: left;
+height: 15px;
+width: 15px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+font-size: 13px;
+display:inline;
+}
+.shubu1{
+float: left;
+background-color: #FFFFFF;
+text-align: center;
+vertical-align: middle;
+font-size: 13px;
+margin-top:4px;
+display:inline;
+}
+.kuang {
+border: 1px solid #999999;
+}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+.green{color:#008000}
+
+a:hover {color:#000000}
+a:active {color:#000000}
+
+a{TEXT-DECORATION:none}
+.baifenbihand
+{
+float: left;
+margin-top:1px;
+display:inline;
+cursor:hand;
+cursor:pointer;
+}
+.baifenbi
+{
+float: left;
+margin-top:1px;
+display:inline;
+}
+.xiangsigif {
+float: left;
+margin-left:5px;
+display:inline;
+}
+
+.xiangsigif img {
+border: 1px solid #666666;
+float: left;
+margin-left:0px;
+margin-right:3px;
+display:inline;
+}
+
+.xiangsigif1 {
+margin-left:0px;
+display:inline;
+}
+
+.xiangsigif1 img {
+border: 1px solid #666666;
+margin-left:0px;
+margin-right:3px;
+display:inline;
+}
+
+-->
+</style>
+<script type="text/javascript">
+function showobj(objIDName) {
+objctlocal = document.getElementById('local'+objIDName);
+objctlocal.setAttribute('style', "display:block;");
+objxiangxi = document.getElementById('xiangxi' + objIDName);
+objxiangxi.setAttribute('style', "display:none;");
+objshouqi = document.getElementById('shouqi' + objIDName);
+objshouqi.setAttribute('style', "display:block;");
+
+}
+function noneobj(objIDName) {
+objctlocal = document.getElementById('local' + objIDName);
+objctlocal.setAttribute('style', "display:none;");
+objxiangxi = document.getElementById('xiangxi' + objIDName);
+objxiangxi.setAttribute('style', "display:block;");
+objshouqi = document.getElementById('shouqi' + objIDName);
+objshouqi.setAttribute('style', "display:none;");
+}
+</script>
+</head>
+<body>
+
+
+
+<table width="100%" cellpadding="3" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" >
+<tr>
+<td align="left">
+<b>
+<font color="#666666">总体信息</font></b>
+</td>
+</tr>
+
+
+<tr>
+<td align="left">
+<div class="getiao">
+<div class="getiao_xsd">
+<div class="getiao_wz" style="width: 94px; height: 13px"><font color="#666666">&nbsp;&nbsp;&nbsp;总体相似度：</font></div>
+<img src="../images/percent_1.gif" width="90" height="15"/><div class="getiao_percent"><span  class='green' >12%</a></div>
+<div class="getiao_wz" style="width: 463px; height: 13px"><font color="#666666">总体相似度是指本地库、互联网的综合比对结果</font></div>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<td align="left">
+<div class="getiao">
+<div class="getiao_xsd">
+<div class="getiao_wz" style="width: 94px; height: 13px"><font color="#666666">本地库相似度：</font></div>
+<img src="../images/percent_local.gif" width="90" height="15"/><div class="getiao_percent"><span  class='green' >12%</a></div>
+<div class="getiao_wz" style="width: 463px; height: 13px"><font color="#666666">本地库相似度是指论文与学术期刊、学位论文、会议论文的比对结果</font></div>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<td align="left">
+<div class="getiao">
+<div class="getiao_xsd">
+<div class="getiao_wz" style="width: 94px; height: 13px"><font color="#666666">互联网相似度：</font></div>
+<img src="../images/percent_net.gif" width="90" height="15"/><div class="getiao_percent"><span  class='green' >0%</a></div>
+<div class="getiao_wz" style="width: 463px; height: 13px"><font color="#666666">互联网相似度是指论文与互联网资源的比对结果</font></div>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<td align="left">
+<font color="#666666">相似度计算公式&nbsp;:&nbsp;
+<font color="#666666">（句子1相似度+句子2相似度+...+句子n相似度）/&nbsp;n</font>，句子相似度范围0.0~1.0，绿色句子相似度按照0计算。
+</td>
+</tr>
+
+<tr>
+<td align="left">
+</td>
+</tr>
+
+<tr>
+<td align="left">
+<font color="#666666">字数<b>:</b>16594</font>&nbsp;&nbsp;
+<font color="#666666">词语数<b>:</b>6304</font>&nbsp;&nbsp;
+<font color="#666666">句子数<b>:</b>701</font>&nbsp;&nbsp;
+<font color="#666666">段落数<b>:</b>475</font>&nbsp;&nbsp;
+<font color="#666666">&nbsp;&nbsp;注：系统按照Word字数统计里面的字符数（不计空格）计算！</font>
+</td>
+</tr>
+
+<tr>
+<td align="left">
+</td>
+</tr>
+
+<tr>
+<td align="left">
+<font color="#666666">比对库范围<b>：</b>学术期刊（1990-2015）、学位论文（硕博库1990-2015）、会议论文（1990-2015）、互联网资源</font><br><br>
+<font color="#666666">检测报告编号<b>：</b>5752335A841961JXM</font>&nbsp;&nbsp;
+<a href="http://www.paperpass.com/check" target="_blank"><b>查询真伪</b></a>
+<br><br><font color=red size=3>不支持官网（www.paperpass.com）真伪查询的检测报告均为假货，谨防上当！</font><br><br>
+</td>
+</tr>
+
+</table>
+
+
+<table width="100%" cellpadding="3" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" >
+<tr>
+<td align="left" colspan="2">
+<b>
+<font color="#666666">句子信息</font></b></td>
+</tr>
+<tr>
+<td align="left" colspan="2">
+<font color="#666666">
+句子个数<b>:</b>701&nbsp;&nbsp; 平均句长<b>:</b>25字&nbsp;&nbsp;
+最大句长<b>:</b>93字&nbsp;&nbsp; 最小句长<b>:</b>2字&nbsp;&nbsp;
+</font></td>
+</tr>
+<tr>
+<td align="left" colspan="2">
+<img src="../images/Sentence.png" border="0">
+</td>
+</tr>
+<tr>
+<td align="left" colspan="2">
+<img src="../images/Sentence.jpg" border="0">
+</td>
+</tr>
+</table>
+
+
+<table width="100%" cellpadding="1" cellspacing="2" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" >
+<tr>
+<td align="left" width="100%">
+<font color="#666666"><b>本地库相似资源（学术期刊、学位论文、会议论文）</font>
+</td>
+</tr>
+<tr>
+<td align="left" width="100%">
+<div class="shubu">1</div>
+<div class="xiangsigif"><img src="../images/6.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >6</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi1" style="display:block" class="baifenbihand" onclick="showobj('1')" >[详细↓]</div>
+<div id="shouqi1" style="display:none" class="baifenbihand" onclick="noneobj('1')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学术期刊 《青年记者》 2014年26期</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>李丹</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《中美网络问答社区的对比研究--以Quora和知乎为例》</div>
+
+</td>
+</tr>
+<tr id="local1" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学术期刊&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《中美网络问答社区的对比研究--以Quora和知乎为例》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>李丹&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者单位<b>：</b></font>南昌大学新闻与传播学院&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">参考文献<b>：</b></font>3篇&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页码<b>：</b></font>P19—P20&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页数<b>：</b></font>2页&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">期刊名称<b>：</b></font>《青年记者》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">出版时间<b>：</b></font>2014年26期&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">ISSN<b>：</b></font>1002-2759&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">2</div>
+<div class="xiangsigif"><img src="../images/4.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >4</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi2" style="display:block" class="baifenbihand" onclick="showobj('2')" >[详细↓]</div>
+<div id="shouqi2" style="display:none" class="baifenbihand" onclick="noneobj('2')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学术期刊 《计算机光盘软件与应用》 2012年21期</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>刘宏明 柴梓淇</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《论垂直型问答网站的发展》</div>
+
+</td>
+</tr>
+<tr id="local2" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学术期刊&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《论垂直型问答网站的发展》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>刘宏明 柴梓淇&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者单位<b>：</b></font>通化师范学院计算机学院,吉林通化 134002&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>F276.7&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">期刊名称<b>：</b></font>《计算机光盘软件与应用》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">出版时间<b>：</b></font>2012年21期&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">ISSN<b>：</b></font>1007-9599&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>搜索引擎 互联网 垂直型问答网站&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">3</div>
+<div class="xiangsigif"><img src="../images/2.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >2</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi3" style="display:block" class="baifenbihand" onclick="showobj('3')" >[详细↓]</div>
+<div id="shouqi3" style="display:none" class="baifenbihand" onclick="noneobj('3')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学术期刊 《青年记者》 2014年26期</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>陈静 苑伟丰</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《新媒体环境下的台网互动模式解析--以江苏电视台与江苏网络电视台为例》</div>
+
+</td>
+</tr>
+<tr id="local3" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学术期刊&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《新媒体环境下的台网互动模式解析--以江苏电视台与江苏网络电视台为例》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>陈静 苑伟丰&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者单位<b>：</b></font>河海大学公共管理学院；河海大学大禹学院&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">参考文献<b>：</b></font>1篇&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页码<b>：</b></font>P18—P18,19&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页数<b>：</b></font>2页&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">期刊名称<b>：</b></font>《青年记者》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">出版时间<b>：</b></font>2014年26期&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">ISSN<b>：</b></font>1002-2759&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">4</div>
+<div class="xiangsigif"><img src="../images/2.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >2</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi4" style="display:block" class="baifenbihand" onclick="showobj('4')" >[详细↓]</div>
+<div id="shouqi4" style="display:none" class="baifenbihand" onclick="noneobj('4')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 湖南师范大学 2015</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>邓海霞</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《社会化问答网站的知识生产与传播——以知乎网为例进行研究》</div>
+
+</td>
+</tr>
+<tr id="local4" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《社会化问答网站的知识生产与传播——以知乎网为例进行研究》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>邓海霞&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>G206&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>新闻与传播&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>蔡骐&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>湖南师范大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2015&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>社会化问答网站 知识传播 社会资本 盈利模式&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">5</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi5" style="display:block" class="baifenbihand" onclick="showobj('5')" >[详细↓]</div>
+<div id="shouqi5" style="display:none" class="baifenbihand" onclick="noneobj('5')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 河南大学 2014</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>付聪</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《新闻阅读类App发展新模式探究:以“知乎日报”为例》</div>
+
+</td>
+</tr>
+<tr id="local5" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《新闻阅读类App发展新模式探究:以“知乎日报”为例》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>付聪&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>G206.2&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>传播学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>严励&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>河南大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2014&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>社会化问答网站 新闻阅读类App 手机网民 传播方式 受众分析&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">6</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi6" style="display:block" class="baifenbihand" onclick="showobj('6')" >[详细↓]</div>
+<div id="shouqi6" style="display:none" class="baifenbihand" onclick="noneobj('6')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学术期刊 《西部广播电视》 2014年21期</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>刘思琪</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《社会化问答网站UGC特征读——以知乎网为例》</div>
+
+</td>
+</tr>
+<tr id="local6" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学术期刊&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《社会化问答网站UGC特征读——以知乎网为例》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>刘思琪&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者单位<b>：</b></font>南京理工大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">参考文献<b>：</b></font>3篇&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页码<b>：</b></font>P9—P10&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页数<b>：</b></font>2页&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">期刊名称<b>：</b></font>《西部广播电视》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">出版时间<b>：</b></font>2014年21期&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">ISSN<b>：</b></font>1006-5628&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>社会化问答网站 UGC 用户生成内容 知乎网&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">7</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi7" style="display:block" class="baifenbihand" onclick="showobj('7')" >[详细↓]</div>
+<div id="shouqi7" style="display:none" class="baifenbihand" onclick="noneobj('7')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 电子科技大学 2006</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>马俊</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《基于正则表达式技术的信息搜集引擎应用研究》</div>
+
+</td>
+</tr>
+<tr id="local7" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《基于正则表达式技术的信息搜集引擎应用研究》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>马俊&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP391&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>软件工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>吴跃&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>电子科技大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2006&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>搜索引擎 正则表达式 自学习 信息检索工具 软件工程 互联网 信息处理&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">8</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi8" style="display:block" class="baifenbihand" onclick="showobj('8')" >[详细↓]</div>
+<div id="shouqi8" style="display:none" class="baifenbihand" onclick="noneobj('8')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 山东师范大学 2007</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>杜光芹</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《效用驱动的主题Web挖掘算法研究》</div>
+
+</td>
+</tr>
+<tr id="local8" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《效用驱动的主题Web挖掘算法研究》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>杜光芹&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP393.09&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>计算机软件与理论&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>张化祥&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>山东师范大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2007&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>主题Web挖掘 主题爬虫 超链接结构 搜索引擎 向量空间&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">9</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi9" style="display:block" class="baifenbihand" onclick="showobj('9')" >[详细↓]</div>
+<div id="shouqi9" style="display:none" class="baifenbihand" onclick="noneobj('9')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 中山大学 2007</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>周赟</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《垂直搜索引擎Spider技术的研究和应用》</div>
+
+</td>
+</tr>
+<tr id="local9" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《垂直搜索引擎Spider技术的研究和应用》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>周赟&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP311.5&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>软件工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>李长森&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>中山大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2007&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>搜索引擎 垂直搜索 网络蜘蛛 网页排序 互联网&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">10</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi10" style="display:block" class="baifenbihand" onclick="showobj('10')" >[详细↓]</div>
+<div id="shouqi10" style="display:none" class="baifenbihand" onclick="noneobj('10')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 武汉理工大学 2010</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>李亚</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《垂直搜索引擎的研究与设计》</div>
+
+</td>
+</tr>
+<tr id="local10" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《垂直搜索引擎的研究与设计》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>李亚&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP311.13&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>计算机应用技术&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>赵宏中&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>武汉理工大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2010&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>垂直搜索引擎 网络爬虫 网页预处理 主题相关性&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">11</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi11" style="display:block" class="baifenbihand" onclick="showobj('11')" >[详细↓]</div>
+<div id="shouqi11" style="display:none" class="baifenbihand" onclick="noneobj('11')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学术期刊 《青年记者》 2012年33期</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>林臻 熊信之</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《社会化问答网站的传播特点及发展策略》</div>
+
+</td>
+</tr>
+<tr id="local11" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学术期刊&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《社会化问答网站的传播特点及发展策略》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>林臻 熊信之&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者单位<b>：</b></font>中南民族大学文学与新闻传播学院&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页码<b>：</b></font>P83—P84&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页数<b>：</b></font>2页&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">机标分类号<b>：</b></font>TP3 TM1&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">期刊名称<b>：</b></font>《青年记者》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">出版时间<b>：</b></font>2012年33期&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">ISSN<b>：</b></font>1002-2759&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">12</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi12" style="display:block" class="baifenbihand" onclick="showobj('12')" >[详细↓]</div>
+<div id="shouqi12" style="display:none" class="baifenbihand" onclick="noneobj('12')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 广东工业大学 2012</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>曹志广</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《基于领域本体的智能垂直搜索引擎的设计与实现》</div>
+
+</td>
+</tr>
+<tr id="local12" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《基于领域本体的智能垂直搜索引擎的设计与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>曹志广&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP312&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>工业工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>毛宁&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>广东工业大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2012&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>数据挖掘 垂直搜索 语义分析 程序语言&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">13</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi13" style="display:block" class="baifenbihand" onclick="showobj('13')" >[详细↓]</div>
+<div id="shouqi13" style="display:none" class="baifenbihand" onclick="noneobj('13')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 西南交通大学 2007</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>缪云</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《昆明中铁大型养路机械成本核算系统的开发》</div>
+
+</td>
+</tr>
+<tr id="local13" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《昆明中铁大型养路机械成本核算系统的开发》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>缪云&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>F270.7&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>计算机技术&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>陶宏才&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>西南交通大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2007&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>机械行业 企业管理 成本核算 计算机技术&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">14</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi14" style="display:block" class="baifenbihand" onclick="showobj('14')" >[详细↓]</div>
+<div id="shouqi14" style="display:none" class="baifenbihand" onclick="noneobj('14')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 山东大学 2013</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>任娜</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《张家口物流发展中心物流管理系统的设计与实现》</div>
+
+</td>
+</tr>
+<tr id="local14" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《张家口物流发展中心物流管理系统的设计与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>任娜&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>软件工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>黎峰&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>山东大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2013&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">15</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi15" style="display:block" class="baifenbihand" onclick="showobj('15')" >[详细↓]</div>
+<div id="shouqi15" style="display:none" class="baifenbihand" onclick="noneobj('15')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 电子科技大学 2014</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>牛换生</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《基于中间件的医院决策支持系统设计与实现》</div>
+
+</td>
+</tr>
+<tr id="local15" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《基于中间件的医院决策支持系统设计与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>牛换生&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP311.52&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>软件工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>蔡洪斌&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>电子科技大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2014&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>中间件 医院决策支持系统 J2EE技术 核心竞争力&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">16</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi16" style="display:block" class="baifenbihand" onclick="showobj('16')" >[详细↓]</div>
+<div id="shouqi16" style="display:none" class="baifenbihand" onclick="noneobj('16')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 同济大学 2008</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>陈骁毅</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《电信大客户管理系统的设计与实现》</div>
+
+</td>
+</tr>
+<tr id="local16" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《电信大客户管理系统的设计与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>陈骁毅&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>F626&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>软件工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>徐燕凌&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>同济大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2008&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>电信企业 大客户管理 数据库 管理信息系统&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">17</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi17" style="display:block" class="baifenbihand" onclick="showobj('17')" >[详细↓]</div>
+<div id="shouqi17" style="display:none" class="baifenbihand" onclick="noneobj('17')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 复旦大学 2007</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>魏文麒</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《B2B电子商务垂直搜索引擎的研究与实现》</div>
+
+</td>
+</tr>
+<tr id="local17" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《B2B电子商务垂直搜索引擎的研究与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>魏文麒&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP311.13&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>软件工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>牛军珏&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>复旦大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2007&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>电子商务 数据挖掘 垂直搜索&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">18</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi18" style="display:block" class="baifenbihand" onclick="showobj('18')" >[详细↓]</div>
+<div id="shouqi18" style="display:none" class="baifenbihand" onclick="noneobj('18')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 复旦大学 2009</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>焦小明</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《面向校园的垂直搜索引擎的设计与实现》</div>
+
+</td>
+</tr>
+<tr id="local18" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《面向校园的垂直搜索引擎的设计与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>焦小明&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP393.09&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>软件工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>曹邦伟&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>复旦大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2009&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>垂直搜索 主题爬虫 中文分词 链接分析 网页结构化&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">19</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi19" style="display:block" class="baifenbihand" onclick="showobj('19')" >[详细↓]</div>
+<div id="shouqi19" style="display:none" class="baifenbihand" onclick="noneobj('19')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 安徽大学 2013</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>高山</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《问答型虚拟社区用户满意度影响因素研究》</div>
+
+</td>
+</tr>
+<tr id="local19" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《问答型虚拟社区用户满意度影响因素研究》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>高山&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>G358&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>情报学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>汪祖柱&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>安徽大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2013&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>虚拟社区 用户满意度 信息系统成功模型 技术接受模型&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">20</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi20" style="display:block" class="baifenbihand" onclick="showobj('20')" >[详细↓]</div>
+<div id="shouqi20" style="display:none" class="baifenbihand" onclick="noneobj('20')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 西安电子科技大学 2011</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>李荣荣</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《基于Lucene/Heep Client的垂直搜索引擎研究与实现》</div>
+
+</td>
+</tr>
+<tr id="local20" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《基于Lucene/Heep Client的垂直搜索引擎研究与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>李荣荣&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>计算机应用技术&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>王保保&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>西安电子科技大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2011&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">21</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi21" style="display:block" class="baifenbihand" onclick="showobj('21')" >[详细↓]</div>
+<div id="shouqi21" style="display:none" class="baifenbihand" onclick="noneobj('21')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 广西师范学院 2014</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>范文杰</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《城市土地利用决策支持系统的设计与实现》</div>
+
+</td>
+</tr>
+<tr id="local21" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《城市土地利用决策支持系统的设计与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>范文杰&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>地图学与地理信息系统&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>童新华&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>广西师范学院&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2014&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>城市土地利用 决策支持系统 基于案例的推理技术 可计算一般均衡&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">22</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi22" style="display:block" class="baifenbihand" onclick="showobj('22')" >[详细↓]</div>
+<div id="shouqi22" style="display:none" class="baifenbihand" onclick="noneobj('22')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 西南科技大学 2012</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>裴倩</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《网络环境下推荐服务在图书馆中的应用分析及改进研究》</div>
+
+</td>
+</tr>
+<tr id="local22" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《网络环境下推荐服务在图书馆中的应用分析及改进研究》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>裴倩&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>G251&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>情报学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>王玉平&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>西南科技大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2012&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>信息推荐服务 图书馆 知识库 营销手段&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">23</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi23" style="display:block" class="baifenbihand" onclick="showobj('23')" >[详细↓]</div>
+<div id="shouqi23" style="display:none" class="baifenbihand" onclick="noneobj('23')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学术期刊 《计算机光盘软件与应用》 2014年10期</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>徐玲玉 何利力</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《浅析垂直搜索引擎的应用》</div>
+
+</td>
+</tr>
+<tr id="local23" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学术期刊&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《浅析垂直搜索引擎的应用》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>徐玲玉 何利力&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者单位<b>：</b></font>浙江理工大学,杭州,310000&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">参考文献<b>：</b></font>3篇&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页码<b>：</b></font>P101—P102&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">页数<b>：</b></font>2页&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP393.09&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">机标分类号<b>：</b></font>TP3 G2&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">期刊名称<b>：</b></font>《计算机光盘软件与应用》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">出版时间<b>：</b></font>2014年10期&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">ISSN<b>：</b></font>1007-9599&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>垂直搜索引擎 通用搜索引擎 网络发展 工作原理&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+<tr>
+<td align="left" width="100%">
+<div class="shubu">24</div>
+<div class="xiangsigif"><img src="../images/1.gif"></div>
+<div class="baifenbi"><span  class='orange' ><span  class='green' >1</span></span><font color="#666666">%</font>&nbsp;</div>
+<div id="xiangxi24" style="display:block" class="baifenbihand" onclick="showobj('24')" >[详细↓]</div>
+<div id="shouqi24" style="display:none" class="baifenbihand" onclick="noneobj('24')" >[收起↑]</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">来源：</font>学位论文 上海交通大学 2008</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">作者：</font>任军</div>
+<div class="baifenbi">&nbsp;&nbsp;<font color="#666666">篇名：</font>《基于网页结构特征的垂直搜索引擎研究与实现》</div>
+
+</td>
+</tr>
+<tr id="local24" style="display:none">
+<td align="left" width="100%">
+<div class="shubuno"></div><font color="#666666">来源<b>：</b></font>学位论文&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">篇名<b>：</b></font>《基于网页结构特征的垂直搜索引擎研究与实现》&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">作者<b>：</b></font>任军&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">分类号<b>：</b></font>TP311.13&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学科专业<b>：</b></font>软件工程&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">授予学位<b>：</b></font>硕士&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">导师姓名<b>：</b></font>杨懋&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位授予单位<b>：</b></font>上海交通大学&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">学位年度<b>：</b></font>2008&nbsp;&nbsp;&nbsp;&nbsp;<br><div class="shubuno"></div><font color="#666666">关键词<b>：</b></font>网页结构 垂直搜索引擎 信息抽取 网页爬行 元数据模型&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+</td>
+</tr>
+
+
+</table>
+
+<table width="100%" cellpadding="1" cellspacing="2" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" >
+<tr>
+<td align="left" width="100%">
+<font color="#666666"><b>互联网相似资源</b></font>
+</td>
+</tr>
+<tr><td align="left" width="100%"><div class="baifenbi"><font color="#666666">没有找到与互联网相似度高的资源！</font></div></td></tr>
+</table>
+
+<table width="100%" cellpadding="3" cellspacing="3" style="margin-bottom:15px;border: 1px solid #C0C0C0" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" >
+<tr>
+<td align="left" colspan="2">
+<b>
+<font color="#666666">如何识别假冒的检测报告？</font></b></td>
+</tr>
+<tr>
+<td align="left" colspan="2">
+<font color="#666666">
+一：比对库只有网络资源的均为假货，正品检测报告都是经过大数据量的本地库
+（9000万篇学术期刊和学位论文）详细比对生成，检测结果有详细的期刊和学位论文出处。假的检测报告用网络比对结果坑害消费者，导致其论文最终没有通过审核。<br><br>
+
+二：不支持官网真伪验证（<a href="http://www.paperpass.com/check" target="_blank">http://www.paperpass.com/check</a>）的均为假货。<br><br>
+
+三：请认准PaperPass这个名称，有的假冒检测报告用以Paper开头的其他名称迷惑消费者。<br><br>
+
+真诚希望您能够将此信息转告您的朋友和同学，以防被骗！
+</font></td>
+</tr>
+</table>
+
+
+<div style="margin-bottom:100px"></div>
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2016 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

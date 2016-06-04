@@ -1,0 +1,1069 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+
+<div class="zhengwen">
+
+<span style="margin-left:25px"></span><font size=3 color=red>蓝色文字是系统自动修改的结果，仅供参考，如需使用请加工润色！</font><br><br><span style="margin-left:25px"></span>毕业设计（论文）中文摘要社会化问答网站的设计与开发
+<br><br>
+<span style="margin-left:25px"></span>摘 要：
+<br><br>
+<span style="margin-left:25px"></span>随着科技进步，网络的高速与便捷使社会各个领域的知识以一种惊人的速度传播与发展，人们称21世纪是一个“知识大爆炸”的时代，而一个能够把一些专业知识和经验整合并整理的网站，则是一个非常有用且让无数人收益的知识宝藏。本文介绍了一个社会化问答网站系统的分析、设计与实现的过程，该系统的功能有：
+<br><br>
+<span style="margin-left:25px"></span>话题的创建，问题的创建，用户参与问题回答，用户关注话题、问题、答案或者用户，并在主页可以看到所有有关的状态更新，用户可以评论和投票答案。本设计中的每一个问题在创建时都会被要求指定至少一个话题，这样关注话题的用户就可以在第一时间看到，用户可以回答问题，并给答案投票或者评论，用户可以搜索问题与答案，并根据答案获得的票数或者答案的评论来确定高质量答案。本系统基于Django框架，其中涉及的技术主要是MVT模式的开发技术，使用Python语言开发，使用MySQL进行数据管理。该系统的实现，旨在帮助用户在知识爆炸的互联网世界里寻找并建议高质量的答案，介绍一些各行各业的经验，收集并整理这些知识财富，共享给每一个使用它的人。
+<br><br>
+<span style="margin-left:25px"></span>关键词：
+<br><br>
+<span style="margin-left:25px"></span>问答；知识；投票；MySQL；Python；Django；MVT目 录
+<br><br>
+<span style="margin-left:25px"></span>1 绪论1
+<br><br>
+<span style="margin-left:25px"></span>1.1 课题研究的背景及意义1
+<br><br>
+<span style="margin-left:25px"></span>1.2 国内外研究状况2
+<br><br>
+<span style="margin-left:25px"></span>1.2.1. 环境对比2
+<br><br>
+<span style="margin-left:25px"></span>1.2.2. 功能比较2
+<br><br>
+<span style="margin-left:25px"></span>1.2.3. 运营管理的特征比较3
+<br><br>
+<span style="margin-left:25px"></span>1.3 未来的发展趋势3
+<br><br>
+<span style="margin-left:25px"></span>1.4 可行性分析4
+<br><br>
+<span style="margin-left:25px"></span>1.4.1 技术可行性4
+<br><br>
+<span style="margin-left:25px"></span>1.4.2 操作可行性4
+<br><br>
+<span style="margin-left:25px"></span>1.4.3 经济可行性4
+<br><br>
+<span style="margin-left:25px"></span>1.4.4 方案可行性4
+<br><br>
+<span style="margin-left:25px"></span>1.4.5 法律可行性4
+<br><br>
+<span style="margin-left:25px"></span>1.5 课题及论文简介4
+<br><br>
+<span style="margin-left:25px"></span>2需求分析5
+<br><br>
+<span style="margin-left:25px"></span>2.1业务流分析5
+<br><br>
+<span style="margin-left:25px"></span>2.2 数据流分析6
+<br><br>
+<span style="margin-left:25px"></span>2.3 数据字典6
+<br><br>
+<span style="margin-left:25px"></span>3系统设计9
+<br><br>
+<span style="margin-left:25px"></span>3.1系统总体结构设计9
+<br><br>
+<span style="margin-left:25px"></span>3.2系统数据模型设计11
+<br><br>
+<span style="margin-left:25px"></span>3.2.1 数据概念结构设计 — E-R图11
+<br><br>
+<span style="margin-left:25px"></span>3.2.2 数据逻辑结构设计—关系模式11
+<br><br>
+<span style="margin-left:25px"></span>3.2.3 数据逻辑结构设计—关系表12
+<br><br>
+<span style="margin-left:25px"></span>3.3 开发环境与运行环境设计14
+<br><br>
+<span style="margin-left:25px"></span>3.3.1 开发环境设计14
+<br><br>
+<span style="margin-left:25px"></span>3.3.2 运行环境设计14
+<br><br>
+<span style="margin-left:25px"></span>4系统实现15
+<br><br>
+<span style="margin-left:25px"></span>4.1网站登录以及注册模块的实现15
+<br><br>
+<span style="margin-left:25px"></span>4.1.1登录功能实现15
+<br><br>
+<span style="margin-left:25px"></span>4.1.2注册功能的实现16
+<br><br>
+<span style="margin-left:25px"></span>4.1.3注销功能的实现16
+<br><br>
+<span style="margin-left:25px"></span>4.2搜索功能模块的实现17
+<br><br>
+<span style="margin-left:25px"></span>4.3关注功能的实现19
+<br><br>
+<span style="margin-left:25px"></span>4.3.1 关注话题19
+<br><br>
+<span style="margin-left:25px"></span>4.3.2 关注问题20
+<br><br>
+<span style="margin-left:25px"></span>4.3.3 关注答案20
+<br><br>
+<span style="margin-left:25px"></span>4.3.4 关注用户21
+<br><br>
+<span style="margin-left:25px"></span>4.4点赞和反对功能的实现21
+<br><br>
+<span style="margin-left:25px"></span>4.5收藏功能的实现22
+<br><br>
+<span style="margin-left:25px"></span>4.6 添加问题功能的实现23
+<br><br>
+<span style="margin-left:25px"></span>4.7 添加答案功能的实现24
+<br><br>
+<span style="margin-left:25px"></span>4.8 添加评论功能的实现24
+<br><br>
+<span style="margin-left:25px"></span>5用户手册25
+<br><br>
+<span style="margin-left:25px"></span>5.1功能简介25
+<br><br>
+<span style="margin-left:25px"></span>5.2系统部署25
+<br><br>
+<span style="margin-left:25px"></span>6系统评价27
+<br><br>
+<span style="margin-left:25px"></span>6.1 系统的特色27
+<br><br>
+<span style="margin-left:25px"></span>6.2 系统存在的不足与改进方案27
+<br><br>
+<span style="margin-left:25px"></span>结 论28
+<br><br>
+<span style="margin-left:25px"></span>致 谢29
+<br><br>
+<span style="margin-left:25px"></span>参 考 文 献30
+<br><br>
+<span style="margin-left:25px"></span>1 绪论
+<br><br>
+<span style="margin-left:25px"></span>1.1 课题研究的背景及意义
+<br><br>
+<span style="margin-left:25px"></span>互联网发展至今，搜索引擎的出现对整个互联网甚至整个社会都是一个巨大的成就，搜索引擎方便的帮助人们缩短了寻找资料的时间，
+<br><br>
+<span style="margin-left:25px"></span>但是同时也带来一个弊端，那就是当你去搜索一些模糊性的问题，搜索引擎通常很难给出满意的答案，如“ xx产品怎么样”这样的问题，在搜索引擎上只能看到该产品的广告、介绍，以及可能有这个产品自问自答的网页，用户很难从中筛选出有用的真正对这个产品的评价。有时用户想搜一下某个领域里一些专业性的答案，在搜索引擎中可能搜索出一大堆资料，但是用户没有那么多的精力或时间去从那么多的资料中寻找答案，这时候如果身边有一个精通该领域的人帮助你，就会省去很多时间。而本课题研究的社会化问答网站的作用就是缩短我们与专业人才之间的距离，让用户可以更轻松的获得我们想要的答案。社会化问答网站结合了 Web2.0产品的众多优点，打破了原有网络体系信息对接的模式，
+<br><br>
+<span style="margin-left:25px"></span>让更有经验的人去用高质量的答案回答问题，如同创业企业孵化机构 YCombinator的风投合伙人 Harjeet Taggar在社会化问答网站 Quora回答一个问题时说：“我宁愿从1000个高质量的内容来源那里获取信息，也不愿从来源更多的整合性渠道获取信息。这其中可见一个高质量的答案，可以省去人们更多的时间。社会化问答网站相比较搜索引擎具有以下几个巨大的优点：
+<br><br>
+<span style="margin-left:25px"></span>一、强社会影响力。
+<br><br>
+<span style="margin-left:25px"></span>当一个高质量的回答或者问题引起很多用户的强烈兴趣，相关的答案或者问题会进入社会化媒体就行二次传播，具体的传播方法有用户自主传播，官方推荐或者其他媒体的微博论坛推荐，其长尾效应给社会带来的影响时间长范围广，为原始信息传播赋予了新的意义和价值。二、基于兴趣的强吸引力。
+<br><br>
+<span style="margin-left:25px"></span>社会化问答网站的使用者可以根据自己的兴趣关注自己喜欢的话题，既可以积累在这个话题领域里的知识，有便于平台上知识的传播。社会化问答网站的新用户起初是关注与知识层面，与其他用户之间处于一种弱关系链接，
+<br><br>
+<span style="margin-left:25px"></span>而随着互动的深入，有着相同兴趣和相似背景的人，往往存在相同取向，由弱关系链接转为强关系连接，并最终拓展出基于兴趣的关系社区。一方面，增加了用户的黏性，另一方面，用户可以通过其他用户提出的兴趣相同的问题学习到更多的知识，提高信息获取的质量。三、答案的高质量。
+<br><br>
+<span style="margin-left:25px"></span>通过搜索引擎的进行搜索，会有许多垃圾信息的干扰，虽然现在有百度知道等一类的问答类产品出现，但是开放平台的门槛过低，回答问题的随意性较大，通常这样的答案很难满足用户专业性较强解答的需要，而社会问答网站会最大限度的通过实名制以及邀请制来确保用户的真实性，避免制造垃圾信息，另一方面，实名制可以很好的让提问者有针对性的向对自己感兴趣的人提问，而回答者出于利益相关或者在某一个领域建立权威形象，会竭尽全力回答问题，内容的品质也可见一斑。1.2 国内外研究状况
+<br><br>
+<span style="margin-left:25px"></span>1.2.1. 环境对比
+<br><br>
+<span style="margin-left:25px"></span>国外的网站以Quora为代表，是国外社会化问答网站的龙头企业，于08年上线，于10年和12年分别融资八千六百万美元和五千万美金。
+<br><br>
+<span style="margin-left:25px"></span>其他国外网站有 Aardvark在线问答服务平台，通过直接导入自己的好友，设置感兴趣的话题，获取合适的答案，还有 ChaCha，一个面向手机用户免费提供各类问答服务的网站，用户可以通过打电话或者短信的方式提出问题， ChaCha再已短信的方式给用户返回答案。由此可见在功能上，国外的社会化问答网站五花八门。国内的网站以知乎为代表，是国内最大的社会化问答网站，10年开放，三个月后获得李开复的投资，
+<br><br>
+<span style="margin-left:25px"></span>一年后获得启明创投的千万美元，13年面向公众开放，不到一年里注册用户飙升到400万。其他国内社会化问答网站则有略晓网，是一家付费(有偿）“社会化问答网站”，也是中国第一个付费问答社区，提供网友自助付费咨询、有偿咨询、零技术门槛，就可以建立一套自己的问答网站的服务的网站，提供垂直方向的社会化问答网站的平台。针对开发领域的好问问答网站。以及国外问答巨头Quora在中国和嘉伦联合投资创建的国内首个管理咨询类垂直问答系统---即问即答网。1.2.2. 功能比较
+<br><br>
+<span style="margin-left:25px"></span>以Quora和知乎为例，两者的特色功能定位存在差异。
+<br><br>
+<span style="margin-left:25px"></span>Quora的特色功能有：轻博客（Blogs Post）、回顾（Review）、信用系统（Credit System）、推广（Promotion）、线下书籍（Publication Best of Quora）。Quora的“轻博客”就像没有问题的答案，适用于分享一些不能用问答模式来表达的有用的知识，这是Quora鼓励用户生产优质内容的另一种方式。“回顾”旨在讨论Quora的新闻、讨论方式、新特色和其他有关的话题，不隶属于Quora。“信用系统”是用分数来计算的，每个新成员都会得到Quora给的500分，这些分可以用来请别人回答问题，也可以给予别人。与一般网站的分数激励机制不同，Quora的分数没有与其他物质挂钩，如果分数低于100会得到系统新的分数。Quora线下产品就是一本书籍，里面收录了近一年来Quora的精品问题和回答。知乎一直在摸索本土特色。
+<br><br>
+<span style="margin-left:25px"></span>知乎的特色功能为专栏、发现、话题广场、知乎圆桌、知乎阅读、知乎日报。“专栏”是用户自己打理的地方，可以借此扩大自身影响。“发现”里知乎编辑向用户推荐好的问题，包括今日最热和本月最热。“话题广场”则是知乎特意为用户准备的话题集锦，方便用户选择自己感兴趣的话题。“知乎圆桌”是知乎自创的，打破地域的讨论平台，邀请1位主持人和4位以上有多年行业经验的嘉宾共同发表见解，解析行业，与知友分享他们的探索与洞察。“知乎阅读”是知乎的一个实验项目，为用户提供更好的阅读形式和体验。“知乎日报”是纯移动端APP，为用户提供每日精选资讯类服务，推送站内最新精彩问答。1.2.3. 运营管理的特征比较
+<br><br>
+<span style="margin-left:25px"></span>Quora和知乎的所有准则都建立在两个重要原则上：
+<br><br>
+<span style="margin-left:25px"></span>“创造有价值的内容”和“保持友善和尊重”。二者的管理制度是有区别的，比如Quora要求复制内容时附上来源和链接，充分尊重问题回答者的知识产权。在涉及医学和法律问题时有一系列的细节需要注意，回答者可以提供一些建议、指导，但不可替代现实生活中的求医。回答者回答医学问题的时候需要进行资质验证，并在最后附上免责声明。而这些在知乎只能靠道德约束。1.3 未来的发展趋势
+<br><br>
+<span style="margin-left:25px"></span>全球知名的垂直型IT问答网站Stack overflow的创始人Spolsky曾说，
+<br><br>
+<span style="margin-left:25px"></span>“搜索和社交化风潮过后，问答服务的时代将要来临。社会化问答网站是介于百科和传统问答之间的问答类SNS网站，它是一个公共的知识平台，它的价值在于重建人与信息的关系。用户提出问题，其他用户来回答。它通过三大功能（关注话题、关注问题，关注一个用户的所有问答）来浮现最佳问题答案和全面的相关知识，并通过信息类聚使人群建立社交关系。这是互联网领域的一个创新应用。由于垂直搜索引擎是经过某一行业细分或者专业延伸的不同于通用搜索的引擎。
+<br><br>
+<span style="margin-left:25px"></span>它为用户提供的并不是上百甚至上千万相关网页，而是范围极为缩小、极具针对性的具体信息。正因为如此问答类网站的出现，为信息快速、准确地交流提供了一个有效的平台。从产业演化的格局角度来看，社会化问答并不算得上是一个完全崭新的领域。最开始，他们借助门户网站来获得需求信息，但这样的结果是内容质量差针对性低；搜索引擎出现之后，人们就可以针对问题来搜索信息，然而很多通用搜索引擎在专家问答方面是失败的。因此，特定行业的用户更加青睐垂直搜索引擎，是垂直搜索引擎的长期、稳定的群体。
+<br><br>
+<span style="margin-left:25px"></span>1.4 可行性分析
+<br><br>
+<span style="margin-left:25px"></span>1.4.1 技术可行性
+<br><br>
+<span style="margin-left:25px"></span>本系统主要涉及到的技术是Javascript和Python开发技术。
+<br><br>
+<span style="margin-left:25px"></span>在实习公司中就已经系统的学习了大量相关知识，为网站开发奠定了基础，在公司实习过程中，接触了不少与之相关的项目，有相关开发经验，所以具有技术可行性。1.4.2 操作可行性
+<br><br>
+<span style="margin-left:25px"></span>该网站界面采用boostrap框架，整体结构和布局都十分简洁优雅。
+<br><br>
+<span style="margin-left:25px"></span>因为兼容性好，所以可以适应不同分辨率的屏幕，以及大部分的主流浏览器，操作方便。即可以在电脑上使用，也可以在大多数主流手机上运行正常。1.4.3 经济可行性
+<br><br>
+<span style="margin-left:25px"></span>本系统用的都是免费软件和框架，开发过程也不需要额外的硬件支持，只需要在电脑上运行本系统即可，所以在经济上，是完全可行的。
+<br><br>
+<span style="margin-left:25px"></span>1.4.4 方案可行性
+<br><br>
+<span style="margin-left:25px"></span>通过问答将相同兴趣爱好的用户粘合在一起，在网上已经有知乎、Quora类似的网站的成功案例，所以具有方案可行性。
+<br><br>
+<span style="margin-left:25px"></span>1.4.5 法律可行性
+<br><br>
+<span style="margin-left:25px"></span>本系统在开发过程中所用软件都是开源正常软件，网站功能不违反国家相关法律，开发成果完全来自于个人，应当受到国家法律保护。
+<br><br>
+<span style="margin-left:25px"></span>1.5 课题及论文简介
+<br><br>
+<span style="margin-left:25px"></span>本系统以Python为开发环境，Django为框架，Mysql作为数据库管理，Boostrap为网站控制前端样式和结构，Jquery控制前端动作脚本。
+<br><br>
+<span style="margin-left:25px"></span>在具体设计实现本系统时，考虑并加入了注册和登录功能，以及动态更新的功能。本论文的结构主要包括绪论、需求分析、系统设计、系统实现、用户手册和系统评价六个部分。
+<br><br>
+<span style="margin-left:25px"></span>第一部分绪论主要是描述了网站系统的背景以及意义，国内外状况与发展趋势，并做了可行性分析。
+<br><br>
+<span style="margin-left:25px"></span>第二部分需求分析从三个方面入手，分别是业务流、数据流和数据字典的三个方面分析了系统需求。
+<br><br>
+<span style="margin-left:25px"></span>第三部分系统设计介绍了系统总体的结构设计，接下来以各种图文的方式展示了系统数据模型的设计，最后介绍了一下开发环境的设计。
+<br><br>
+<span style="margin-left:25px"></span>第四部分系统实现是论文中最核心的内容，介绍了系统所有的模块与功能，将系统的每一个细节通过介绍加逻辑代码展示的方式深刻剖析。
+<br><br>
+<span style="margin-left:25px"></span>第五部分用户手册介绍了系统的功能特点以及部署方式。
+<br><br>
+<span style="margin-left:25px"></span>第六部分系统评价说明了一些我对于自己开发的系统的一些想法和评价。
+<br><br>
+<span style="margin-left:25px"></span>最后还有致谢、毕业论文的参考资料等等内容的介绍。
+<br><br>
+<span style="margin-left:25px"></span>2需求分析
+<br><br>
+<span style="margin-left:25px"></span>2.1业务流分析
+<br><br>
+<span style="margin-left:25px"></span>根据对网站系统的分析，总结出来下面业务流，业务流图如图所示2-1所示。
+<br><br>
+<span style="margin-left:25px"></span>图 2-1 网站系统业务流图
+<br><br>
+<span style="margin-left:25px"></span>2.2 数据流分析
+<br><br>
+<span style="margin-left:25px"></span>本系统的顶级数据流图如图2-2-1所示：
+<br><br>
+<span style="margin-left:25px"></span>图 2-2-1 顶级数据流图
+<br><br>
+<span style="margin-left:25px"></span>根据系统的顶级数据流图，可以进一步细化一级数据流图，如图2-2-2所示：
+<br><br>
+<span style="margin-left:25px"></span>图 2-2-2 一级数据流图
+<br><br>
+<span style="margin-left:25px"></span>2.3 数据字典
+<br><br>
+<span style="margin-left:25px"></span>在数据字典里定义的数据表主要有，网站用户信息表，网站动态信息表，话题信息表，问题信息表，答案信息表，评论信息表。
+<br><br>
+<span style="margin-left:25px"></span>详细描述如下所示：表2.3.1用户信息表
+<br><br>
+<span style="margin-left:25px"></span>表2.3.2用户动态信息表
+<br><br>
+<span style="margin-left:25px"></span>表2.3.3话题信息表
+<br><br>
+<span style="margin-left:25px"></span>表2.3.4问题信息表
+<br><br>
+<span style="margin-left:25px"></span>表2.3.6答案信息表
+<br><br>
+<span style="margin-left:25px"></span>表2.3.5评论信息表
+<br><br>
+<span style="margin-left:25px"></span>问答系统网站的业务逻辑分析如下：
+<br><br>
+<span style="margin-left:25px"></span>3系统设计
+<br><br>
+<span style="margin-left:25px"></span>3.1系统总体结构设计
+<br><br>
+<span style="margin-left:25px"></span>根据问答系统的功能分析、业务流分析、和数据流分析之后，可以将系统分为六个模块，分别为首页动态、回答问题、关注功能、收藏、搜索和用户界面，
+<br><br>
+<span style="margin-left:25px"></span>具体如图3-1所示：图3-1 系统总体结构设计图
+<br><br>
+<span style="margin-left:25px"></span>登录注册注销功能模块：
+<br><br>
+<span style="margin-left:25px"></span>当用户注册成功或者登录成功以后，后台将当前的 session信息保存到数据库的表中，并在给客户端浏览器返回的数据中种入 cookies，客户端浏览器就会保存当前 cookies， cookies包含着当前会话的 session id，这样客户端在每次发送请求的时候，服务器后端可以通过客户端发过来的 cookies判断用户是否登录，用户注销时，则将客户端的 session信息从数据库中删除。问题归类功能模块：
+<br><br>
+<span style="margin-left:25px"></span>每一个问题在创建的时候，都要强制选择至少一个所属话题，这样当用户对某一个话题感兴趣的时候，可以通过搜索话题，找到该话题下所有的问题，方便用户可以了解更多某方面的知识。点赞反对功能模块：
+<br><br>
+<span style="margin-left:25px"></span>在每一个问题下的每一个答案，用户都可以点赞或者反对，但是只能点赞或者反对，可以取消点赞和反对，点赞和反对将会影响问题下答案的排名，答案排名是按照获得的赞的数量从上到下排列。评论功能模块：
+<br><br>
+<span style="margin-left:25px"></span>用户可以评论问题下的每一个答案，答案回答者在主页可以看到动态。关注功能模块：
+<br><br>
+<span style="margin-left:25px"></span>用户可以关注话题，在某一个话题下有新的问题出现时，用户可以在主页的动态上第一时间看到，用户还可以关注问题，当某个问题下有新的回答，用户也可以通过主页动态了解到，用户还可以关注答案，当答案有新的评论时，用户可以看到在主页的答案有新的动态，用户可以关注其他用户，当其他用户有任何点赞反对关注动态，都会在主页看到。搜索功能模块：
+<br><br>
+<span style="margin-left:25px"></span>用户在网站任何时候都可以搜索话题、问题或者用户，搜索是用户接触自己感兴趣的内容的主要途径，所以搜索功能的作用，可以让用户很方便的去关注或了解这方面的内容。3.2系统数据模型设计
+<br><br>
+<span style="margin-left:25px"></span>3.2.1 数据概念结构设计 — E-R图
+<br><br>
+<span style="margin-left:25px"></span>根据网站系统的数据流分析，系统主要有：
+<br><br>
+<span style="margin-left:25px"></span>话题、问题、答案、评论、用户等实体。每个实体可以用E-R图表示，如图3-2-1所示：图3-2-1 系统E-R图
+<br><br>
+<span style="margin-left:25px"></span>3.2.2 数据逻辑结构设计—关系模式
+<br><br>
+<span style="margin-left:25px"></span>根据上述描写的实体信息和各个实体之间的联系的E-R表，设计了如下所示的实体所包含的各类信息。
+<br><br>
+<span style="margin-left:25px"></span>用户：
+<br><br>
+<span style="margin-left:25px"></span>主键：
+<br><br>
+<span style="margin-left:25px"></span>编号外键：
+<br><br>
+<span style="margin-left:25px"></span>关注话题编号，关注问题编号，关注答案编号，关注用户编号，收藏答案编号其他属性：
+<br><br>
+<span style="margin-left:25px"></span>姓名，是否有效，创建日期动态信息：
+<br><br>
+<span style="margin-left:25px"></span>主键：
+<br><br>
+<span style="margin-left:25px"></span>编号外键：
+<br><br>
+<span style="margin-left:25px"></span>事件发起者编号，事件被执行者编号，话题编号，问题编号，答案编号，评论编号其他属性：
+<br><br>
+<span style="margin-left:25px"></span>事件类型，创建时间问题：
+<br><br>
+<span style="margin-left:25px"></span>主键：
+<br><br>
+<span style="margin-left:25px"></span>编号外键：
+<br><br>
+<span style="margin-left:25px"></span>所属话题，创建者编号其他属性：
+<br><br>
+<span style="margin-left:25px"></span>问题标题，问题内容，创建时间话题：
+<br><br>
+<span style="margin-left:25px"></span>主键：
+<br><br>
+<span style="margin-left:25px"></span>编号外键：
+<br><br>
+<span style="margin-left:25px"></span>其他属性：
+<br><br>
+<span style="margin-left:25px"></span>话题名，描述答案：
+<br><br>
+<span style="margin-left:25px"></span>主键：
+<br><br>
+<span style="margin-left:25px"></span>编号外键：
+<br><br>
+<span style="margin-left:25px"></span>所属问题编号，创建者编号其他属性：
+<br><br>
+<span style="margin-left:25px"></span>赞同者编号，反对者编号，答案内容，创建时间评论：
+<br><br>
+<span style="margin-left:25px"></span>主键：
+<br><br>
+<span style="margin-left:25px"></span>编号外键：
+<br><br>
+<span style="margin-left:25px"></span>所属答案编号，所属用户名其他属性：
+<br><br>
+<span style="margin-left:25px"></span>评论内容，创建时间3.2.3 数据逻辑结构设计—关系表
+<br><br>
+<span style="margin-left:25px"></span>根据上面的关系模式进行数据库设计。
+<br><br>
+<span style="margin-left:25px"></span>表3.2.3.1用户表
+<br><br>
+<span style="margin-left:25px"></span>序号用户字段名属性描述属性类型属性长度主键允许空
+<br><br>
+<span style="margin-left:25px"></span>1id编号int11YESN
+<br><br>
+<span style="margin-left:25px"></span>2user_name用户名varchar64NN
+<br><br>
+<span style="margin-left:25px"></span>3focused_theme_ids关注话题编号longtext255NYES
+<br><br>
+<span style="margin-left:25px"></span>4focused_question_ids关注问题编号longtext255NYES
+<br><br>
+<span style="margin-left:25px"></span>5focused_user_ids关注用户编号longtext255NYES
+<br><br>
+<span style="margin-left:25px"></span>6focused_answer_ids关注答案编号longtext255NYES
+<br><br>
+<span style="margin-left:25px"></span>7collected_answer_ids收藏答案编号longtext255NYES
+<br><br>
+<span style="margin-left:25px"></span>8is_active是否有效tinyint1NN
+<br><br>
+<span style="margin-left:25px"></span>9created_at创建时间datetime255NN
+<br><br>
+<span style="margin-left:25px"></span>表3.2.3.2动态信息表
+<br><br>
+<span style="margin-left:25px"></span>序号积分字段名属性描述属性类型属性长度主键允许空
+<br><br>
+<span style="margin-left:25px"></span>1id编号int255YESN
+<br><br>
+<span style="margin-left:25px"></span>2action_user_id操作者编号int255NN
+<br><br>
+<span style="margin-left:25px"></span>3actioned_user_id被操作者编号varchar255NYES
+<br><br>
+<span style="margin-left:25px"></span>4question_id问题编号int11NYES
+<br><br>
+<span style="margin-left:25px"></span>5comment_id评论编号int11NYES
+<br><br>
+<span style="margin-left:25px"></span>6answer_id答案编号int11NYES
+<br><br>
+<span style="margin-left:25px"></span>7theme_id话题编号int11NYES
+<br><br>
+<span style="margin-left:25px"></span>8action_type时间类型int11NN
+<br><br>
+<span style="margin-left:25px"></span>9created_at创建时间datetime255NN
+<br><br>
+<span style="margin-left:25px"></span>表3.2.3.3问题信息表
+<br><br>
+<span style="margin-left:25px"></span>序号商店字段名属性描述属性类型属性长度主键允许空
+<br><br>
+<span style="margin-left:25px"></span>1id编号int255YESN
+<br><br>
+<span style="margin-left:25px"></span>2owner_theme_ids所属话题编号longtext255NN
+<br><br>
+<span style="margin-left:25px"></span>3owner_user_id创建者编号int255NN
+<br><br>
+<span style="margin-left:25px"></span>4question_title问题名varchar255NN
+<br><br>
+<span style="margin-left:25px"></span>5question_text问题内容longtext255NYES
+<br><br>
+<span style="margin-left:25px"></span>6created_at创建时间datetime255NN
+<br><br>
+<span style="margin-left:25px"></span>表3.2.3.4答案信息表
+<br><br>
+<span style="margin-left:25px"></span>序号服务字段名属性描述属性类型属性长度主键允许空
+<br><br>
+<span style="margin-left:25px"></span>1id编号int255YESN
+<br><br>
+<span style="margin-left:25px"></span>2question_id所属问题编号int255NN
+<br><br>
+<span style="margin-left:25px"></span>3owner_user_id创建者编号int255NN
+<br><br>
+<span style="margin-left:25px"></span>4up_owner_user_ids点赞者编号longtext255NYES
+<br><br>
+<span style="margin-left:25px"></span>5down_owner_user_ids反对者编号longtext255NYES
+<br><br>
+<span style="margin-left:25px"></span>6answer_text答案内容longtext255NN
+<br><br>
+<span style="margin-left:25px"></span>7created_at创建时间datetime255NN
+<br><br>
+<span style="margin-left:25px"></span>表3.2.3.5评论信息表
+<br><br>
+<span style="margin-left:25px"></span>序号订单字段名属性描述属性类型属性长度主键允许空
+<br><br>
+<span style="margin-left:25px"></span>1id编号varchar255YESN
+<br><br>
+<span style="margin-left:25px"></span>2answer_id所属答案编号varchar255NN
+<br><br>
+<span style="margin-left:25px"></span>3owner_user_name评论者名字varchar255NN
+<br><br>
+<span style="margin-left:25px"></span>4comment_text评论内容varchar255NN
+<br><br>
+<span style="margin-left:25px"></span>5create_time创建时间datetime255NN
+<br><br>
+<span style="margin-left:25px"></span>表3.2.3.6话题信息表
+<br><br>
+<span style="margin-left:25px"></span>序号订单字段名属性描述属性类型属性长度主键允许空
+<br><br>
+<span style="margin-left:25px"></span>1id编号varchar255YESN
+<br><br>
+<span style="margin-left:25px"></span>2theme_name话题标题varchar255NN
+<br><br>
+<span style="margin-left:25px"></span>3description话题描述varchar255NYES
+<br><br>
+<span style="margin-left:25px"></span>3.3 开发环境与运行环境设计
+<br><br>
+<span style="margin-left:25px"></span>3.3.1 开发环境设计
+<br><br>
+<span style="margin-left:25px"></span>本网站系统采用的Python开发，使用了Django第三方框架，利用了Mysql数据库，对系统的一切操作，都是基于Mysql的基础上执行的。
+<br><br>
+<span style="margin-left:25px"></span>硬件及软件环境配置：
+<br><br>
+<span style="margin-left:25px"></span>(1)硬件及操作系统：
+<br><br>
+<span style="margin-left:25px"></span>操作系统：
+<br><br>
+<span style="margin-left:25px"></span>Windows10旗舰版计算机品牌：
+<br><br>
+<span style="margin-left:25px"></span>Lenovog480处理器：
+<br><br>
+<span style="margin-left:25px"></span>Intel(R)_Pentium(R)_CPU_B960_@_2.20GHz显示芯片：
+<br><br>
+<span style="margin-left:25px"></span>IntelIris 1536MB主板芯组：
+<br><br>
+<span style="margin-left:25px"></span>IntelHM55内存容量：
+<br><br>
+<span style="margin-left:25px"></span>2GB硬盘容量：
+<br><br>
+<span style="margin-left:25px"></span>500GB(2)应用软件配置：
+<br><br>
+<span style="margin-left:25px"></span>画图：
+<br><br>
+<span style="margin-left:25px"></span>Microsoft Visio 2010开发工具：
+<br><br>
+<span style="margin-left:25px"></span>Sublime数据库：
+<br><br>
+<span style="margin-left:25px"></span>MySQL开发语言：
+<br><br>
+<span style="margin-left:25px"></span>Python3.3.2 运行环境设计
+<br><br>
+<span style="margin-left:25px"></span>要运行本系统需要相关配置如下：
+<br><br>
+<span style="margin-left:25px"></span>Django 1.6.5
+<br><br>
+<span style="margin-left:25px"></span>Mysql-Python 1.2.5
+<br><br>
+<span style="margin-left:25px"></span>Mysql 5.6
+<br><br>
+<span style="margin-left:25px"></span>4系统实现
+<br><br>
+<span style="margin-left:25px"></span>4.1网站登录以及注册模块的实现
+<br><br>
+<span style="margin-left:25px"></span>4.1.1登录功能实现
+<br><br>
+<span style="margin-left:25px"></span>在用户还未登录系统时，访问网站的任何资源都会自动跳转到登录界面，登录界面由两个表单元素构成，用户名及密码以及登录按钮，
+<br><br>
+<span style="margin-left:25px"></span>当用户名与密码不匹配的时候，系统会自动给出错误提示，并要求重新登陆。主界面如下图4-1-1-1所示：图4-1-1-1 登录页面
+<br><br>
+<span style="margin-left:25px"></span>为了实现登录界面展示，需要有一个login.html模板文件，并在当用户点击登录时，用js脚本验证一下两个输入框中是否有内容，如果没有则会给出错误提示。
+<br><br>
+<span style="margin-left:25px"></span>当前端验证通过数据传到服务器时，后端服务器通过数据拿到发送过来的用户名和密码，
+<br><br>
+<span style="margin-left:25px"></span>首先在数据库中的 auth_ user表中比对用户名和密码是否正确，再进一步判断该用户下的 is_ active是否为 True，如果为 True，则表示该用户有效，验证通过，将当前的 sessionid的值一方面作为 cookies传给客户端浏览器，另一方面，将当前 sessionid值存入数据库的 django_ session中，用以标记该用户登录状态。客户端浏览器被植入cookies见图4-1-1-2。图4-1-1-2 客户端植入cookies
+<br><br>
+<span style="margin-left:25px"></span>后端代码实现如下所示：
+<br><br>
+<span style="margin-left:25px"></span>获取用户名、密码
+<br><br>
+<span style="margin-left:25px"></span>If 验证（用户名、密码）是否为真：
+<br><br>
+<span style="margin-left:25px"></span>If 用户下属性is_active是否为真：
+<br><br>
+<span style="margin-left:25px"></span>验证通过，将当前sessionid存入数据库的django_session表中
+<br><br>
+<span style="margin-left:25px"></span>将sessionid放到将要返回给客户端消息的cookies值中
+<br><br>
+<span style="margin-left:25px"></span>else：
+<br><br>
+<span style="margin-left:25px"></span>将错误消息放入将要返回给客户端的消息
+<br><br>
+<span style="margin-left:25px"></span>else：
+<br><br>
+<span style="margin-left:25px"></span>将错误消息放入将要返回给客户端的消息
+<br><br>
+<span style="margin-left:25px"></span>返回消息给客户端
+<br><br>
+<span style="margin-left:25px"></span>每一个cookies中的id都唯一，不会发生串号情况。
+<br><br>
+<span style="margin-left:25px"></span>4.1.2注册功能的实现
+<br><br>
+<span style="margin-left:25px"></span>登录页面由一个 signup. html做模板，在登录界面基础上多了一个确认密码输入框，
+<br><br>
+<span style="margin-left:25px"></span>并用 js脚本控制，当上下密码不一致时，不会发生提交，并给出错误提示，当逻辑正确时，数据会提交到后台，后台首先验证当前用户名是否存在，如果存在，就返回错误信息，如果正确，则在数据库中添加用户信息，并执行登录过程，登录到主页。注册界面如图4-1-2所示：图4-1-2 注册界面
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>获取用户名、密码
+<br><br>
+<span style="margin-left:25px"></span>If 用户名 in users表为真：
+<br><br>
+<span style="margin-left:25px"></span>返回“用户已存在”错误信息
+<br><br>
+<span style="margin-left:25px"></span>else：
+<br><br>
+<span style="margin-left:25px"></span>在数据库中添加用户信息
+<br><br>
+<span style="margin-left:25px"></span>执行登录过程
+<br><br>
+<span style="margin-left:25px"></span>4.1.3注销功能的实现
+<br><br>
+<span style="margin-left:25px"></span>相比较其他功能而言，注销功能就简单的多，只需要将当前sessionid在数据库中删掉，同时返回一个重定向给客户端浏览器即可。
+<br><br>
+<span style="margin-left:25px"></span>注销功能在网站登录后右上角个人模块中，如图4-1-3所示：图4-1-3 注销功能
+<br><br>
+<span style="margin-left:25px"></span>4.2搜索功能模块的实现
+<br><br>
+<span style="margin-left:25px"></span>搜索功能是网站最重要的一项功能之一，通过搜索功能，用户可以到达想去的任何地方，本系统的搜索功能放在了网站的顶部，这样在任何时候都可以搜索自己想要的内容。
+<br><br>
+<span style="margin-left:25px"></span>搜索框见图4-2-1：图4-2-1 搜索框
+<br><br>
+<span style="margin-left:25px"></span>搜索框旁边有一个下拉框，一共有三个选项可以选，分别是搜索话题、搜索问题、搜索用户，当用户搜索内容为空的时候，
+<br><br>
+<span style="margin-left:25px"></span>页面不会跳转，当用户输入想搜的内容时，系统会根据给出的内容进行模糊搜索，匹配出所有的结果，返回给客户端浏览器，图4-2-2就是搜索用户“ ad”，系统给出的结果：图4-2-2 搜索用户“ad”
+<br><br>
+<span style="margin-left:25px"></span>用户搜索时候，前台浏览器会发送两个数据给系统后台，一个是搜索类型，另一个是搜索内容，后台拿到数据以后，
+<br><br>
+<span style="margin-left:25px"></span>首先判断类型，如果是搜索话题，则在 qa_ theme表下的 theme_ name值中找涵盖搜索内容的主题，找到后返回他们的完整 id与名字，在循环每一个获取到的主题列表中的 id，判断该主题的 id是否在用户的关注列表中，将这些值组合到一起存为一个大列表，返回给客户端。搜索问题的方式同话题差不多，但是搜索用户时会不一样，因为我觉得用户自己是不可以关注自己的，
+<br><br>
+<span style="margin-left:25px"></span>但是可以搜索到自己，所以后台在搜索用户时，如果结果数据中包含自己的话，将在结果页面的右侧不会显示关注或者取消关注的按钮。如图4-2-3所示：图4-2-3 搜索结果包含自己的时候不会有关注按钮
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>获取搜索类型和搜索内容
+<br><br>
+<span style="margin-left:25px"></span>If 搜索类型==’theme’:
+<br><br>
+<span style="margin-left:25px"></span>结果列表=查询数据库qa_theme中theme_name字段中包含搜索内容的结果
+<br><br>
+<span style="margin-left:25px"></span>for 结果in 结果列表:
+<br><br>
+<span style="margin-left:25px"></span>if 结果.id in 当前用户关注列表里:
+<br><br>
+<span style="margin-left:25px"></span>结果.focused=true
+<br><br>
+<span style="margin-left:25px"></span>else:
+<br><br>
+<span style="margin-left:25px"></span>结果.focused=false
+<br><br>
+<span style="margin-left:25px"></span>返回结果
+<br><br>
+<span style="margin-left:25px"></span>If 搜索类型==’question’:
+<br><br>
+<span style="margin-left:25px"></span>结果列表=查询数据库qa_question中question_name字段中包含搜索内容的结果
+<br><br>
+<span style="margin-left:25px"></span>for 结果 in 结果列表:
+<br><br>
+<span style="margin-left:25px"></span>if 结果.id in 当前用户关注列表里:
+<br><br>
+<span style="margin-left:25px"></span>结果.focused=true
+<br><br>
+<span style="margin-left:25px"></span>else:
+<br><br>
+<span style="margin-left:25px"></span>结果.focused=false
+<br><br>
+<span style="margin-left:25px"></span>返回结果
+<br><br>
+<span style="margin-left:25px"></span>If 搜索类型==’user’:
+<br><br>
+<span style="margin-left:25px"></span>结果列表=查询数据库user_profile中username字段中包含搜索内容的结果
+<br><br>
+<span style="margin-left:25px"></span>for 结果 in 结果列表:
+<br><br>
+<span style="margin-left:25px"></span>if 结果.id in 当前用户关注列表里:
+<br><br>
+<span style="margin-left:25px"></span>结果.focused=true
+<br><br>
+<span style="margin-left:25px"></span>else:
+<br><br>
+<span style="margin-left:25px"></span>结果.focused=false
+<br><br>
+<span style="margin-left:25px"></span>if 结果.id == 当前用户id:
+<br><br>
+<span style="margin-left:25px"></span>结果.display=true
+<br><br>
+<span style="margin-left:25px"></span>else:
+<br><br>
+<span style="margin-left:25px"></span>结果.display=false
+<br><br>
+<span style="margin-left:25px"></span>返回结果
+<br><br>
+<span style="margin-left:25px"></span>当搜索结果为空时，页面也会正确显示，见图4-2-4：
+<br><br>
+<span style="margin-left:25px"></span>图4-2-4 搜索结果为空时
+<br><br>
+<span style="margin-left:25px"></span>4.3关注功能的实现
+<br><br>
+<span style="margin-left:25px"></span>关注功能是系统的一个重要功能，其主要作用是给用户带来某一领域的话题问题等各种动态的更新，是将网站从一个用户主动去搜索寻找资源的过程，
+<br><br>
+<span style="margin-left:25px"></span>变成了一个网站主动将最新的状态，第一时间推送给用户的过程。关注功能并没有一个独立的页面，而是散布在各个页面中，用户一共可以关注四个类型:
+<br><br>
+<span style="margin-left:25px"></span>话题、问题、答案、用户。4.3.1 关注话题
+<br><br>
+<span style="margin-left:25px"></span>用户关注话题，当话题下有新的问题出现时，用户可以在主页第一时间看到更新。
+<br><br>
+<span style="margin-left:25px"></span>关注话题如图4-3-1-1所示
+<br><br>
+<span style="margin-left:25px"></span>图4-3-1-1 关注话题按钮
+<br><br>
+<span style="margin-left:25px"></span>关注按钮在搜索时也会出现，如图4-3-1-2所示：
+<br><br>
+<span style="margin-left:25px"></span>图4-3-1-2 搜索话题
+<br><br>
+<span style="margin-left:25px"></span>关注按钮通过js控制监听，当点击按钮时，前台就会发送ajax数据给后台，数据内容包含关注类型和关注id两个字段。
+<br><br>
+<span style="margin-left:25px"></span>后台拿到数据，就会根据关注类型执行相应代码，将关注者id放入当前用户的focused_theme_ids字段中。
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>获取数据
+<br><br>
+<span style="margin-left:25px"></span>If 关注类型==’theme’:
+<br><br>
+<span style="margin-left:25px"></span>If theme_id in 用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_theme_ids:用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_theme_ids+= theme_idelse：
+<br><br>
+<span style="margin-left:25px"></span>用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_theme_ids-= theme_id4.3.2 关注问题
+<br><br>
+<span style="margin-left:25px"></span>用户关注问题与关注话题的逻辑相似，关注问题见图4-3-2：
+<br><br>
+<span style="margin-left:25px"></span>图4-3-2 关注问题按钮
+<br><br>
+<span style="margin-left:25px"></span>与话题不同的是，当问题下有新的答案时，用户可以在主页第一时间知道。
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>获取数据
+<br><br>
+<span style="margin-left:25px"></span>If 关注类型==’question’:
+<br><br>
+<span style="margin-left:25px"></span>If question _id in 用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ question _ids:用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ question _ids+= question _idelse：
+<br><br>
+<span style="margin-left:25px"></span>用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ question _ids-= question _id4.3.3 关注答案
+<br><br>
+<span style="margin-left:25px"></span>用户关注答案与关注话题的逻辑相似，关注问题见图4-3-3：
+<br><br>
+<span style="margin-left:25px"></span>图4-3-3 关注答案按钮
+<br><br>
+<span style="margin-left:25px"></span>与话题不同的是，当答案被点赞、反对或者评论时，用户可以在主页第一时间知道。
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>获取数据
+<br><br>
+<span style="margin-left:25px"></span>If 关注类型==’answer’:
+<br><br>
+<span style="margin-left:25px"></span>If answer _id in 用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ answer _ids:用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ answer _ids+= answer _idelse：
+<br><br>
+<span style="margin-left:25px"></span>用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ answer _ids-= answer _id4.3.4 关注用户
+<br><br>
+<span style="margin-left:25px"></span>用户关注用户与关注话题的逻辑相似，关注问题见图4-3-4：
+<br><br>
+<span style="margin-left:25px"></span>图4-3-3 关注答案按钮
+<br><br>
+<span style="margin-left:25px"></span>与话题不同的是，当被关注的用户有任何动态时，用户可以在主页第一时间知道。
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>获取数据
+<br><br>
+<span style="margin-left:25px"></span>If 关注类型==’user’:
+<br><br>
+<span style="margin-left:25px"></span>If user _id in 用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ user _ids:用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ user _ids+= user _idelse：
+<br><br>
+<span style="margin-left:25px"></span>用户.
+<br><br>
+<span style="margin-left:25px"></span> focused_ user _ids-= user _id4.4点赞和反对功能的实现
+<br><br>
+<span style="margin-left:25px"></span>点赞与反对功能是为了激励用户写出更好的答案而设计的一项功能，一个好的答案，往往能获取很多用户的支持。
+<br><br>
+<span style="margin-left:25px"></span>而每个用户对于每一个答案都会有一个投票的权利，即赞成或者反对。如图4-4：图4-4 赞成与反对按钮
+<br><br>
+<span style="margin-left:25px"></span>前台浏览器通过 js脚本实现与后台 ajax通信，即监听赞同与反对的按钮的点击事件，当用户点击任何一个按钮时，
+<br><br>
+<span style="margin-left:25px"></span>前台浏览器就会用 ajax将当前用户的所在答案的 answer_ id与点赞或反对的事件类型传到后台，后台拿到数据之后，就会找到在数据表 qa_ answer中对应的 answer数据，在根据传给后台的事件类型将当前用户 id加入 up_ owner_ user_ ids或者 down_ owner_ user_ ids中，在收集当前答案的赞的数量和反对的数量，用 json字符串方式返回给客户端服务器，客户端浏览器接收到数据，重新渲染对应点赞和反对数据。主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>获取数据
+<br><br>
+<span style="margin-left:25px"></span>Answer=数据表qa_answer中id与answer_id相同的数据
+<br><br>
+<span style="margin-left:25px"></span>If action_type == ‘点赞’:
+<br><br>
+<span style="margin-left:25px"></span>If 当前用户id in Answer.
+<br><br>
+<span style="margin-left:25px"></span> up_owner_user_ids:Answer.
+<br><br>
+<span style="margin-left:25px"></span> up_owner_user_ids+=(当前用户id)if 当前用户id in Answer.
+<br><br>
+<span style="margin-left:25px"></span> down_owner_user_ids:Answer.
+<br><br>
+<span style="margin-left:25px"></span> down_owner_user_ids-=(当前用户id)else:
+<br><br>
+<span style="margin-left:25px"></span>If 当前用户id in Answer.
+<br><br>
+<span style="margin-left:25px"></span> up_owner_user_ids:Answer.
+<br><br>
+<span style="margin-left:25px"></span> up_owner_user_ids-=(当前用户id)if 当前用户id in Answer.
+<br><br>
+<span style="margin-left:25px"></span> down_owner_user_ids:Answer.
+<br><br>
+<span style="margin-left:25px"></span> down_owner_user_ids+=(当前用户id)由上面一段逻辑代码可知，当用户点击点赞按钮时，点赞成功，当再次点赞就会取消赞，
+<br><br>
+<span style="margin-left:25px"></span>另一方面，当用户已点赞时候，再去点击反对按钮，就会自动取消当前的赞，逻辑上实现了用户对于每一个答案只有一次投票权的功能。4.5收藏功能的实现
+<br><br>
+<span style="margin-left:25px"></span>收藏功能是方便用户的一项小功能，当用户看到有用的答案时，就可以收藏它，然后再个人中心可以看到收藏过的答案。
+<br><br>
+<span style="margin-left:25px"></span>收藏功能按钮见图4-5-1，收藏结果见图4-5-2：图4-5-1 收藏答案按钮
+<br><br>
+<span style="margin-left:25px"></span>图4-5-2 收藏结果
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示:
+<br><br>
+<span style="margin-left:25px"></span>收集数据
+<br><br>
+<span style="margin-left:25px"></span>If answer_id in 当前用户.collected_answer:
+<br><br>
+<span style="margin-left:25px"></span>当前用户.collected_answer-= answer_id
+<br><br>
+<span style="margin-left:25px"></span>else:
+<br><br>
+<span style="margin-left:25px"></span>当前用户.collected_answer+= answer_id
+<br><br>
+<span style="margin-left:25px"></span>4.6 添加问题功能的实现
+<br><br>
+<span style="margin-left:25px"></span>添加问题是系统重要的基础功能之一，通过各种各样的问题，网站内容得以丰富。
+<br><br>
+<span style="margin-left:25px"></span>用户在添加问题时会默认关注添加成功的新问题，这样当问题下有新的答案时就会在第一时间看到。见图4-6-1为添加问题页面：图4-6-1 添加问题页面
+<br><br>
+<span style="margin-left:25px"></span>问题标题与话题为必填项，话题输入框为搜索框，主要是为了方便给问题加上需要的话题标签，
+<br><br>
+<span style="margin-left:25px"></span>如图4-6-2为搜索话题是出现下拉框，4-6-3为点击其中一个选项出现的结果。图4-6-2 搜索话题出现下拉框
+<br><br>
+<span style="margin-left:25px"></span>图4-6-3 点击其中一个话题的效果
+<br><br>
+<span style="margin-left:25px"></span>话题搜索的逻辑代码与前面4.2节搜索功能实现相似。
+<br><br>
+<span style="margin-left:25px"></span>当用户填好添加问题的输入框提交之后，前端脚本会先验证数据是否正确，如果不准确则弹出错误提示。
+<br><br>
+<span style="margin-left:25px"></span>后台接受三组数据，问题标题，所属话题，以及问题描述，在数据库的 qa_ question中创建一条数据，
+<br><br>
+<span style="margin-left:25px"></span>同时，如果问题所属多个话题，则在动态表中循环话题列表，创建动态信息。主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>收集数据
+<br><br>
+<span style="margin-left:25px"></span>question=在qa_question表中创建一条数据
+<br><br>
+<span style="margin-left:25px"></span>当前用户.focused_question_ids+=question_id
+<br><br>
+<span style="margin-left:25px"></span>for 话题 in 话题列表:
+<br><br>
+<span style="margin-left:25px"></span>动态表创建(话题)
+<br><br>
+<span style="margin-left:25px"></span>4.7 添加答案功能的实现
+<br><br>
+<span style="margin-left:25px"></span>当用户在某一个问题下添加答案时，整个问题的答案列表会更新，同时用户会默认关注自己创建的答案，当用户的答案被赞的人数多，会被顶到答案列表的第一位。
+<br><br>
+<span style="margin-left:25px"></span>用户添加答案界面如图4-7-1所示：图4-7-1 用户添加答案
+<br><br>
+<span style="margin-left:25px"></span>前台通过js脚本将当前问题id与答案内容传给后台，后台接受数据在数据表中创建一条答案数据。
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>后台收集数据
+<br><br>
+<span style="margin-left:25px"></span>answer = 创建一条qa_answer数据(当前问题id，答案内容)
+<br><br>
+<span style="margin-left:25px"></span>当前用户.focused_answer_ids+=当前问题id
+<br><br>
+<span style="margin-left:25px"></span>动态表创建一条新数据
+<br><br>
+<span style="margin-left:25px"></span>返回answer.id
+<br><br>
+<span style="margin-left:25px"></span>4.8 添加评论功能的实现
+<br><br>
+<span style="margin-left:25px"></span>用户评论是用户与回答者互动的最好的方式，通过给答案评论，回答者可以在首页动态了解到有用户对他的答案有了新的想法，从而与评论者互动。
+<br><br>
+<span style="margin-left:25px"></span>添加评论功能演示见图4-8：图4-8 测试评论
+<br><br>
+<span style="margin-left:25px"></span>前端通过js脚本收集评论的答案编号和评论内容，发送给后端，后端接受到数据在qa_comment创建一条数据，创建成功后返回成功信息。
+<br><br>
+<span style="margin-left:25px"></span>主要代码如下所示：
+<br><br>
+<span style="margin-left:25px"></span>收集数据
+<br><br>
+<span style="margin-left:25px"></span>在qa_comment创建一条数据
+<br><br>
+<span style="margin-left:25px"></span>返回成功信息
+<br><br>
+<span style="margin-left:25px"></span>5用户手册
+<br><br>
+<span style="margin-left:25px"></span>5.1功能简介
+<br><br>
+<span style="margin-left:25px"></span>本系统的作用是希望建立一个良好的社会化问答网站，让所有用户参与分享自己的知识与经验。
+<br><br>
+<span style="margin-left:25px"></span>用户可以在“添加问题”界面提出问题，通过选择话题，能够让所有共同关注同一个话题领域的人看到，
+<br><br>
+<span style="margin-left:25px"></span>这其中不乏有处理过或者遇到过与提问者相同问题的人，通过他们的经验指导和答案质量以及其他用户投票数，用户可以获得自己满意的答案。用户在主页的动态更新中可以看到自己关注的话题下的最新问题，选择自己感兴趣的问题回答，答案的质量越高就会获得越多的赞同，
+<br><br>
+<span style="margin-left:25px"></span>回答着可以收获认同感，能得到某一领域里其他人的认可甚至成为权威。用户可以给答案评论，回答者可以在动态上看到更新，并与之参与讨论，就某一个方面继续探讨和延伸。
+<br><br>
+<span style="margin-left:25px"></span>用户可以觉得有用的答案，可以收藏他们，以备以后再次查看。用户可以给答案点赞或者反对，点赞的数量将会影响到答案的排名。
+<br><br>
+<span style="margin-left:25px"></span>用户可以关注话题、问题、答案与用户，当其中的任何一项发生改变时，用户可以通过主页动态获取到最新消息。
+<br><br>
+<span style="margin-left:25px"></span>5.2系统部署
+<br><br>
+<span style="margin-left:25px"></span>首先部署环境需要安装python的2.7版本，可以通过官网去下载，本地需要配置好Mysql，然后再通过在https:
+<br><br>
+<span style="margin-left:25px"></span>//pypi.python.org/pypi 中搜索MySql-Python，下载安装1.2.5版本，再搜索Django下载安装1.6.5版本，至此环境配置完毕。如图5-2-1所示，系统配置是保存在 QASite文件夹下的 settings. py文件里，
+<br><br>
+<span style="margin-left:25px"></span>默认系统使用的数据库名为 questionanswer，默认数据库用户名与密码都是 test，在部署的时候可以任意更改，只要部署环境中存在该数据库和用户即可。图5-2-1 系统文件结构
+<br><br>
+<span style="margin-left:25px"></span>首先双击项目下的init_server.bat文件，执行系统的初始化工作，如果执行过程中出现错误，如图5-2-2所示：
+<br><br>
+<span style="margin-left:25px"></span>图5-2-2 错误提示
+<br><br>
+<span style="margin-left:25px"></span>请检查settings.py文件里数据库配置信息填的是否正确。
+<br><br>
+<span style="margin-left:25px"></span>系统初始化完成之后再双击start_server.bat文件，服务器启动如图5-2-3时，表示系统启动成功。
+<br><br>
+<span style="margin-left:25px"></span>图5-2-3 启动成功
+<br><br>
+<span style="margin-left:25px"></span>到这一步系统的部署已经完成，打开浏览器访问http:
+<br><br>
+<span style="margin-left:25px"></span>//127.0.0.1:8000/ 即可看到本网站系统。6系统评价
+<br><br>
+<span style="margin-left:25px"></span>6.1 系统的特色
+<br><br>
+<span style="margin-left:25px"></span>本文设计和实现的社会化问答网站目的在于知识与经验传播，受众是那些不满足于从搜索引擎获取到知识的人。
+<br><br>
+<span style="margin-left:25px"></span>用户可以随时搜索自己感兴趣的内容，获取最专业和优质的知识和经验，同时也可以提出问题，与所有有共同兴趣的人一起共享和探讨遇到的问题，真正做到了一个良性的循环。本系统主要为用户提供了以下一些功能：（1）创建话题、创建问题、创建答案、添加评论。
+<br><br>
+<span style="margin-left:25px"></span>（2）点赞、反对和收藏答案。
+<br><br>
+<span style="margin-left:25px"></span>（3）关注话题、关注问题、关注答案、关注用户，并在主页看到所有的动态信息。
+<br><br>
+<span style="margin-left:25px"></span>（4）个人中心查看所有收藏过的和关注过的内容。
+<br><br>
+<span style="margin-left:25px"></span>（5）搜索框可以搜索话题、问题与用户，可以通过搜索到达网站的任何地方。
+<br><br>
+<span style="margin-left:25px"></span>这些功能组合到一起真正实现了一个社会化问答网站系统所需要的所有基础功能。
+<br><br>
+<span style="margin-left:25px"></span>6.2 系统存在的不足与改进方案
+<br><br>
+<span style="margin-left:25px"></span>社会化问答网站虽然实现了基本的主要功能，但在整体表现上还是有不足：
+<br><br>
+<span style="margin-left:25px"></span>（1）在用户开始接触本系统时应该有一个新手教程一样的入门推荐，让用户可以选择自己感兴趣的话题，
+<br><br>
+<span style="margin-left:25px"></span>不然小白用户在刚进系统时，以为没关注任何内容，面对空白的主页动态会不知所措。（2）网站整体界面虽然简洁大方，但是网站整体在样式上显得单调，在内容上会给人一种不丰富的感觉。
+<br><br>
+<span style="margin-left:25px"></span>（3）由于时间精力有限，系统与其他问答网站相比，缺少了一些人性化的小细节功能，比如查看一个答案哪些人给该答案点了赞或者反对。
+<br><br>
+<span style="margin-left:25px"></span>同时注册和登录界面没有设置验证码功能，会有被其他人利用爬虫做一些类似刷赞活动的风险。结 论
+<br><br>
+<span style="margin-left:25px"></span>本网站系统是基于Python的社会化问答网站，是用户之间传播知识与经验的平台。
+<br><br>
+<span style="margin-left:25px"></span>使用本系统的用户，可以轻松的关注自己感兴趣的所有话题，提出问题并与其他同样感兴趣的用户一起探讨问题与答案。本文研究的主要内容包括：
+<br><br>
+<span style="margin-left:25px"></span>(1)基于 cookies实现登录的功能，由于 http是一种无状态的协议，所以在实现登录功能上，需要人为的去实现，
+<br><br>
+<span style="margin-left:25px"></span>即前台发出请求，后台接收用户名和密码，经过比对，如果正确，则将当前会话的 session信息存到数据库中，同时在返回的信息中包含 cookies，这样浏览器在后面的数据请求中都会有此 cookies，后台通过此 cookies比对数据库中的登录信息，如果正确则表示用户已登录。这样实现了一个系统的登录功能。(2) 数据的传递与存取。
+<br><br>
+<span style="margin-left:25px"></span>对于用户来说，网站是一个可视化的存在的系统，但是对于服务器来说，网站系统是一个接收请求数据，结果运算和数据库通信，将一段计算后的文本返回给客户端浏览器的过程，对于后台服务器来说，后台所做的工作只有两种类型，与数据库通信和计算。通过客户端浏览器发送的请求，在数据库中增删改查，将取到的数据经过计算，将数据返回给模板，后台再将关键的数据通过在模板中查找，替换关键词，最后将计算好的模板以文本的方式返回给浏览器，一段请求的后台处理完成了。致 谢
+<br><br>
+<span style="margin-left:25px"></span>终于完成了程序与论文，心中松了一口气，在完成的过程中遇到了很多问题，所幸的是在仲老师的帮助下都克服了。
+<br><br>
+<span style="margin-left:25px"></span>仲老师在我的选题、需求分析、系统设计、系统实现的过程中给予了细心的指导，在程序设计与开发的过程中给予了可靠的建议和帮助，在我遇到不懂的问题时，仲老师也非常尽责而且有耐心的为我解说。老师无私的帮助和教诲让我受益匪浅，也让我对一个程序设计过程有了更充分和详细的认知。同时，我也要感谢学院领导提供的便利的学习环境，在安静的图书馆，我可以认真专心致志的完成我的论文与系统，
+<br><br>
+<span style="margin-left:25px"></span>不被外界打扰，在需要查找资料时也能很轻松的发现想要的资料，便利轻松的学习环境对我完成论文与系统的帮助很大。此外，我还要感谢宿舍的各位室友在大学四年中对我的帮助，不在校的时候，
+<br><br>
+<span style="margin-left:25px"></span>学校很多事务都是他们帮忙处理的，如果没有他们，我会多出许多麻烦并且浪费很多时间，多亏他们的帮助，让我能够腾出时间去完成我的毕业设计。还要感谢最后答辩的各位老师，提出各种宝贵的意见，让我的程序和论文更加的完美。
+<br><br>
+<span style="margin-left:25px"></span>参 考 文 献
+<br><br>
+<span style="margin-left:25px"></span>[1] Gourley等.
+<br><br>
+<span style="margin-left:25px"></span> HTTP权威指南. 人民邮电出版社，2012[2] The Web framework for perfectionists with deadlines | Djangot.https:
+<br><br>
+<span style="margin-left:25px"></span>//www.djangoproject.com/
+<br><br>
+<span style="margin-left:25px"></span>[3] The Django Book.
+<br><br>
+<span style="margin-left:25px"></span> http://djangobook.py3k.cn/2.0/[4] JavaScript 参考文档.
+<br><br>
+<span style="margin-left:25px"></span> https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference
+<br><br>
+<span style="margin-left:25px"></span>[5] (美)弗拉纳根.Javascript权威指南(第6版). 机械工业出版社，2007
+<br><br>
+<span style="margin-left:25px"></span>[6] (美)(Nicholas C.Zakas)扎卡斯.JavaScript高级程序设计(第3版). 人民邮电出版社，2006
+<br><br>
+<span style="margin-left:25px"></span>[7] Bootstrap 中文文档.
+<br><br>
+<span style="margin-left:25px"></span> http://v3.bootcss.com/[8] (美)丘恩(Chun，W.J.
+<br><br>
+<span style="margin-left:25px"></span> ).Python核心编程.人民邮电出版社，2008[9] w3scool 在线教程.http:
+<br><br>
+<span style="margin-left:25px"></span>//www.w3school.com.cn/[10] (美)Cesar Otero.
+<br><br>
+<span style="margin-left:25px"></span> jQuery高级编程，2013
+
+<br>
+<div style="margin-left:8px">
+
+<div style="text-align:center;background-color:#CA122C;margin-top:30px;overflow:hidden;">
+<a href="http://www.paperpass.com/publish/index?from=ppreport_banner" target="_blank" style="display:block;"><img height="180" src="http://file.paperpass.com/images/fabiao.jpg"></a>
+</div>
+
+</div>
+</div>
+
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2016 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>
