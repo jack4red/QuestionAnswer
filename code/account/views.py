@@ -133,6 +133,16 @@ def signup(request):
 	if request.POST:
 		username = request.POST['username']
 		password = request.POST['password']
+		if len(username)>=10:
+			c = RequestContext(request, {
+				'outuserlength':True,
+			})
+			return render_to_response('account/signup.html', c)
+		if len(password)>=10:
+			c = RequestContext(request, {
+				'outpasswordlength':True,
+			})
+			return render_to_response('account/signup.html', c)
 		if User.objects.filter(username=username).exists():
 			c = RequestContext(request, {
 				'error':True,

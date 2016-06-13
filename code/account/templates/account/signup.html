@@ -63,6 +63,12 @@
       {% if error %}
       <div class="login-eror">该用户已存在</div>
       {% endif %}
+      {% if outuserlength %}
+      <div class="login-eror">用户名不得超过10位</div>
+      {% endif %}
+      {% if outpasswordlength %}
+      <div class="login-eror">密码不得超过10位</div>
+      {% endif %}
       <div class="login-eror" style="display: none;">两次输入的密码不一致</div>
       <a class="btn btn-default" href="javascript:void(0)" style="float: right;margin-top: 10px;">注册</a>
     </form>
